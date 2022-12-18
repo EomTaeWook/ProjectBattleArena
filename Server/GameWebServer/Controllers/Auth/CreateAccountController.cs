@@ -1,6 +1,8 @@
 ﻿using BA.Models;
 using GameWebServer.Manager;
+using GameWebServer.Models;
 using Protocol.GameWebServerAndClient;
+using Protocol.GameWebServerAndClient.ShareModels;
 using Repository;
 
 namespace GameWebServer.Controllers.Auth
@@ -18,12 +20,18 @@ namespace GameWebServer.Controllers.Auth
 
             if(loadModel == null)
             {
-                return MakeErrorMessage("DB Error");
+                return new ErrorResponse 
+                { 
+                    ErrorMessage = "DB Error"
+                };
             }
 
             if(string.IsNullOrEmpty(loadModel.Account) == false)
             {
-                return MakeErrorMessage("already create account");
+                return new ErrorResponse
+                {
+                    ErrorMessage = "already create account"
+                };
             }
 
             var authModel = new AuthModel()
@@ -37,7 +45,10 @@ namespace GameWebServer.Controllers.Auth
 
             if (created == false)
             {
-                return MakeErrorMessage("failed to create auth");
+                return new ErrorResponse
+                {
+                    ErrorMessage = "failed to create auth"
+                };
             }
 
             return new CreateAccountResponse()

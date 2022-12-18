@@ -11,17 +11,25 @@ namespace Protocol.GameWebServerAndClient
     {
         bool Ok { get; set; }
     }
-
-    public class LoginResponse : IGWCResponse
-	{
-        public List<CharacterData> CharacterDatas { get; set; } = new List<CharacterData>();
+    public class ServerResponse : IGWCResponse
+    {
+        public bool Maintenance { get; set; }
         public bool Ok { get; set; }
     }
-    public class CreateAccountResponse : IGWCResponse
-    {
-        public bool Ok { get; set; }
 
+    public class LoginResponse : ServerResponse
+    {
+        public List<CharacterData> CharacterDatas { get; set; } = new List<CharacterData>();
+    }
+    public class CreateAccountResponse : ServerResponse
+    {
         public string Password { get; set; }
     }
+
+    public class CreateCharacterResponse : ServerResponse
+    {
+        public CharacterData NewCharacterData { get; set; }
+    }
+
 
 }

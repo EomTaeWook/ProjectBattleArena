@@ -44,6 +44,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol.CGW.cs" />
     <Compile Include="ShareModels\CharacterData.cs" />
+    <Compile Include="ShareModels\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Protocol.GWC.cs" />

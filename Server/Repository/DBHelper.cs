@@ -49,8 +49,9 @@ namespace BA.Repository
         {
             LoadAuth,
             CreateAuth,
-
-            InsertLog,
+            InsertUserLog,
+            CreateCharacter,
+            LoadCharacters,
 
             Max
         }

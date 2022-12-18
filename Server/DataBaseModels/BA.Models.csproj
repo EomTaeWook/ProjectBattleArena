@@ -6,4 +6,8 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Protocol.GameWebServerAndClient\Protocol.GameWebServerAndClient.csproj" />
+  </ItemGroup>
+
 </Project>

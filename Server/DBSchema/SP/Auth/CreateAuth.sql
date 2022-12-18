@@ -1,7 +1,7 @@
-USE Game;
+USE GameDB;
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS create_auth$$
+DROP PROCEDURE IF EXISTS create_auth $$
 CREATE PROCEDURE create_auth
 (
 	IN param_account VARCHAR(100),
@@ -9,7 +9,7 @@ CREATE PROCEDURE create_auth
 	IN param_created_time bigint
 )
 BEGIN
-	INSERT INTO auth
+	INSERT INTO tb_auth
 	(
 		account,
 		password,

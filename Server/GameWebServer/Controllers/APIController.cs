@@ -19,9 +19,9 @@ namespace GameWebServer.Controllers
             return new JsonResult(response);
         } 
 
-        public ErrorResponse MakeErrorMessage(string message, [CallerFilePath]string fileName= "", [CallerLineNumber]int fileNumber = 0)
+        public ErrorResponse MakeErrorMessage(string account, string message, [CallerFilePath]string fileName= "", [CallerLineNumber]int fileNumber = 0)
         {
-            LogHelper.Error(message, fileName, fileNumber);
+            LogHelper.Error($"user : {account} message : {message}", fileName, fileNumber);
             return new ErrorResponse()
             {
                 ErrorMessage = message,

@@ -2,7 +2,7 @@
 
 namespace GameWebServer.Models
 {
-    public class DBContext : IDBContext, ILogDBContext
+    public class DBContext : IDBContext
     {
         private readonly string _connString;
         public DBContext(DBConfig config)

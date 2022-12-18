@@ -1,8 +1,8 @@
-USE Game;
+USE GameDB;
 
 SET collation_connection = @@collation_database;
-DROP TABLE IF EXISTS auth;
-CREATE TABLE auth (
+DROP TABLE IF EXISTS tb_auth;
+CREATE TABLE tb_auth (
 	account varchar(100) not null,
 	password varchar(100) not null,
 	account_type int not null default 0,

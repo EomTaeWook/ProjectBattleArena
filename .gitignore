@@ -17,3 +17,4 @@ Server/Repository/obj/*
 Server/DataBaseModels/obj/*
 Server/DataBaseModels/bin/*
 ProjectBattleArena/Logs/*
+ProjectBattleArena/userData.json

@@ -7,16 +7,16 @@ using System.Text.Json;
 
 namespace GameWebServer.Manager
 {
-    public class ActionLogManager : Singleton<ActionLogManager>
+    public class UserLogManager : Singleton<UserLogManager>
     {
-        LogRepository _logRepository;
+        UserLogRepository _logRepository;
         public void Init(DBContext dbContext)
         {
-            _logRepository = new LogRepository(dbContext);
+            _logRepository = new UserLogRepository(dbContext);
         }
         public async Task InsertLogAsync(string account, string path, IGWCResponse response)
         {
-            var logModel = new LogModel()
+            var logModel = new UserLogModel()
             {
                 Account = account,
                 LoggedTime = DateTime.Now.Ticks,
@@ -24,7 +24,7 @@ namespace GameWebServer.Manager
                 Log = JsonSerializer.Serialize(response)
             };
 
-            await _logRepository.CreateLog(logModel);
+            await _logRepository.InsertUserLog(logModel);
         }
     }
 }

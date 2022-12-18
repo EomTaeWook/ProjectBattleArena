@@ -1,7 +1,6 @@
-USE ServerLog;
+USE GameDB;
 
 DROP TABLE IF EXISTS log;
-
 CREATE TABLE log (
   id bigint NOT NULL AUTO_INCREMENT,
   level varchar(100) NOT NULL,

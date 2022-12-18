@@ -10,19 +10,24 @@ namespace GameWebServer.Controllers
         {
             if(string.IsNullOrEmpty(request.Account) == true)
             {
-                return MakeErrorMessage("account is empty");
+                return new ErrorResponse()
+                {
+                    ErrorMessage = "account is empty"
+                };
             }
             else if(string.IsNullOrEmpty(request.Password) == true)
             {
-                return MakeErrorMessage("password is empty");
+                return new ErrorResponse()
+                {
+                    ErrorMessage = "password is empty"
+                };
             }
             var response = await Process(request.Account, request);
 
             if(response is ErrorResponse == false)
             {
-                await ActionLogManager.Instance.InsertLogAsync(request.Account, Request.Path, response);
-            }            
-
+                await UserLogManager.Instance.InsertLogAsync(request.Account, Request.Path, response);
+            }
             return response;
         }
         public abstract Task<IGWCResponse> Process(string account, T request);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Protocol.GameWebServerAndClient.ShareModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,6 @@ namespace Protocol.GameWebServerAndClient
     public interface ICGWRequest
     {
     }
-
     public class AuthRequest : ICGWRequest
     {
         public string Account { get; set; }
@@ -17,11 +17,16 @@ namespace Protocol.GameWebServerAndClient
     }
     public class Login : AuthRequest
     {
-
     }
     public class CreateAccount : ICGWRequest
     {
         public string Account { get; set; }
     }
-    
+    public class CreateCharacter : AuthRequest
+    {
+        public string CharacterName { get; set; }
+
+        public JobType Job { get; set; }
+    }
+
 }
