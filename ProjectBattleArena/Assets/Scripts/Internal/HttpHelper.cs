@@ -28,8 +28,6 @@ namespace Assets.Scripts.Internal
 
             var response = await Request<TReq, TRes>(request);
 
-            ApplicationManager.Instance.RefreshTokenTime();
-
             return response;
         }
     }

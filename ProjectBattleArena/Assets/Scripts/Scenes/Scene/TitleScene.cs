@@ -35,6 +35,7 @@ public class TitleScene : BaseScene
         {
             Token = ApplicationManager.Instance.GetUserToken()
         });
+
         if (response.Ok == true)
         {
             CharacterManager.Instance.Init(response.CharacterDatas);

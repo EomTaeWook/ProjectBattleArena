@@ -10,19 +10,6 @@ namespace GameWebServer.Controllers
 {
     public abstract class AuthAPIController<T> : APIController<T> where T : AuthRequest
     {
-        private static TokenData ValidateToken(string token)
-        {
-            try
-            {
-                var json = Cryptogram.Decrypt(token);
-                return JsonSerializer.Deserialize<TokenData>(json);
-            }
-            catch(Exception ex)
-            {
-                LogHelper.Error(ex);
-                return null;
-            }
-        }
         public override async Task<IGWCResponse> Process(T request)
         {
             if(string.IsNullOrEmpty(request.Token) == true)

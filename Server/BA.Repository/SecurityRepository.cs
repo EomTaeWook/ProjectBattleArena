@@ -66,27 +66,6 @@ namespace BA.Repository
                 return null;
             }
         }
-        public async Task<string> LoadSecurityPublicKeyAsync()
-        {
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(_dbContext.GetConnString()))
-                {
-                    var param = new DynamicParameters();
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.LoadSecurityPublicKey),
-                                                                                param,
-                                                                                commandType: CommandType.StoredProcedure);
-
-                    var result = await connection.QueryFirstOrDefaultAsync<string>(command);
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex);
-                return null;
-            }
-        }
     }
 }
 

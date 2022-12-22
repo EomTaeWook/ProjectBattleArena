@@ -329,14 +329,14 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets\Plugins\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ShareLogic">
+      <HintPath>Assets\Plugins\Debug\ShareLogic.dll</HintPath>
+    </Reference>
     <Reference Include="Kosher.Unity">
       <HintPath>Assets\Plugins\Debug\Kosher.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Protocol.GameWebServerAndClient">
       <HintPath>Assets\Plugins\Debug\Protocol.GameWebServerAndClient.dll</HintPath>
-    </Reference>
-    <Reference Include="ShareLogic">
-      <HintPath>Assets\Plugins\Debug\ShareLogic.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Users\trim0\Documents\2020.3.33f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

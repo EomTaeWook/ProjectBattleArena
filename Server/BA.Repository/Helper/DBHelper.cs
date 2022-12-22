@@ -61,7 +61,6 @@ namespace BA.Repository.Helper
             UpdateArenaTicket,
             LoadCharacterByCharacterName,
             LoadLatestSecurityKey,
-            LoadSecurityPublicKey,
             InsertSecurityKey,
 
             Max

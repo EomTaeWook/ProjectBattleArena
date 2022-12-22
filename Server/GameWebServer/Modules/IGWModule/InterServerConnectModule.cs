@@ -54,15 +54,19 @@ namespace GameWebServer.Modules.IGWModule
                 }
                 catch (Exception ex)
                 {
+                    connectd = 0;
                     LogHelper.Error(ex);
                 }
             }
-            Task.Run(async () =>
+            if(connectd ==0)
             {
-                LogHelper.Info($"reconnect.. inter server");
-                await Task.Delay(5000);
-                Connect();
-            });
+                Task.Run(async () =>
+                {
+                    LogHelper.Info($"reconnect.. inter server");
+                    await Task.Delay(5000);
+                    Connect();
+                });
+            }
         }
         public void Start()
         {

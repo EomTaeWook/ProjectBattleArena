@@ -5,7 +5,6 @@
         public string Account { get; set; }
 
         public string Password { get; set; }
-
-        public long RefreshTime { get; set; }
+        public int Count { get; set; }
     }
 }

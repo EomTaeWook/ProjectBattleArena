@@ -25,7 +25,7 @@ namespace BA.InterServer.ServerModule
             {
                 PrivateKey = SchedulerSecurityManager.Instance.LatestPrivateKey
             };
-            var packet = ServerModule.Packet.MakePacket(IGWSProtocol.GameWebServerInspection, packetData);
+            var packet = ServerModule.Packet.MakePacket(IGWSProtocol.ChangedSecurityKey, packetData);
             session.Send(packet);
         }
 

@@ -41,7 +41,7 @@ namespace Assets.Scripts.Internal
         }
         public async Task<bool> MakeAccountAsync()
         {
-            var account = $"{SystemInfo.deviceUniqueIdentifier}{DateTime.Now.Ticks}";
+            var account = $"{SystemInfo.deviceUniqueIdentifier}{DateTime.Now.Ticks.GetHashCode()}";
 
             var response = await HttpRequestHelper.Request<CreateAccount, CreateAccountResponse>(new CreateAccount()
             {

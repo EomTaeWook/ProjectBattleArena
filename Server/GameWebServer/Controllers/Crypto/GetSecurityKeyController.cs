@@ -12,12 +12,17 @@ namespace GameWebServer.Controllers.Crypto
         }
         public override async Task<IGWCResponse> Process(GetSecurityKey request)
         {
-            var publicKey = await _securityRepository.LoadSecurityPublicKeyAsync();
+            var loadSecurityKeyModel  = await _securityRepository.LoadLatestSecurityKey();
+
+            if(loadSecurityKeyModel == null)
+            {
+                return MakeCommonErrorMessage("failed to laod security key");
+            }
 
             return new GetSecurityKeyResponse()
             {
                 Ok = true,
-                SecurityKey = publicKey
+                SecurityKey = loadSecurityKeyModel.PublicKey
             };
         }
     }

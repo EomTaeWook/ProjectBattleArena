@@ -3,6 +3,7 @@ using Protocol.GameWebServerAndClient;
 using Protocol.GameWebServerAndClient.ShareModels;
 using ShareLogic;
 using System;
+using System.Text;
 using System.Threading.Tasks;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Assets.Scripts.Internal
 
         public string CurrentServerUrl { get; private set; }
         private Vector2Int _resolution = new Vector2Int(768, 1280);
-        private long latestRefreshTime;
+        private int reqeustCount;
         public void Init()
         {
             SetResolution(_resolution.x, _resolution.y);
@@ -42,14 +43,9 @@ namespace Assets.Scripts.Internal
             }
 
             Cryptogram.SetPublicKey(response.SecurityKey);
-            latestRefreshTime = DateTime.Now.Ticks;
             return true;
         }
         
-        public void RefreshTokenTime()
-        {
-            latestRefreshTime = DateTime.Now.Ticks;
-        }
         public string GetUserToken()
         {
             var userData = PlayerManager.Instance.GetUserData();
@@ -62,9 +58,8 @@ namespace Assets.Scripts.Internal
             {
                 Account = userData.Account,
                 Password = userData.Password,
-                RefreshTime = latestRefreshTime,
+                Count = ++reqeustCount
             };
-
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(tokenModel);
 
             var token = Cryptogram.Encrypt(json);

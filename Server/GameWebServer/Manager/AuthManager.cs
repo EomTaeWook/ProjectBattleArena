@@ -14,7 +14,7 @@ namespace GameWebServer.Manager
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M',
             'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
         };
-        private const int PasswordMaxSize = 50;
+        private const int PasswordMaxSize = 20;
 
         public string GetPassword()
         {

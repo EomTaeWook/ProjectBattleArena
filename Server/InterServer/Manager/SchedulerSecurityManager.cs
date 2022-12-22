@@ -51,29 +51,26 @@ namespace BA.InterServer.Manager
         {
             SecurityRepository securityRepository = DBServiceHelper.GetService<SecurityRepository>();
 
-            var privateKey = Cryptogram.GetPrivateKey();
+            var cryptoKeyString = Cryptogram.GetKeyString();
 
-            Cryptogram.SetPrivateKey(privateKey);
-
-            var publicKey = Cryptogram.GetPublicKey();
 
             var created = await securityRepository.InsertSecurityKey(new BA.Models.SecurityKeyModel()
             {
                 CreatedTime = DateTime.Now.Ticks,
-                PrivateKey = privateKey,
-                PublicKey = publicKey
+                PrivateKey = cryptoKeyString.Item1,
+                PublicKey = cryptoKeyString.Item2
             });
 
             var packetData = new ChangedSecurityKey
             {
-                PrivateKey = privateKey
+                PrivateKey = cryptoKeyString.Item1
             };
 
             var packet = ServerModule.Packet.MakePacket(IGWSProtocol.GameWebServerInspection, packetData);
 
             InterServerModule.Instance.Broadcast(packet);
 
-            LatestPrivateKey = privateKey;
+            LatestPrivateKey = cryptoKeyString.Item1;
 
             return created;
         }

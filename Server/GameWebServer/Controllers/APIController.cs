@@ -3,7 +3,10 @@ using GameWebServer.Models;
 using Kosher.Log;
 using Microsoft.AspNetCore.Mvc;
 using Protocol.GameWebServerAndClient;
+using Protocol.GameWebServerAndClient.ShareModels;
+using ShareLogic;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 
 namespace GameWebServer.Controllers
 {
@@ -45,6 +48,19 @@ namespace GameWebServer.Controllers
                 ErrorMessage = message,
                 Ok = false
             };
+        }
+        protected TokenData ValidateToken(string token)
+        {
+            try
+            {
+                var json = Cryptogram.Decrypt(token);
+                return JsonSerializer.Deserialize<TokenData>(json);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex);
+                return null;
+            }
         }
         public abstract Task<IGWCResponse> Process(T request);
     }

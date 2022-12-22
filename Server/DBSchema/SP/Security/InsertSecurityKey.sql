@@ -2,10 +2,10 @@ USE GameDB;
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS insert_security_key $$
-CREATE PROCEDURE create_security_key
+CREATE PROCEDURE insert_security_key
 (
-	IN param_private_key VARCHAR(200),
-	IN param_public_key varchar(200),
+	IN param_private_key VARCHAR(3000),
+	IN param_public_key varchar(3000),
 	IN param_created_time bigint
 )
 BEGIN
