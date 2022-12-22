@@ -2,6 +2,7 @@
 using GameWebServer.Models;
 using Kosher.Log;
 using Protocol.GameWebServerAndClient;
+using Protocol.GameWebServerAndClient.ShareModels;
 using ShareLogic;
 using System.Text.Json;
 
@@ -9,12 +10,12 @@ namespace GameWebServer.Controllers
 {
     public abstract class AuthAPIController<T> : APIController<T> where T : AuthRequest
     {
-        private AuthTokenModel ValidateToken(string token)
+        private static TokenData ValidateToken(string token)
         {
             try
             {
                 var json = Cryptogram.Decrypt(token);
-                return JsonSerializer.Deserialize<AuthTokenModel>(json);
+                return JsonSerializer.Deserialize<TokenData>(json);
             }
             catch(Exception ex)
             {

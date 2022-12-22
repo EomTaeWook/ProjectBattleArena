@@ -1,4 +1,4 @@
-﻿namespace Repository.Interface
+﻿namespace BA.Repository.Interface
 {
     public interface IDBContext
     {

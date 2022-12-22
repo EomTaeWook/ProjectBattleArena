@@ -1,8 +1,8 @@
 ﻿using BA.Models;
+using BA.Repository;
 using GameWebServer.Manager;
 using Protocol.GameWebServerAndClient;
 using Protocol.GameWebServerAndClient.ShareModels;
-using Repository;
 
 namespace GameWebServer.Controllers.Auth
 {

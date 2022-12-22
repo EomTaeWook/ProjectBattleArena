@@ -1,4 +1,4 @@
-﻿using Repository.Interface;
+﻿using BA.Repository.Interface;
 
 namespace GameWebServer.Models
 {

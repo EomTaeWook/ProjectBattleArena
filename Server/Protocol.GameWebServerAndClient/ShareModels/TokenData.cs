@@ -1,6 +1,6 @@
-﻿namespace GameWebServer.Models
+﻿namespace Protocol.GameWebServerAndClient.ShareModels
 {
-    public class AuthTokenModel
+    public class TokenData
     {
         public string Account { get; set; }
 

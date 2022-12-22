@@ -1,6 +1,5 @@
-﻿using Protocol.GameWebServerAndClient;
-using Repository;
-using ShareLogic;
+﻿using BA.Repository;
+using Protocol.GameWebServerAndClient;
 
 namespace GameWebServer.Controllers.Crypto
 {

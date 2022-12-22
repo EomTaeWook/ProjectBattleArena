@@ -18,15 +18,19 @@ namespace Assets.Scripts.Internal
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _webClient.PostAsync($"{ApplicationManager.Instance.CurrentServerUrl}/{typeName}", content);
             var jsonResponse = await response.Content.ReadAsStringAsync();
+
             return JsonConvert.DeserializeObject<TRes>(jsonResponse);
         }
 
         public static async Task<TRes> AuthRequest<TReq, TRes>(TReq request) where TReq : AuthRequest where TRes : IGWCResponse
         {
-            request.Account = PlayerManager.Instance.GetUserData().Account;
-            request.Password = PlayerManager.Instance.GetUserData().Password;
+            request.Token = ApplicationManager.Instance.GetUserToken();
 
-            return await Request<TReq, TRes>(request);
+            var response = await Request<TReq, TRes>(request);
+
+            ApplicationManager.Instance.RefreshTokenTime();
+
+            return response;
         }
     }
 }

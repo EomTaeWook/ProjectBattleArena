@@ -12,10 +12,10 @@ Server/GameWebServer/GameWebServer.csproj.user
 Server/GameWebServer/KosherLog.config
 Server/Protocol.GameWebServerAndClient/bin/*
 Server/Protocol.GameWebServerAndClient/obj/*
-Server/Repository/bin/*
-Server/Repository/obj/*
-Server/DataBaseModels/obj/*
-Server/DataBaseModels/bin/*
+Server/BA.Repository/bin/*
+Server/BA.Repository/obj/*
+Server/BA.Models/obj/*
+Server/BA.Models/bin/*
 ProjectBattleArena/Logs/*
 ProjectBattleArena/userData.json
 Server/InterServer/config.json
@@ -26,3 +26,6 @@ ProjectBattleArena/UserData.json
 Server/ShareLogic/obj/*
 Server/ShareLogic/bin/*
 Server/ShareLogic/.vs/*
+Server/Protocol.InterAndGWS/obj/*
+Server/Protocol.InterAndGWS/bin/*
+/Server/InterServer/KosherLog.config

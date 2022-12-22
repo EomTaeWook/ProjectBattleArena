@@ -1,12 +1,13 @@
-﻿using BA.Repository;
+﻿using BA.Repository.Helper;
+using BA.Repository.Interface;
 using Dapper;
 using Kosher.Log;
 using MySql.Data.MySqlClient;
 using Protocol.GameWebServerAndClient.ShareModel;
-using Repository.Interface;
 using System.Data;
+using static BA.Repository.Helper.DBHelper;
 
-namespace Repository
+namespace BA.Repository
 {
     public class CharacterRepository
     {
@@ -26,15 +27,15 @@ namespace Repository
                     param.AddParam(characterData.CharacterName, nameof(characterData.CharacterName));
                     param.AddParam(characterData.Job, nameof(characterData.Job));
                     param.AddParam(characterData.CreateTime, nameof(characterData.CreateTime));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.CreateCharacter),
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.CreateCharacter),
                                                                                 param,
                                                                                 commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.ExecuteAsync(connection, command);
-                    return result> 0;
+                    var result = await connection.ExecuteAsync(command);
+                    return result > 0;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogHelper.Error(ex);
                 return false;
@@ -48,12 +49,12 @@ namespace Repository
                 {
                     var param = new DynamicParameters();
                     param.AddParam(characterName, nameof(characterName));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.LoadCharacterByCharacterName),
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.LoadCharacterByCharacterName),
                                                                                 param,
                                                                                 commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.QueryFirstOrDefaultAsync<CharacterData>(connection, command);
-                    if(result == null)
+                    var result = await connection.QueryFirstOrDefaultAsync<CharacterData>(command);
+                    if (result == null)
                     {
                         result = new CharacterData();
                     }
@@ -75,16 +76,16 @@ namespace Repository
                 {
                     var param = new DynamicParameters();
                     param.AddParam(account, nameof(account));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.LoadCharacters),
-                                                                                param,
-                                                                                commandType: CommandType.StoredProcedure);
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.LoadCharacters),
+                                                                            param,
+                                                                            commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.QueryAsync<CharacterData>(connection, command);
+                    var result = await connection.QueryAsync<CharacterData>(command);
 
                     return result.AsList();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogHelper.Error(ex);
                 return null;

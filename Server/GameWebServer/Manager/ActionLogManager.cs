@@ -1,7 +1,8 @@
 ﻿using BA.Models;
+using BA.Repository;
+using BA.Repository.Helper;
 using Kosher.Framework;
 using Protocol.GameWebServerAndClient;
-using Repository;
 using System.Text.Json;
 
 namespace GameWebServer.Manager
@@ -10,7 +11,7 @@ namespace GameWebServer.Manager
     {
         public async Task InsertLogAsync(string account, string path, IGWCResponse response)
         {
-            var logRepository = ServiceProvidorHelper.GetService<UserLogRepository>();
+            var logRepository = DBServiceHelper.GetService<UserLogRepository>();
             var logModel = new UserLogModel()
             {
                 Account = account,
@@ -22,7 +23,7 @@ namespace GameWebServer.Manager
         }
         public async Task InsertLogAsync<T>(string account, string path, T model)
         {
-            var logRepository = ServiceProvidorHelper.GetService<UserLogRepository>();
+            var logRepository = DBServiceHelper.GetService<UserLogRepository>();
             var logModel = new UserLogModel()
             {
                 Account = account,

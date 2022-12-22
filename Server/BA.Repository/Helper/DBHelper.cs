@@ -1,22 +1,22 @@
 ﻿using Dapper;
 using System.Text;
 
-namespace BA.Repository
+namespace BA.Repository.Helper
 {
     public static class DynamicParameterExtensions
     {
         public static void AddParam<T>(this DynamicParameters param, T value, string name, System.Data.ParameterDirection parameterDirection = System.Data.ParameterDirection.Input)
         {
             var paramName = $"param_{DBHelper.GetCamelCase(name)}";
-            param.Add(paramName, value, direction : parameterDirection);
+            param.Add(paramName, value, direction: parameterDirection);
         }
     }
     public static class DBHelper
     {
-        private static Dictionary<SP, string> spToMap = new Dictionary<SP, string>();
+        private static Dictionary<SP, string> _spToMap = new Dictionary<SP, string>();
         public static string GetSPName(this SP sp)
         {
-            return spToMap[sp];
+            return _spToMap[sp];
         }
         public static void Build()
         {
@@ -24,8 +24,10 @@ namespace BA.Repository
 
             for (var e = SP.LoadAuth; e < SP.Max; ++e)
             {
-                spToMap.Add(e, e.ToSPName());
+                _spToMap.Add(e, e.ToSPName());
             }
+
+            DBServiceHelper.LoadAssembly();
         }
         public static string GetCamelCase(string stringValue)
         {
@@ -58,7 +60,7 @@ namespace BA.Repository
             UpdateCash,
             UpdateArenaTicket,
             LoadCharacterByCharacterName,
-            LoadSecurityPrivateKey,
+            LoadLatestSecurityKey,
             LoadSecurityPublicKey,
             InsertSecurityKey,
 

@@ -1,12 +1,13 @@
 ﻿using BA.Models;
-using BA.Repository;
+using BA.Repository.Helper;
+using BA.Repository.Interface;
 using Dapper;
 using Kosher.Log;
 using MySql.Data.MySqlClient;
-using Repository.Interface;
 using System.Data;
+using static BA.Repository.Helper.DBHelper;
 
-namespace Repository
+namespace BA.Repository
 {
     public class UserAssetRepository
     {
@@ -23,11 +24,11 @@ namespace Repository
                 {
                     var param = new DynamicParameters();
                     param.AddParam(account, nameof(account));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.LoadUserAsset),
-                                                                                param,
-                                                                                commandType: CommandType.StoredProcedure);
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.LoadUserAsset),
+                                                                        param,
+                                                                        commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.QueryFirstOrDefaultAsync<UserAssetModel>(connection, command);
+                    var result = await connection.QueryFirstOrDefaultAsync<UserAssetModel>(command);
                     return result;
                 }
             }
@@ -47,11 +48,11 @@ namespace Repository
                     var param = new DynamicParameters();
                     param.AddParam(account, nameof(account));
                     param.AddParam(account, nameof(createTime));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.InsertUserAsset),
-                                                                                param,
-                                                                                commandType: CommandType.StoredProcedure);
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.InsertUserAsset),
+                                                                        param,
+                                                                        commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.ExecuteAsync(connection, command);
+                    var result = await connection.ExecuteAsync(command);
                     return result > 0;
                 }
             }
@@ -71,11 +72,11 @@ namespace Repository
                     param.AddParam(account, nameof(account));
                     param.AddParam(currentGold, nameof(currentGold));
                     param.AddParam(updateGold, nameof(updateGold));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.UpdateGold),
-                                                                                param,
-                                                                                commandType: CommandType.StoredProcedure);
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.UpdateGold),
+                                                                        param,
+                                                                        commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.ExecuteAsync(connection, command);
+                    var result = await connection.ExecuteAsync(command);
                     return result > 0;
                 }
             }
@@ -95,11 +96,11 @@ namespace Repository
                     param.AddParam(account, nameof(account));
                     param.AddParam(currentCash, nameof(currentCash));
                     param.AddParam(updateCash, nameof(updateCash));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.UpdateCash),
-                                                                                param,
-                                                                                commandType: CommandType.StoredProcedure);
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.UpdateCash),
+                                                                        param,
+                                                                        commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.ExecuteAsync(connection, command);
+                    var result = await connection.ExecuteAsync(command);
                     return result > 0;
                 }
             }
@@ -120,11 +121,11 @@ namespace Repository
                     param.AddParam(currentTicket, nameof(currentTicket));
                     param.AddParam(updateTicket, nameof(updateTicket));
                     param.AddParam(latestUpdateTime, nameof(latestUpdateTime));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.UpdateArenaTicket),
-                                                                                param,
-                                                                                commandType: CommandType.StoredProcedure);
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.UpdateArenaTicket),
+                                                                        param,
+                                                                        commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.ExecuteAsync(connection, command);
+                    var result = await connection.ExecuteAsync(command);
                     return result > 0;
                 }
             }

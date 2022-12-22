@@ -7,18 +7,11 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\BA.Models\BA.Models.csproj" />
+    <ProjectReference Include="..\BA.Repository\BA.Repository.csproj" />
     <ProjectReference Include="..\Protocol.GameWebServerAndClient\Protocol.GameWebServerAndClient.csproj" />
-    <ProjectReference Include="..\Repository\BA.Repository.csproj" />
+    <ProjectReference Include="..\Protocol.InterAndGWS\Protocol.InterAndGWS.csproj" />
     <ProjectReference Include="..\ShareLogic\ShareLogic.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Kosher">
-      <HintPath>..\Dll\Kosher.dll</HintPath>
-    </Reference>
-    <Reference Include="Kosher.Extensions">
-      <HintPath>..\Dll\Kosher.Extensions.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +25,18 @@
 
   <ItemGroup>
     <Folder Include="Controllers\User\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Kosher">
+      <HintPath>..\Dll\Kosher.dll</HintPath>
+    </Reference>
+    <Reference Include="Kosher.Extensions">
+      <HintPath>..\Dll\Kosher.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Kosher.Sockets">
+      <HintPath>..\Dll\Kosher.Sockets.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

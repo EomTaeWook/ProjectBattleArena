@@ -1,5 +1,6 @@
-using BA.Repository;
+using BA.Repository.Helper;
 using GameWebServer.Manager;
+using GameWebServer.Modules.IGWModule;
 using Kosher.Extensions.Log;
 using Kosher.Log;
 
@@ -11,6 +12,7 @@ namespace GameWebServer
         {
             LogBuilder.Configuration(LogConfigXmlReader.Load($"{AppContext.BaseDirectory}KosherLog.config"));
             var configuration = LogBuilder.Build();
+
             DBHelper.Build();
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -33,7 +35,9 @@ namespace GameWebServer
                 name: "default",
                 pattern: "{controller=KeepAlive}/{action=index}/{id?}"
             );
-            
+
+            InterServerClientModule.Instance.Start();
+
             app.Run();
         }
 

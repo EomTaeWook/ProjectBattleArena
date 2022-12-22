@@ -1,5 +1,5 @@
-﻿using Protocol.GameWebServerAndClient;
-using Repository;
+﻿using BA.Repository;
+using Protocol.GameWebServerAndClient;
 
 namespace GameWebServer.Controllers.Auth
 {
@@ -54,7 +54,6 @@ namespace GameWebServer.Controllers.Auth
             {
                 return MakeErrorMessage(account, $"failed to load user asset");
             }
-
 
             return new LoginResponse()
             {

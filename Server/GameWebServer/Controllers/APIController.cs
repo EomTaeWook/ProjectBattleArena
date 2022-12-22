@@ -1,4 +1,5 @@
-﻿using GameWebServer.Models;
+﻿using GameWebServer.Manager;
+using GameWebServer.Models;
 using Kosher.Log;
 using Microsoft.AspNetCore.Mvc;
 using Protocol.GameWebServerAndClient;
@@ -13,6 +14,14 @@ namespace GameWebServer.Controllers
         [HttpPost]
         public async Task<JsonResult> Post(T request)
         {
+            if(ServiceManager.Instance.IsServerOn() == false)
+            {
+                return new JsonResult(new ServerResponse()
+                {
+                    Maintenance = true,
+                    Ok = false
+                });
+            }
             LogHelper.Info($"Thread : {Environment.CurrentManagedThreadId} | {HttpContext.Request.Path}");
             var response = await Process(request);
             return new JsonResult(response);

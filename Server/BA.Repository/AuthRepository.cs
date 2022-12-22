@@ -1,12 +1,13 @@
 ﻿using BA.Models;
-using BA.Repository;
+using BA.Repository.Helper;
+using BA.Repository.Interface;
 using Dapper;
 using Kosher.Log;
 using MySql.Data.MySqlClient;
-using Repository.Interface;
 using System.Data;
+using static BA.Repository.Helper.DBHelper;
 
-namespace Repository
+namespace BA.Repository
 {
     public class AuthRepository
     {
@@ -15,7 +16,7 @@ namespace Repository
         {
             _dbContext = dbContext;
         }
-        public async Task<bool> CreateAuth(AuthModel authModel, long currentTime )
+        public async Task<bool> CreateAuth(AuthModel authModel, long currentTime)
         {
             try
             {
@@ -25,15 +26,15 @@ namespace Repository
                     param.AddParam(authModel.Account, nameof(authModel.Account));
                     param.AddParam(authModel.Password, nameof(authModel.Password));
                     param.AddParam(currentTime, "CreatedTime");
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.CreateAuth),
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.CreateAuth),
                                                                                 param,
                                                                                 commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.ExecuteAsync(connection, command);
+                    var result = await connection.ExecuteAsync(command);
                     return result > 0;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogHelper.Error(ex);
                 return false;
@@ -47,20 +48,20 @@ namespace Repository
                 {
                     var param = new DynamicParameters();
                     param.AddParam(account, nameof(account));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.LoadAuth),
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.LoadAuth),
                                                                                 param,
                                                                                 commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.QueryFirstOrDefaultAsync<AuthModel>(connection, command);
+                    var result = await connection.QueryFirstOrDefaultAsync<AuthModel>(command);
 
-                    if(result != null)
+                    if (result != null)
                     {
                         return result;
                     }
                     return new AuthModel();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogHelper.Error(ex);
                 return null;

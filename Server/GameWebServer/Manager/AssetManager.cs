@@ -1,7 +1,8 @@
 ﻿using BA.Models;
+using BA.Repository;
+using BA.Repository.Helper;
 using Kosher.Framework;
 using Protocol.GameWebServerAndClient.ShareModels;
-using Repository;
 
 namespace GameWebServer.Manager
 {
@@ -9,7 +10,7 @@ namespace GameWebServer.Manager
     {
         public async Task<bool> ModifyGoldAsync(string account, long currentValue, long updateValue, ChangedAssetReason reason)
         {
-            var userAssetRepository = ServiceProvidorHelper.GetService<UserAssetRepository>();
+            var userAssetRepository = DBServiceHelper.GetService<UserAssetRepository>();
 
             var updated = await userAssetRepository.ModifyGold(account, currentValue, updateValue);
 
@@ -28,7 +29,7 @@ namespace GameWebServer.Manager
         }
         public async Task<bool> ModifyCashAsync(string account, int currentValue, int updateValue, ChangedAssetReason reason)
         {
-            var userAssetRepository = ServiceProvidorHelper.GetService<UserAssetRepository>();
+            var userAssetRepository = DBServiceHelper.GetService<UserAssetRepository>();
 
             var updated = await userAssetRepository.ModifyCash(account, currentValue, updateValue);
 
@@ -51,7 +52,7 @@ namespace GameWebServer.Manager
             long latestUpdateTime,
             ChangedAssetReason reason)
         {
-            var userAssetRepository = ServiceProvidorHelper.GetService<UserAssetRepository>();
+            var userAssetRepository = DBServiceHelper.GetService<UserAssetRepository>();
 
             var updated = await userAssetRepository.ModifyArenaTicket(account, currentValue, updateValue, latestUpdateTime);
 

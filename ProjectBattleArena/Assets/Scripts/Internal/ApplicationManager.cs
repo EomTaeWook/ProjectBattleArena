@@ -1,6 +1,10 @@
 ﻿using Kosher.Framework;
 using Protocol.GameWebServerAndClient;
+using Protocol.GameWebServerAndClient.ShareModels;
+using ShareLogic;
+using System;
 using System.Threading.Tasks;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Assets.Scripts.Internal
@@ -12,6 +16,7 @@ namespace Assets.Scripts.Internal
 
         public string CurrentServerUrl { get; private set; }
         private Vector2Int _resolution = new Vector2Int(768, 1280);
+        private long latestRefreshTime;
         public void Init()
         {
             SetResolution(_resolution.x, _resolution.y);
@@ -25,6 +30,46 @@ namespace Assets.Scripts.Internal
         public Vector2Int GetResolution()
         {
             return _resolution;
+        }
+
+        public async Task<bool> GetSecurityKeyAsync()
+        {
+            var response = await HttpRequestHelper.Request<GetSecurityKey, GetSecurityKeyResponse>(new GetSecurityKey());
+            if (response.Ok == false)
+            {
+                UIManager.Instance.ShowAlert("알림", "초기화에 실패하였습니다.");
+                return false;
+            }
+
+            Cryptogram.SetPublicKey(response.SecurityKey);
+            latestRefreshTime = DateTime.Now.Ticks;
+            return true;
+        }
+        
+        public void RefreshTokenTime()
+        {
+            latestRefreshTime = DateTime.Now.Ticks;
+        }
+        public string GetUserToken()
+        {
+            var userData = PlayerManager.Instance.GetUserData();
+            if (userData == null)
+            {
+                throw new ArgumentNullException("user data");
+            }
+
+            TokenData tokenModel = new TokenData()
+            {
+                Account = userData.Account,
+                Password = userData.Password,
+                RefreshTime = latestRefreshTime,
+            };
+
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(tokenModel);
+
+            var token = Cryptogram.Encrypt(json);
+
+            return token;
         }
     }
 }

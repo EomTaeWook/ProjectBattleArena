@@ -1,12 +1,13 @@
 ﻿using BA.Models;
-using BA.Repository;
+using BA.Repository.Helper;
+using BA.Repository.Interface;
 using Dapper;
 using Kosher.Log;
 using MySql.Data.MySqlClient;
-using Repository.Interface;
 using System.Data;
+using static BA.Repository.Helper.DBHelper;
 
-namespace Repository
+namespace BA.Repository
 {
     public class UserLogRepository
     {
@@ -26,15 +27,15 @@ namespace Repository
                     param.AddParam(logModel.LoggedTime, nameof(logModel.LoggedTime));
                     param.AddParam(logModel.Log, nameof(logModel.Log));
                     param.AddParam(logModel.Path, nameof(logModel.Path));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.InsertUserLog),
-                                                                                param,
-                                                                                commandType: CommandType.StoredProcedure);
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.InsertUserLog),
+                                                                        param,
+                                                                        commandType: CommandType.StoredProcedure);
 
-                    var result = await SqlMapper.ExecuteAsync(connection, command);
+                    var result = await connection.ExecuteAsync(command);
                     return true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogHelper.Error(ex);
                 return false;

@@ -1,13 +1,13 @@
 USE GameDB;
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS load_characters $$
-CREATE PROCEDURE load_characters
+DROP PROCEDURE IF EXISTS load_character_by_character_name $$
+CREATE PROCEDURE load_character_by_character_name
 (
 	IN param_character_name VARCHAR(100)
 )
 BEGIN
-	select * from tb_character where account = param_account;
+	select * from tb_character where character_name = param_character_name;
 END $$
 
 DELIMITER ;

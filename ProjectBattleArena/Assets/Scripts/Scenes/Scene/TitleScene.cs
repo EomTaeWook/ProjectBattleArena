@@ -9,8 +9,6 @@ public class TitleScene : BaseScene
         ApplicationManager.Instance.Init();
 
         PlayerManager.Instance.LoadUserData();
-
-        
     }
 
     public override void OnDestroyScene()
@@ -19,6 +17,12 @@ public class TitleScene : BaseScene
 
     public async void OnStartButtonClickAsync()
     {
+        var init = await ApplicationManager.Instance.GetSecurityKeyAsync();
+        if (init == false)
+        {
+            return;
+        }
+
         if (PlayerManager.Instance.IsExists() == false)
         {
             var maked = await PlayerManager.Instance.MakeAccountAsync();
@@ -29,8 +33,7 @@ public class TitleScene : BaseScene
         }
         var response = await HttpRequestHelper.Request<Login, LoginResponse>(new Login()
         {
-            Account = PlayerManager.Instance.GetUserData().Account,
-            Password = PlayerManager.Instance.GetUserData().Password
+            Token = ApplicationManager.Instance.GetUserToken()
         });
         if (response.Ok == true)
         {
