@@ -58,17 +58,20 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Internal\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Models\SceneType.cs" />
+    <Compile Include="Assets\Scripts\Scenes\Scene\BaseScene.cs" />
     <Compile Include="Assets\Scripts\Internal\ApplicationManager.cs" />
-    <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene.cs" />
-    <Compile Include="Assets\Scripts\Scenes\BaseScene.cs" />
-    <Compile Include="Assets\Scripts\Scenes\LobbyScene.cs" />
-    <Compile Include="Assets\Scripts\Scenes\TitleScene.cs" />
     <Compile Include="Assets\Scripts\Battle\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Scenes\Scene\LobbyScene.cs" />
     <Compile Include="Assets\Scripts\Models\UserData.cs" />
-    <Compile Include="Assets\Scripts\Internal\SceneManager.cs" />
-    <Compile Include="Assets\Scripts\Internal\HttpHelper.cs" />
+    <Compile Include="Assets\Scripts\Scenes\ScenesControl\CreateCharacterControl.cs" />
+    <Compile Include="Assets\Scripts\Internal\CharacterManager.cs" />
+    <Compile Include="Assets\Scripts\Scenes\UI\AlertPopup.cs" />
     <Compile Include="Assets\Scripts\Models\UIElement.cs" />
     <Compile Include="Assets\Scripts\Internal\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Internal\SceneManager.cs" />
+    <Compile Include="Assets\Scripts\Scenes\Scene\TitleScene.cs" />
+    <Compile Include="Assets\Scripts\Scenes\Scene\CreateCharacterScene.cs" />
+    <Compile Include="Assets\Scripts\Internal\HttpHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -27,11 +27,13 @@ namespace GameWebServer
             Dependency.Init(builder);
 
             var app = builder.Build();
+
             app.UseRouting();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=KeepAlive}/{action=index}/{id?}"
             );
+            
             app.Run();
         }
 

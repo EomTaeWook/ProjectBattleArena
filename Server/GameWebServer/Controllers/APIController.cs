@@ -1,5 +1,4 @@
-﻿using GameWebServer.Manager;
-using GameWebServer.Models;
+﻿using GameWebServer.Models;
 using Kosher.Log;
 using Microsoft.AspNetCore.Mvc;
 using Protocol.GameWebServerAndClient;
@@ -17,7 +16,17 @@ namespace GameWebServer.Controllers
             LogHelper.Info($"Thread : {Environment.CurrentManagedThreadId} | {HttpContext.Request.Path}");
             var response = await Process(request);
             return new JsonResult(response);
-        } 
+        }
+
+        public ErrorResponse MakeCommonErrorMessage(string message, [CallerFilePath] string fileName = "", [CallerLineNumber] int fileNumber = 0)
+        {
+            LogHelper.Error($"message : {message}", fileName, fileNumber);
+            return new ErrorResponse()
+            {
+                ErrorMessage = message,
+                Ok = false
+            };
+        }
 
         public ErrorResponse MakeErrorMessage(string account, string message, [CallerFilePath]string fileName= "", [CallerLineNumber]int fileNumber = 0)
         {

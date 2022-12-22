@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Protocol.GameWebServerAndClient.ShareModels
+﻿namespace Protocol.GameWebServerAndClient.ShareModels
 {
     public enum JobType
     {
-        Wizard,
         SwordMan,
-
+        Wizard,
+        
         Max,
+    }
+    public enum ChangedAssetReason
+    {
+        ByUser,
+        Max
     }
 
     public enum AccountType

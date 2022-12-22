@@ -1,5 +1,4 @@
 ﻿using BA.Models;
-using GameWebServer.Models;
 using Kosher.Framework;
 using Protocol.GameWebServerAndClient;
 using Repository;
@@ -9,13 +8,9 @@ namespace GameWebServer.Manager
 {
     public class UserLogManager : Singleton<UserLogManager>
     {
-        UserLogRepository _logRepository;
-        public void Init(DBContext dbContext)
-        {
-            _logRepository = new UserLogRepository(dbContext);
-        }
         public async Task InsertLogAsync(string account, string path, IGWCResponse response)
         {
+            var logRepository = ServiceProvidorHelper.GetService<UserLogRepository>();
             var logModel = new UserLogModel()
             {
                 Account = account,
@@ -23,8 +18,19 @@ namespace GameWebServer.Manager
                 Path = path,
                 Log = JsonSerializer.Serialize(response)
             };
-
-            await _logRepository.InsertUserLog(logModel);
+            await logRepository.InsertUserLog(logModel);
+        }
+        public async Task InsertLogAsync<T>(string account, string path, T model)
+        {
+            var logRepository = ServiceProvidorHelper.GetService<UserLogRepository>();
+            var logModel = new UserLogModel()
+            {
+                Account = account,
+                LoggedTime = DateTime.Now.Ticks,
+                Path = path,
+                Log = JsonSerializer.Serialize(model)
+            };
+            await logRepository.InsertUserLog(logModel);
         }
     }
 }

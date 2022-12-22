@@ -20,5 +20,13 @@ namespace Assets.Scripts.Internal
             var jsonResponse = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<TRes>(jsonResponse);
         }
+
+        public static async Task<TRes> AuthRequest<TReq, TRes>(TReq request) where TReq : AuthRequest where TRes : IGWCResponse
+        {
+            request.Account = PlayerManager.Instance.GetUserData().Account;
+            request.Password = PlayerManager.Instance.GetUserData().Password;
+
+            return await Request<TReq, TRes>(request);
+        }
     }
 }

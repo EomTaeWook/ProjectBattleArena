@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Protocol.GameWebServerAndClient\Protocol.GameWebServerAndClient.csproj" />
     <ProjectReference Include="..\Repository\BA.Repository.csproj" />
+    <ProjectReference Include="..\ShareLogic\ShareLogic.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,10 @@
     <Content Update="KosherLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\User\" />
   </ItemGroup>
 
 </Project>

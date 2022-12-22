@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameWebServer", "GameWebServer.csproj", "{9538A546-78BF-41F9-BE52-A25758CC60C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameWebServer", "GameWebServer.csproj", "{9538A546-78BF-41F9-BE52-A25758CC60C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocol.GameWebServerAndClient", "..\Protocol.GameWebServerAndClient\Protocol.GameWebServerAndClient.csproj", "{0C13C771-05ED-4257-8AC0-0FEB6763B45F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BA.Repository", "..\Repository\BA.Repository.csproj", "{19482532-1790-4CD3-A86C-BA85C8BE9728}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BA.Repository", "..\Repository\BA.Repository.csproj", "{19482532-1790-4CD3-A86C-BA85C8BE9728}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BA.Models", "..\DataBaseModels\BA.Models.csproj", "{11179113-547E-45D4-AFDC-937A115DB667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BA.Models", "..\DataBaseModels\BA.Models.csproj", "{11179113-547E-45D4-AFDC-937A115DB667}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLogic", "..\ShareLogic\ShareLogic.csproj", "{7254029D-8E3D-4CEF-8D79-AB152B706B1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{11179113-547E-45D4-AFDC-937A115DB667}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11179113-547E-45D4-AFDC-937A115DB667}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11179113-547E-45D4-AFDC-937A115DB667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7254029D-8E3D-4CEF-8D79-AB152B706B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7254029D-8E3D-4CEF-8D79-AB152B706B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7254029D-8E3D-4CEF-8D79-AB152B706B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7254029D-8E3D-4CEF-8D79-AB152B706B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

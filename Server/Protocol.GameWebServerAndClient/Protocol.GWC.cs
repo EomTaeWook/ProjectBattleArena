@@ -1,9 +1,5 @@
 ﻿using Protocol.GameWebServerAndClient.ShareModel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Protocol.GameWebServerAndClient
 {
@@ -31,5 +27,9 @@ namespace Protocol.GameWebServerAndClient
         public CharacterData NewCharacterData { get; set; }
     }
 
-
+    public class GetSecurityKeyResponse : IGWCResponse
+    {
+        public bool Ok { get; set; }
+        public string SecurityKey { get; set; }
+    }
 }

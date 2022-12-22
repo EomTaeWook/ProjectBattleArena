@@ -1,10 +1,12 @@
 ﻿using Kosher.Framework;
+using ShareLogic;
 using System.Text;
 
 namespace GameWebServer.Manager
 {
     public class AuthManager : Singleton<AuthManager>
     {
+
         private static char[] CharCandidates = new char[] {
             '2', '3', '4', '5', '6', '7', '8', '9',
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k', 'l', 'm',
@@ -13,6 +15,7 @@ namespace GameWebServer.Manager
             'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
         };
         private const int PasswordMaxSize = 50;
+
         public string GetPassword()
         {
             var random = new Random(DateTime.Now.Ticks.GetHashCode());

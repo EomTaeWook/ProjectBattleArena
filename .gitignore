@@ -18,3 +18,11 @@ Server/DataBaseModels/obj/*
 Server/DataBaseModels/bin/*
 ProjectBattleArena/Logs/*
 ProjectBattleArena/userData.json
+Server/InterServer/config.json
+Server/InterServer/.vs/*
+Server/InterServer/obj/*
+Server/InterServer/bin/*
+ProjectBattleArena/UserData.json
+Server/ShareLogic/obj/*
+Server/ShareLogic/bin/*
+Server/ShareLogic/.vs/*

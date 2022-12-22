@@ -12,7 +12,7 @@ namespace Assets.Scripts.Internal
     internal class PlayerManager : Singleton<PlayerManager>
     {
         private UserData _userData;
-        private const string UserFileName = "userData.json";
+        private const string UserFileName = "UserData.json";
         private readonly string _path = Application.persistentDataPath;
 
         public PlayerManager()

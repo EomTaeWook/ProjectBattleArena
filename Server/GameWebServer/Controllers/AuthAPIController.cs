@@ -1,32 +1,48 @@
 ﻿using GameWebServer.Manager;
 using GameWebServer.Models;
+using Kosher.Log;
 using Protocol.GameWebServerAndClient;
+using ShareLogic;
+using System.Text.Json;
 
 namespace GameWebServer.Controllers
 {
     public abstract class AuthAPIController<T> : APIController<T> where T : AuthRequest
     {
+        private AuthTokenModel ValidateToken(string token)
+        {
+            try
+            {
+                var json = Cryptogram.Decrypt(token);
+                return JsonSerializer.Deserialize<AuthTokenModel>(json);
+            }
+            catch(Exception ex)
+            {
+                LogHelper.Error(ex);
+                return null;
+            }
+        }
         public override async Task<IGWCResponse> Process(T request)
         {
-            if(string.IsNullOrEmpty(request.Account) == true)
+            if(string.IsNullOrEmpty(request.Token) == true)
             {
                 return new ErrorResponse()
                 {
-                    ErrorMessage = "account is empty"
+                    ErrorMessage = "token is empty"
                 };
             }
-            else if(string.IsNullOrEmpty(request.Password) == true)
+            var authModel = ValidateToken(request.Token);
+
+            if (authModel == null)
             {
-                return new ErrorResponse()
-                {
-                    ErrorMessage = "password is empty"
-                };
+                return MakeCommonErrorMessage("token broken");
             }
-            var response = await Process(request.Account, request);
+
+            var response = await Process(authModel.Account, request);
 
             if(response is ErrorResponse == false)
             {
-                await UserLogManager.Instance.InsertLogAsync(request.Account, Request.Path, response);
+                await UserLogManager.Instance.InsertLogAsync(authModel.Account, Request.Path, response);
             }
             return response;
         }

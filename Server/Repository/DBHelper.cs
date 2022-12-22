@@ -52,6 +52,15 @@ namespace BA.Repository
             InsertUserLog,
             CreateCharacter,
             LoadCharacters,
+            InsertUserAsset,
+            LoadUserAsset,
+            UpdateGold,
+            UpdateCash,
+            UpdateArenaTicket,
+            LoadCharacterByCharacterName,
+            LoadSecurityPrivateKey,
+            LoadSecurityPublicKey,
+            InsertSecurityKey,
 
             Max
         }

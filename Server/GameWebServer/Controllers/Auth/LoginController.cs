@@ -1,5 +1,4 @@
 ﻿using Protocol.GameWebServerAndClient;
-using Protocol.GameWebServerAndClient.ShareModel;
 using Repository;
 
 namespace GameWebServer.Controllers.Auth
@@ -8,45 +7,53 @@ namespace GameWebServer.Controllers.Auth
     {
         private AuthRepository _authRepository;
         private CharacterRepository _characterRepository;
+        private UserAssetRepository _userAssetRepository;
         public LoginController(AuthRepository authRepository,
-                            CharacterRepository characterRepository)
+                            CharacterRepository characterRepository,
+                            UserAssetRepository userAssetRepository)
         {
             _authRepository = authRepository;
             _characterRepository = characterRepository;
+            _userAssetRepository = userAssetRepository;
         }
         public override async Task<IGWCResponse> Process(Login request)
         {
-            if(string.IsNullOrEmpty(request.Account) == true)
+            if(string.IsNullOrEmpty(request.Token) == true)
             {
-                return MakeErrorMessage(request.Account, "account is empty");
+                return MakeCommonErrorMessage("token is empty");
             }
-            if (string.IsNullOrEmpty(request.Password) == true)
-            {
-                return MakeErrorMessage(request.Account, "password is empty");
-            }
-
-            var loadModel = await _authRepository.LoadAuth(request.Account);
+            string account = string.Empty;
+            string password = string.Empty;
+            var loadModel = await _authRepository.LoadAuth(account);
 
             if (loadModel == null)
             {
-                return MakeErrorMessage(request.Account, "not found account");
-            }
-            if(string.IsNullOrEmpty(loadModel.Account) == true)
-            {
-                return MakeErrorMessage(request.Account, $"failed to load account");
-            }
-            if(loadModel.Password.Equals(request.Password) == false)
-            {
-                return MakeErrorMessage(request.Account, $"failed to login {request.Account} invalid password");
+                return MakeErrorMessage(account, "not found account");
             }
 
-            var loadCharacter = await _characterRepository.LoadCharacters(request.Account);
+            if(string.IsNullOrEmpty(loadModel.Account) == true)
+            {
+                return MakeErrorMessage(account, $"failed to load account");
+            }
+
+            if(loadModel.Password.Equals(password) == false)
+            {
+                return MakeErrorMessage(account, $"failed to login {account} invalid password");
+            }
+
+            var loadCharacter = await _characterRepository.LoadCharacters(account);
 
             if(loadCharacter == null)
             {
-                return MakeErrorMessage(request.Account, $"failed to load characters");
+                return MakeErrorMessage(account, $"failed to load characters");
             }
 
+            var loadUserAsset = await _userAssetRepository.LoadUserAssetAsync(account);
+
+            if(loadUserAsset == null)
+            {
+                return MakeErrorMessage(account, $"failed to load user asset");
+            }
 
 
             return new LoginResponse()

@@ -30,7 +30,7 @@ namespace Repository
                                                                                 commandType: CommandType.StoredProcedure);
 
                     var result = await SqlMapper.ExecuteAsync(connection, command);
-                    return true;
+                    return result > 0;
                 }
             }
             catch(Exception ex)

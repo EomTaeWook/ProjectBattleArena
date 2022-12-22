@@ -21,8 +21,13 @@ namespace Repository
             {
                 using (MySqlConnection connection = new MySqlConnection(_dbContext.GetConnString()))
                 {
+                    var param = new DynamicParameters();
+                    param.AddParam(logModel.Account, nameof(logModel.Account));
+                    param.AddParam(logModel.LoggedTime, nameof(logModel.LoggedTime));
+                    param.AddParam(logModel.Log, nameof(logModel.Log));
+                    param.AddParam(logModel.Path, nameof(logModel.Path));
                     CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(DBHelper.SP.InsertUserLog),
-                                                                                logModel,
+                                                                                param,
                                                                                 commandType: CommandType.StoredProcedure);
 
                     var result = await SqlMapper.ExecuteAsync(connection, command);
@@ -37,3 +42,4 @@ namespace Repository
         }
     }
 }
+

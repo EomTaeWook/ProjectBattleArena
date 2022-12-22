@@ -1,6 +1,7 @@
-﻿using Assets.Scripts.Models;
-using Kosher.Unity;
+﻿using Kosher.Unity;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Internal
 {
@@ -8,16 +9,60 @@ namespace Assets.Scripts.Internal
     {
         private readonly List<UIElement> _uiContainer = new List<UIElement>();
         private readonly List<UIElement> _popupContainer = new List<UIElement>();
-        public void AddUI(UIElement prefab)
+
+        private Camera uiCamera;
+        private GameObject uiCanvas;
+        private GameObject uiPopupCanvas;
+        public override void OnAwake()
+        {
+            var transform = gameObject.AddComponent<RectTransform>();
+            transform.sizeDelta = ApplicationManager.Instance.GetResolution();
+            transform.position = new Vector3(0, 0, 100);
+
+            uiCamera = gameObject.AddComponent<Camera>();
+            uiCamera.depth = 1;
+            uiCamera.clearFlags = CameraClearFlags.Depth;
+            uiCamera.orthographic = true;
+
+            uiCanvas = new GameObject("UICanvas");
+            uiCanvas.transform.SetParent(transform, false);
+            var uiCanvasComp = uiCanvas.AddComponent<Canvas>();
+            uiCanvasComp.sortingOrder = 10;
+            uiCanvasComp.renderMode = RenderMode.ScreenSpaceCamera;
+            uiCanvasComp.worldCamera = uiCamera;
+            uiCanvas.AddComponent<GraphicRaycaster>();
+
+            uiPopupCanvas = new GameObject("UIPopupCanvas");
+            uiPopupCanvas.transform.SetParent(transform, false);
+            var uiPopupCanvasComp = uiPopupCanvas.AddComponent<Canvas>();
+            uiPopupCanvasComp.sortingOrder = 11;
+            uiPopupCanvasComp.renderMode = RenderMode.ScreenSpaceCamera;
+            uiPopupCanvasComp.worldCamera = uiCamera;
+            uiPopupCanvas.AddComponent<GraphicRaycaster>();
+        }
+
+        public void ShowAlert(string title, string body)
+        {
+            var item = AlertPopup.Instantiate();
+            item.SetContent(title, body);
+            item.gameObject.SetActive(true);
+        }
+        public UIElement AddUI(UIElement prefab)
         {
             var item = KosherUnityObjectPool.Instance.Pop<UIElement>(prefab);
             _uiContainer.Add(item);
+            item.transform.SetParent(this.uiCanvas.transform, false);
+            item.gameObject.SetActive(true);
+            return item;
         }
 
-        public void AddPopupUI(UIElement prefab)
+        public UIElement AddPopupUI(UIElement prefab)
         {
             var item = KosherUnityObjectPool.Instance.Pop<UIElement>(prefab);
             _popupContainer.Add(item);
+            item.transform.SetParent(this.uiPopupCanvas.transform, false);
+            item.gameObject.SetActive(true);
+            return item;
         }
 
         public void CloseUI(UIElement item)
@@ -42,13 +87,13 @@ namespace Assets.Scripts.Internal
 
             foreach (var remove in removed)
             {
-                KosherUnityObjectPool.Instance.Push(remove);
+                remove.Recycle<UIElement>();
                 _uiContainer.Remove(remove);
             }
 
             foreach(var remove in removedPopup)
             {
-                KosherUnityObjectPool.Instance.Push(remove);
+                remove.Recycle<UIElement>();
                 _popupContainer.Remove(remove);
             }
         }
