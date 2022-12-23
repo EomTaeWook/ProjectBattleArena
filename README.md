@@ -40,7 +40,7 @@ https://github.com/EomTaeWook/Kosher/blob/main/Kosher.Extensions/KosherLog.confi
 
 - api 서버
 
-# config.config
+# config.json
 
 {
   "GameDB": {
