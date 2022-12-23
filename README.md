@@ -37,37 +37,36 @@ interserver -> gamewebserver -> client
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
 	<targets>
-		<target key ="consoleConfig" type ="console" format="${date} | ${level} | ${message} - ${callerFileName} : ${callerLineNumber}">
-			<option type="color" key="Debug" value="White"/>
-			<option type="color" key="Info" value="Green"/>
-			<option type="color" key="Error" value="Red"/>
-			<option type="color" key="Fatal" value="Red"/>
-		</target>
-		<target key="fileConfig" type ="file" format="${date} | ${level} | ${message} - ${callerFileName} : ${callerLineNumber}">
+		<target key ="consoleConfig" type ="console" format="test ${date} | ${level} | ${message}">
+			<option type="color" key="Debug" value="DarkGray"/>
+			<option type="color" key="Info" value="DarkGray"/>
+			<option type="color" key="Error" value="DarkRed"/> 
+			<option type="color" key="Fatal" value="DarkRed"/>
+       	</target>
+        <target key="fileConfig" type ="file" format="${date} | ${level} | ${message}">
 			<option type ="fileName" value="./logs/LogFile.txt"/>
 			<option type ="archiveFileName" value ="./archive/log.{#}.txt"/>
 			<option type ="archiveRolling" value ="Day"/>
 			<option type ="maxArchiveFiles" value ="7"/>
 			<option type ="keepConnectionOpen" value="true"/>
-		</target>
+        </target>
 		<target key="databaseConfig" type="database">
-			<database dbConnection =""
-					  dbProvider="MySql.Data.MySqlClient.MySqlConnection, MySql.Data"
-				      dbCommandText="insert into log (logged_time, level, message, callsite)
-										values (@logged_time, @level, @message, @callsite);">
-
+			<database dbConnection ="use connection"
+					dbProvider="MySql.Data.MySqlClient.MySqlConnection, MySql.Data"
+				    dbCommandText="insert into log (logged, level, message, callsite)
+										values (@logged, @level, @message, @callsite);">
 				<option type="parameter" key="@level" value="${level}"></option>
-				<option type="parameter" key="@logged_time" value="${date}"></option>
+				<option type="parameter" key="@logged" value="${date}"></option>
 				<option type="parameter" key="@message" value="${message}"></option>
-				<option type="parameter" key="@callsite" value="${callsite}"></option>
+				<option type="parameter" key="@callsite" value="${callerFileName} : ${callerLineNumber}"></option>
 			</database>
 			<option type ="keepConnectionOpen" value="true"/>
 		</target>
 	</targets>
 	<loggers>
 		<logger key="consoleConfig" minLogLevel="Debug"></logger>
-		<logger key ="fileConfig" minLogLevel="Info"></logger>
-    <logger key ="databaseConfig" name="" minLogLevel="Error"></logger>
+        <logger key ="fileConfig" name="" minLogLevel="Info"></logger>
+		<logger key ="databaseConfig" name="" minLogLevel="Info"></logger>
 	</loggers>
 </configuration>
 
