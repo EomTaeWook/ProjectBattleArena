@@ -15,11 +15,13 @@ namespace BA.InterServer.Manager
     internal class SchedulerSecurityManager : Singleton<SchedulerSecurityManager>
     {
         public string LatestPrivateKey { get; private set; }
+        private List<string> _gameWebServerEndPoint = new List<string>();
+        private HttpRequester _httpRequester = new HttpRequester();
         public void Init()
         {
-            var configPath = $"{AppContext.BaseDirectory}\\config.json";
+            var configPath = $"{AppContext.BaseDirectory}//InterServerConfig.json";
 #if DEBUG
-            configPath = $"{Environment.CurrentDirectory}..\\..\\..\\..\\config.json";
+            configPath = $"{Environment.CurrentDirectory}../../../../../Config/InterServerConfig.json";
 #endif
             var json = File.ReadAllText(configPath);
 
@@ -27,6 +29,8 @@ namespace BA.InterServer.Manager
 
             var gameDBContext = new DBContext(config.GameDB);
             DBServiceHelper.AddSingleton<IDBContext>(gameDBContext);
+
+            _gameWebServerEndPoint.AddRange(config.GWSEndPoint);
         }
         private async Task<bool> NeedCreateKey()
         {
@@ -52,7 +56,6 @@ namespace BA.InterServer.Manager
             SecurityRepository securityRepository = DBServiceHelper.GetService<SecurityRepository>();
 
             var cryptoKeyString = Cryptogram.GetKeyString();
-
 
             var created = await securityRepository.InsertSecurityKey(new BA.Models.SecurityKeyModel()
             {
@@ -86,6 +89,21 @@ namespace BA.InterServer.Manager
                     LogHelper.Error($"[interServer] failed to create key");
                 }
             }
+
+            try
+            {
+                foreach (var item in _gameWebServerEndPoint)
+                {
+                    var response = await _httpRequester.PostByJsonAsync(item, "");
+                    LogHelper.Debug($"send {item}");
+                }
+            }
+            catch(Exception ex)
+            {
+                LogHelper.Fatal(ex);
+                LogHelper.Debug($"game web server is not response! : {ex.Message}");
+            }
+            
 
             await Task.Delay(60000);
             _ = Start();

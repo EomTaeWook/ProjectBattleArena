@@ -39,7 +39,7 @@ namespace GameWebServer.Modules.IGWModule
         }
         public void Connect()
         {
-            if(_client != null)
+            if(connectd == 1)
             {
                 return;
             }
@@ -62,7 +62,7 @@ namespace GameWebServer.Modules.IGWModule
             {
                 Task.Run(async () =>
                 {
-                    LogHelper.Info($"reconnect.. inter server");
+                    LogHelper.Info($"thread : {Environment.CurrentManagedThreadId} | reconnect.. inter server");
                     await Task.Delay(5000);
                     Connect();
                 });

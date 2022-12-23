@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{405E760E-1D1C-DB03-01BF-9D6C875A71A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextMeshProEffect", "TextMeshProEffect.csproj", "{5C09CC04-05F8-39A6-9229-0BEA8B93D1BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextMeshProEffect.Editor", "TextMeshProEffect.Editor.csproj", "{ACF674CA-0908-912F-7B47-C7943C851B8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{405E760E-1D1C-DB03-01BF-9D6C875A71A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{405E760E-1D1C-DB03-01BF-9D6C875A71A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{405E760E-1D1C-DB03-01BF-9D6C875A71A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C09CC04-05F8-39A6-9229-0BEA8B93D1BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C09CC04-05F8-39A6-9229-0BEA8B93D1BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C09CC04-05F8-39A6-9229-0BEA8B93D1BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C09CC04-05F8-39A6-9229-0BEA8B93D1BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACF674CA-0908-912F-7B47-C7943C851B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACF674CA-0908-912F-7B47-C7943C851B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACF674CA-0908-912F-7B47-C7943C851B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACF674CA-0908-912F-7B47-C7943C851B8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

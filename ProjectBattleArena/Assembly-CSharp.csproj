@@ -58,20 +58,29 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Internal\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Models\SceneType.cs" />
-    <Compile Include="Assets\Scripts\Scenes\Scene\BaseScene.cs" />
+    <Compile Include="Assets\Scripts\Scenes\BaseScene.cs" />
     <Compile Include="Assets\Scripts\Internal\ApplicationManager.cs" />
     <Compile Include="Assets\Scripts\Battle\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Scenes\Scene\LobbyScene.cs" />
+    <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterScene.cs" />
     <Compile Include="Assets\Scripts\Models\UserData.cs" />
-    <Compile Include="Assets\Scripts\Scenes\ScenesControl\CreateCharacterControl.cs" />
+    <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene\CreateCharacterController.cs" />
     <Compile Include="Assets\Scripts\Internal\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Scenes\UI\AlertPopup.cs" />
     <Compile Include="Assets\Scripts\Models\UIElement.cs" />
     <Compile Include="Assets\Scripts\Internal\UIManager.cs" />
     <Compile Include="Assets\Scripts\Internal\SceneManager.cs" />
-    <Compile Include="Assets\Scripts\Scenes\Scene\TitleScene.cs" />
-    <Compile Include="Assets\Scripts\Scenes\Scene\CreateCharacterScene.cs" />
-    <Compile Include="Assets\Scripts\Internal\HttpHelper.cs" />
+    <Compile Include="Assets\Scripts\Scenes\Title\TitleScene.cs" />
+    <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene\CreateCharacterScene.cs" />
+    <Compile Include="Assets\Scripts\Internal\HttpRequestHelper.cs" />
+    <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene\CreateCharacterSceneModel.cs" />
+    <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterSceneModel.cs" />
+    <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\CharacterSlot.cs" />
+    <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterSceneController.cs" />
+    <Compile Include="Assets\Scripts\Scenes\ISceneModel.cs" />
+    <Compile Include="Assets\Scripts\Scenes\SceneContoller.cs" />
+    <Compile Include="Assets\Scripts\Internal\GameObjectExtensions.cs" />
+    <Compile Include="Assets\Scripts\Scenes\Title\TitleSceneController.cs" />
+    <Compile Include="Assets\Scripts\Scenes\UI\Loading.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -775,6 +784,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="TextMeshProEffect.csproj">
+      <Project>{5C09CC04-05F8-39A6-9229-0BEA8B93D1BF}</Project>
+      <Name>TextMeshProEffect</Name>
+    </ProjectReference>
+    <ProjectReference Include="TextMeshProEffect.Editor.csproj">
+      <Project>{ACF674CA-0908-912F-7B47-C7943C851B8D}</Project>
+      <Name>TextMeshProEffect.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Kosher.Log;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GameWebServer.Controllers
 {
@@ -9,6 +10,15 @@ namespace GameWebServer.Controllers
         [HttpPost]
         public EmptyResult Post()
         {
+            LogHelper.Info($"Thread : {Environment.CurrentManagedThreadId} | {HttpContext.Request.Path}");
+
+            return new EmptyResult();
+        }
+        [HttpGet]
+        public EmptyResult Get()
+        {
+            LogHelper.Info($"Thread : {Environment.CurrentManagedThreadId} | {HttpContext.Request.Path}");
+
             return new EmptyResult();
         }
     }

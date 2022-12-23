@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assets.Scripts.Models
+﻿namespace Assets.Scripts.Models
 {
     internal enum SceneType
     {
         TitleScene,
-        LobbyScene,
+        SelectCharacterScene,
         CreateCharacterScene,
+        DungeonScene,
 
         Max
     }

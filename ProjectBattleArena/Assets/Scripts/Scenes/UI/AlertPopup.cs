@@ -3,10 +3,8 @@ using Kosher.Log;
 using Kosher.Unity;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.UI;
 
-public class AlertPopup : UIElement
+public class AlertPopup : UIComponent
 {
     [SerializeField]
     private TextMeshProUGUI txtTitle;
@@ -15,7 +13,7 @@ public class AlertPopup : UIElement
 
     public static AlertPopup Instantiate()
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<AlertPopup>($"Prefabs/UI/Popup/AlertPopup");
+        var prefab = KosherUnityResourceManager.Instance.LoadResouce<AlertPopup>($"Prefabs/UI/Common/AlertPopup");
 
         if(prefab == null)
         {

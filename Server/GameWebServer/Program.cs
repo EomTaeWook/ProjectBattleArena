@@ -10,7 +10,12 @@ namespace GameWebServer
     {
         public static void Main(string[] args)
         {
-            LogBuilder.Configuration(LogConfigXmlReader.Load($"{AppContext.BaseDirectory}KosherLog.config"));
+            var logConfigPath = $"{AppContext.BaseDirectory}KosherLog.config";
+#if DEBUG
+            logConfigPath =$"{Environment.CurrentDirectory}/../Config/KosherLog.config";
+#endif
+
+            LogBuilder.Configuration(LogConfigXmlReader.Load(logConfigPath));
             var configuration = LogBuilder.Build();
 
             DBHelper.Build();

@@ -3,7 +3,7 @@ using BA.Repository.Interface;
 using Dapper;
 using Kosher.Log;
 using MySql.Data.MySqlClient;
-using Protocol.GameWebServerAndClient.ShareModel;
+using Protocol.GameWebServerAndClient.ShareModels;
 using System.Data;
 using static BA.Repository.Helper.DBHelper;
 

@@ -7,8 +7,8 @@ namespace Assets.Scripts.Internal
 {
     internal class UIManager : MonoBehaviourSingleton<UIManager>
     {
-        private readonly List<UIElement> _uiContainer = new List<UIElement>();
-        private readonly List<UIElement> _popupContainer = new List<UIElement>();
+        private readonly List<UIComponent> _uiContainer = new List<UIComponent>();
+        private readonly List<UIComponent> _popupContainer = new List<UIComponent>();
 
         private Camera uiCamera;
         private GameObject uiCanvas;
@@ -47,27 +47,27 @@ namespace Assets.Scripts.Internal
             item.SetContent(title, body);
             item.gameObject.SetActive(true);
         }
-        public UIElement AddUI(UIElement prefab)
+        public UIComponent AddUI(UIComponent prefab)
         {
-            var item = KosherUnityObjectPool.Instance.Pop<UIElement>(prefab);
+            var item = KosherUnityObjectPool.Instance.Pop<UIComponent>(prefab);
             _uiContainer.Add(item);
             item.transform.SetParent(this.uiCanvas.transform, false);
             item.gameObject.SetActive(true);
             return item;
         }
 
-        public UIElement AddPopupUI(UIElement prefab)
+        public UIComponent AddPopupUI(UIComponent prefab)
         {
-            var item = KosherUnityObjectPool.Instance.Pop<UIElement>(prefab);
+            var item = KosherUnityObjectPool.Instance.Pop<UIComponent>(prefab);
             _popupContainer.Add(item);
             item.transform.SetParent(this.uiPopupCanvas.transform, false);
             item.gameObject.SetActive(true);
             return item;
         }
 
-        public void CloseUI(UIElement item)
+        public void CloseUI(UIComponent item)
         {
-            var removed = new List<UIElement>();
+            var removed = new List<UIComponent>();
             for(int i=0; i< _uiContainer.Count; ++i)
             {
                 if (_uiContainer[i] == item)
@@ -76,7 +76,7 @@ namespace Assets.Scripts.Internal
                 }
             }
 
-            var removedPopup = new List<UIElement>();
+            var removedPopup = new List<UIComponent>();
             for (int i = 0; i < _popupContainer.Count; ++i)
             {
                 if (_popupContainer[i] == item)
@@ -87,13 +87,13 @@ namespace Assets.Scripts.Internal
 
             foreach (var remove in removed)
             {
-                remove.Recycle<UIElement>();
+                remove.Recycle<UIComponent>();
                 _uiContainer.Remove(remove);
             }
 
             foreach(var remove in removedPopup)
             {
-                remove.Recycle<UIElement>();
+                remove.Recycle<UIComponent>();
                 _popupContainer.Remove(remove);
             }
         }

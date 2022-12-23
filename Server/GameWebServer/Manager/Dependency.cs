@@ -9,9 +9,9 @@ namespace GameWebServer.Manager
     {
         public static void Init(WebApplicationBuilder builder)
         {
-            var configPath = $"{AppContext.BaseDirectory}\\config.json";
+            var configPath = $"{AppContext.BaseDirectory}config.json";
 #if DEBUG
-            configPath = $"{builder.Environment.ContentRootPath}\\config.json";
+            configPath = $"{builder.Environment.ContentRootPath}../Config/config.json";
 #endif
             var json = File.ReadAllText(configPath);
 

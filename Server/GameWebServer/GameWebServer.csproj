@@ -15,15 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="config.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-    <Content Update="KosherLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Controllers\User\" />
   </ItemGroup>
 

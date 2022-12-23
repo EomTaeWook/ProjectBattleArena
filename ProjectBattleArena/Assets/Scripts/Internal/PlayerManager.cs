@@ -21,7 +21,6 @@ namespace Assets.Scripts.Internal
             _path = "./";
 #endif
         }
-
         public void LoadUserData()
         {
             var fullPath = Path.Combine(_path, UserFileName);

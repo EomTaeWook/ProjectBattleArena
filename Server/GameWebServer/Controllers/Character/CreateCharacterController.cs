@@ -1,6 +1,6 @@
 ﻿using BA.Repository;
 using Protocol.GameWebServerAndClient;
-using Protocol.GameWebServerAndClient.ShareModel;
+using Protocol.GameWebServerAndClient.ShareModels;
 
 namespace GameWebServer.Controllers.Character
 {

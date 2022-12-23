@@ -1,4 +1,4 @@
-﻿using Protocol.GameWebServerAndClient.ShareModel;
+﻿using Protocol.GameWebServerAndClient.ShareModels;
 using System.Collections.Generic;
 
 namespace Protocol.GameWebServerAndClient

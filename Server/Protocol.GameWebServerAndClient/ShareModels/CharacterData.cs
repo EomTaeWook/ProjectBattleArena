@@ -1,6 +1,4 @@
-﻿using Protocol.GameWebServerAndClient.ShareModels;
-
-namespace Protocol.GameWebServerAndClient.ShareModel
+﻿namespace Protocol.GameWebServerAndClient.ShareModels
 {
     public class CharacterData
     {
