@@ -34,3 +34,7 @@ Server/Config/KosherLog.config
 Server/Config/config.json
 Server/Config/InterServerConfig.json
 Bin/InterServer/InterServerConfig.json
+Server/BA.DedicatedServer/.vs/*
+Server/BA.DedicatedServer/bin/*
+Server/BA.DedicatedServer/obj/*
+Server/ShareLogic/ShareLogic.csproj.user

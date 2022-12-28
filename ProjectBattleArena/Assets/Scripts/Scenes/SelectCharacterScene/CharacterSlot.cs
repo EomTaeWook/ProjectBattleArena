@@ -1,6 +1,5 @@
 using Assets.Scripts.Internal;
 using Assets.Scripts.Models;
-using Assets.Scripts.Scenes.ScenesControl;
 using Kosher.Log;
 using Kosher.Unity;
 using Protocol.GameWebServerAndClient.ShareModels;
@@ -20,7 +19,7 @@ public class CharacterSlot : UIComponent
     CharacterData characterData;
     public static CharacterSlot Instantiate()
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<CharacterSlot>($"Prefabs/Lobby/CharacterSlot");
+        var prefab = KosherUnityResourceManager.Instance.LoadResouce<CharacterSlot>($"Prefabs/SelectCharacter/CharacterSlot");
 
         if (prefab == null)
         {

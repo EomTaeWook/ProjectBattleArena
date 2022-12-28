@@ -5,7 +5,9 @@
         TitleScene,
         SelectCharacterScene,
         CreateCharacterScene,
-        DungeonScene,
+        LobbyScene,
+        StageScene,
+        ArenaScece,
 
         Max
     }

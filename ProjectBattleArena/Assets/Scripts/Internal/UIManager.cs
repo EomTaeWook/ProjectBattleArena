@@ -1,5 +1,6 @@
 ﻿using Kosher.Unity;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,11 +48,24 @@ namespace Assets.Scripts.Internal
             item.SetContent(title, body);
             item.gameObject.SetActive(true);
         }
-        public UIComponent AddUI(UIComponent prefab)
+        public UIComponent AddUI(UIComponent prefab, Transform parent = null)
         {
+            if(_uiContainer.Count > 0)
+            {
+                _uiContainer[_uiContainer.Count - 1].gameObject.SetActive(false);
+            }
+
             var item = KosherUnityObjectPool.Instance.Pop<UIComponent>(prefab);
             _uiContainer.Add(item);
-            item.transform.SetParent(this.uiCanvas.transform, false);
+            if(parent == null)
+            {
+                item.transform.SetParent(this.uiCanvas.transform, false);
+            }
+            else
+            {
+                item.transform.SetParent(parent, false);
+            }
+            
             item.gameObject.SetActive(true);
             return item;
         }

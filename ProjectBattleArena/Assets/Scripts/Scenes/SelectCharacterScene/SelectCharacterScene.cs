@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Scenes.SceneModels;
-using Assets.Scripts.Scenes.ScenesControl;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class SelectCharacterScene : BaseScene<SelectCharacterSceneModel>

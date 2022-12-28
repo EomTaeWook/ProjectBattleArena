@@ -8,9 +8,7 @@
 
         public int Exp { get; set; }
 
-        public int Str { get; set; }
-
-        public int Wiz { get; set; }
+        public int Atk { get; set; }
 
         public int Con { get; set; }
 

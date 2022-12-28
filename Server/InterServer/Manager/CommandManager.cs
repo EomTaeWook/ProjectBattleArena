@@ -10,9 +10,10 @@ namespace BA.InterServer.Manager
 {
     internal class CommandManager : Singleton<CommandManager>
     {
+        private delegate Task Callback(params string[] args);
         private readonly string[] emptyOptions = new string[0];
         private Dictionary<string, string[]> _commandMap = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
-        private Dictionary<string, Action<string[]>> _commandProtocolMap = new Dictionary<string, Action<string[]>>(StringComparer.OrdinalIgnoreCase);
+        private Dictionary<string, Callback> _commandProtocolMap = new Dictionary<string, Callback>(StringComparer.OrdinalIgnoreCase);
         public CommandManager()
         {
             _commandMap.Add("gws", new string[] { "on","off" });
@@ -20,21 +21,14 @@ namespace BA.InterServer.Manager
             _commandMap.Add("close", emptyOptions);
 
             _commandProtocolMap.Add("gws", GameWebServerInspection);
-            _commandProtocolMap.Add("resetkey", ChangedSecurityKey);
+            _commandProtocolMap.Add("resetkey", ChangedSecurityKeyAsync);
             _commandProtocolMap.Add("close", Close);
         }
-        public void ChangedSecurityKey(params string[] args)
+        public async Task ChangedSecurityKeyAsync(params string[] args)
         {
-            var packetData = new ChangedSecurityKey
-            {
-                PrivateKey = args[0]
-            };
-
-            var packet = ServerModule.Packet.MakePacket(IGWSProtocol.GameWebServerInspection, packetData);
-
-            InterServerModule.Instance.Broadcast(packet);
+            var _ = await SchedulerSecurityManager.Instance.CreateKey();
         }
-        public void GameWebServerInspection(params string[] args)
+        public Task GameWebServerInspection(params string[] args)
         {
             var packetData = new GameWebServerInspection();
 
@@ -49,10 +43,14 @@ namespace BA.InterServer.Manager
             var packet = ServerModule.Packet.MakePacket(IGWSProtocol.GameWebServerInspection, packetData);
 
             InterServerModule.Instance.Broadcast(packet);
+
+            return Task.CompletedTask;
         }
-        public void Close(params string[] args)
+        public Task Close(params string[] args)
         {
             Process.GetCurrentProcess().Close();
+
+            return Task.CompletedTask;
         }
         private bool RunCommnad(string command, params string[] args)
         {

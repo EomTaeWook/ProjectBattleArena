@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts.Internal;
 using Assets.Scripts.Scenes;
+using Kosher.Log;
+using Kosher.Log.LogTarget;
 using Protocol.GameWebServerAndClient;
 using ShareLogic;
 using System.Threading.Tasks;
@@ -15,6 +17,13 @@ public class TitleSceneController : SceneController<TitleSceneController>
     public void Init()
     {
         ApplicationManager.Instance.Init();
+        var logConfiguration = new LogConfiguration();
+        var consoleLogTarget = new ConsoleLogTarget();
+        var rule = new Kosher.Log.Model.Rule.LogRule("unity logger", LogLevel.Debug, consoleLogTarget);
+        logConfiguration.AddRule("unity console", rule);
+        logConfiguration.AddTarget("unity console", consoleLogTarget);
+        LogBuilder.Configuration(logConfiguration);
+        LogBuilder.Build();
 
         PlayerManager.Instance.LoadUserData();
     }

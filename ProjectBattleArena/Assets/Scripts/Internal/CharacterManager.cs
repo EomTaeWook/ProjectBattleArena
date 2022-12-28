@@ -25,5 +25,10 @@ namespace Assets.Scripts.Internal
         {
             _characterDatas.Clear();
         }
+        public void SetSelectedCharacterData(CharacterData characterData)
+        {
+            SelectedCharacterData = characterData;
+        }
+        public CharacterData SelectedCharacterData { get; private set; }
     }
 }

@@ -10,14 +10,14 @@ namespace GameWebServer.Controllers
         [HttpPost]
         public EmptyResult Post()
         {
-            LogHelper.Info($"Thread : {Environment.CurrentManagedThreadId} | {HttpContext.Request.Path}");
+            LogHelper.Debug($"Thread : {Environment.CurrentManagedThreadId} | {HttpContext.Request.Path}");
 
             return new EmptyResult();
         }
         [HttpGet]
         public EmptyResult Get()
         {
-            LogHelper.Info($"Thread : {Environment.CurrentManagedThreadId} | {HttpContext.Request.Path}");
+            LogHelper.Debug($"Thread : {Environment.CurrentManagedThreadId} | {HttpContext.Request.Path}");
 
             return new EmptyResult();
         }

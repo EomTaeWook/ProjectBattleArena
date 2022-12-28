@@ -5,8 +5,8 @@ using BA.Repository.Helper;
 using BA.Repository.Interface;
 using Kosher.Framework;
 using Kosher.Log;
-using Protocol.InterAndGWS.ShareModels;
 using Protocol.InterAndGWS;
+using Protocol.InterAndGWS.ShareModels;
 using ShareLogic;
 using System.Text.Json;
 
@@ -51,7 +51,7 @@ namespace BA.InterServer.Manager
             return false;
         }
 
-        private async Task<bool> CreateKey()
+        public async Task<bool> CreateKey()
         {
             SecurityRepository securityRepository = DBServiceHelper.GetService<SecurityRepository>();
 

@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Internal;
 using Assets.Scripts.Models;
 using Assets.Scripts.Scenes.SceneModels;
-using Assets.Scripts.Scenes.ScenesControl;
 using Protocol.GameWebServerAndClient.ShareModels;
 using System.Linq;
 using TMPro;
