@@ -11,7 +11,6 @@ namespace Assets.Scripts.Models
         Idle,
         Move,
         Die,
-        Hit,
         Attack1,
         Attack2,
 

@@ -1,0 +1,30 @@
+[
+  {
+    "Id": 1000,
+    "StringId": "BasicAttack",
+    "JobType": "SwordMan",
+    "Range": 0,
+    "Cost": 0
+  },
+  {
+    "Id": 1001,
+    "StringId": "BasicRangedAttack",
+    "JobType": "Wizard",
+    "Range": 1,
+    "Cost": 0
+  },
+  {
+    "Id": 1002,
+    "StringId": "BasicStrongAttack",
+    "JobType": "SwordMan",
+    "Range": 0,
+    "Cost": 3
+  },
+  {
+    "Id": 1003,
+    "StringId": "BasicStrongRangedAttack",
+    "JobType": "Wizard",
+    "Range": 1,
+    "Cost": 3
+  }
+]

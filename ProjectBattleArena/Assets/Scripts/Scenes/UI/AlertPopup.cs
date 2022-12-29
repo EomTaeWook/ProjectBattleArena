@@ -13,7 +13,7 @@ public class AlertPopup : UIComponent
 
     public static AlertPopup Instantiate()
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<AlertPopup>($"Prefabs/UI/Common/AlertPopup");
+        var prefab = KosherUnityResourceManager.Instance.LoadResouce<AlertPopup>($"Prefabs/UI/AlertPopup");
 
         if(prefab == null)
         {

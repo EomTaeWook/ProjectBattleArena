@@ -1,0 +1,182 @@
+[
+  {
+    "Id": 1000,
+    "StringId": "1000",
+    "Level": 1,
+    "NeedExp": 0
+  },
+  {
+    "Id": 1001,
+    "StringId": "1001",
+    "Level": 2,
+    "NeedExp": 100
+  },
+  {
+    "Id": 1002,
+    "StringId": "1002",
+    "Level": 3,
+    "NeedExp": 200
+  },
+  {
+    "Id": 1003,
+    "StringId": "1003",
+    "Level": 4,
+    "NeedExp": 300
+  },
+  {
+    "Id": 1004,
+    "StringId": "1004",
+    "Level": 5,
+    "NeedExp": 400
+  },
+  {
+    "Id": 1005,
+    "StringId": "1005",
+    "Level": 6,
+    "NeedExp": 500
+  },
+  {
+    "Id": 1006,
+    "StringId": "1006",
+    "Level": 7,
+    "NeedExp": 600
+  },
+  {
+    "Id": 1007,
+    "StringId": "1007",
+    "Level": 8,
+    "NeedExp": 800
+  },
+  {
+    "Id": 1008,
+    "StringId": "1008",
+    "Level": 9,
+    "NeedExp": 900
+  },
+  {
+    "Id": 1009,
+    "StringId": "1009",
+    "Level": 10,
+    "NeedExp": 1000
+  },
+  {
+    "Id": 1010,
+    "StringId": "1010",
+    "Level": 11,
+    "NeedExp": 1200
+  },
+  {
+    "Id": 1011,
+    "StringId": "1011",
+    "Level": 12,
+    "NeedExp": 1400
+  },
+  {
+    "Id": 1012,
+    "StringId": "1012",
+    "Level": 13,
+    "NeedExp": 1600
+  },
+  {
+    "Id": 1013,
+    "StringId": "1013",
+    "Level": 14,
+    "NeedExp": 1800
+  },
+  {
+    "Id": 1014,
+    "StringId": "1014",
+    "Level": 15,
+    "NeedExp": 2000
+  },
+  {
+    "Id": 1015,
+    "StringId": "1015",
+    "Level": 16,
+    "NeedExp": 2200
+  },
+  {
+    "Id": 1016,
+    "StringId": "1016",
+    "Level": 17,
+    "NeedExp": 2400
+  },
+  {
+    "Id": 1017,
+    "StringId": "1017",
+    "Level": 18,
+    "NeedExp": 2600
+  },
+  {
+    "Id": 1018,
+    "StringId": "1018",
+    "Level": 19,
+    "NeedExp": 2800
+  },
+  {
+    "Id": 1019,
+    "StringId": "1019",
+    "Level": 20,
+    "NeedExp": 3000
+  },
+  {
+    "Id": 1020,
+    "StringId": "1020",
+    "Level": 21,
+    "NeedExp": 3300
+  },
+  {
+    "Id": 1021,
+    "StringId": "1021",
+    "Level": 22,
+    "NeedExp": 3600
+  },
+  {
+    "Id": 1022,
+    "StringId": "1022",
+    "Level": 23,
+    "NeedExp": 3900
+  },
+  {
+    "Id": 1023,
+    "StringId": "1023",
+    "Level": 24,
+    "NeedExp": 4200
+  },
+  {
+    "Id": 1024,
+    "StringId": "1024",
+    "Level": 25,
+    "NeedExp": 4500
+  },
+  {
+    "Id": 1025,
+    "StringId": "1025",
+    "Level": 26,
+    "NeedExp": 4800
+  },
+  {
+    "Id": 1026,
+    "StringId": "1026",
+    "Level": 27,
+    "NeedExp": 5100
+  },
+  {
+    "Id": 1027,
+    "StringId": "1027",
+    "Level": 28,
+    "NeedExp": 5400
+  },
+  {
+    "Id": 1028,
+    "StringId": "1028",
+    "Level": 29,
+    "NeedExp": 5700
+  },
+  {
+    "Id": 1029,
+    "StringId": "1029",
+    "Level": 30,
+    "NeedExp": 6000
+  }
+]

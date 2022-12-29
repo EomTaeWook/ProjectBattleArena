@@ -1,0 +1,57 @@
+[
+  {
+    "Name": "Id",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "StringId",
+    "Count": 1,
+    "Required": true,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "JobType",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Enum",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Range",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Cost",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  }
+]

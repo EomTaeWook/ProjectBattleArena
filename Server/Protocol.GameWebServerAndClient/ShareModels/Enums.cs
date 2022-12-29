@@ -1,12 +1,5 @@
 ﻿namespace Protocol.GameWebServerAndClient.ShareModels
 {
-    public enum JobType
-    {
-        SwordMan,
-        Wizard,
-        
-        Max,
-    }
     public enum ChangedAssetReason
     {
         ByUser,

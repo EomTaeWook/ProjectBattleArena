@@ -1,0 +1,12 @@
+{
+  "EnumNamespace": {
+    "JobType": "DataContainer"
+  },
+  "EnumValueDatas": {
+    "JobType": [
+      "SwordMan",
+      "Wizard",
+      "Max"
+    ]
+  }
+}

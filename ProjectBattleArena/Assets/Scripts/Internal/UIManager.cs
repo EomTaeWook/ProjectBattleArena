@@ -1,6 +1,5 @@
 ﻿using Kosher.Unity;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +20,7 @@ namespace Assets.Scripts.Internal
             transform.position = new Vector3(0, 0, 100);
 
             uiCamera = gameObject.AddComponent<Camera>();
-            uiCamera.depth = 1;
+            uiCamera.depth = 5;
             uiCamera.clearFlags = CameraClearFlags.Depth;
             uiCamera.orthographic = true;
 

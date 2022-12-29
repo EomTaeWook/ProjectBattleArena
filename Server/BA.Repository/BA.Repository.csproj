@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="DataContainer">
+      <HintPath>..\Dll\DataContainer.dll</HintPath>
+    </Reference>
     <Reference Include="Kosher">
       <HintPath>..\Dll\Kosher.dll</HintPath>
     </Reference>

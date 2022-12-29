@@ -9,7 +9,7 @@ public class Party
     {
         foreach(var item in characterDatas)
         {
-            _units.Add(new Unit(item));
+            
         }
     }
     public void SetBattle(Battle battle)

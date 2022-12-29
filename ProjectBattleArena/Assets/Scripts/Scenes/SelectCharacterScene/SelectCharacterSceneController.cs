@@ -3,6 +3,7 @@ using Assets.Scripts.Scenes;
 using Kosher.Unity;
 using Protocol.GameWebServerAndClient.ShareModels;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 internal class SelectCharacterSceneController : SceneController<SelectCharacterSceneController>
 {
@@ -37,6 +38,7 @@ internal class SelectCharacterSceneController : SceneController<SelectCharacterS
         {
             item.Recycle<CharacterSlot>();
         }
+        scene.SceneModel.Slots.Clear();
 
         if (scene.SceneModel.SelectCharacter != null)
         {
@@ -49,20 +51,12 @@ internal class SelectCharacterSceneController : SceneController<SelectCharacterS
         {
             scene.SceneModel.SelectCharacter.Recycle();
         }
-        var go = LoadCharcter(characterData);
+        CharacterManager.Instance.SetSelectedCharacterData(characterData);
+
+        var go = CharacterManager.Instance.LoadCharcterResource();
 
         scene.SceneModel.SelectCharacter = go;
 
         scene.RefreshCharacter();
-    }
-
-    private GameObject LoadCharcter(CharacterData character)
-    {
-        var jobType = character.Job;
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<GameObject>($"Prefabs/Character/{jobType}");
-
-        var go = KosherUnityObjectPool.Instance.Pop(prefab);
-
-        return go;
     }
 }

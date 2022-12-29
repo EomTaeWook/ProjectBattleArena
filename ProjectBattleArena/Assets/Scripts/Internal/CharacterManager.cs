@@ -1,13 +1,20 @@
 ﻿using Kosher.Framework;
+using Kosher.Unity;
 using Protocol.GameWebServerAndClient.ShareModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using UnityEngine;
 
 namespace Assets.Scripts.Internal
 {
     internal class CharacterManager : Singleton<CharacterManager>
     {
+        public CharacterData SelectedCharacterData { get; private set; }
+
+        public int CharacterCount { get => _characterDatas.Count; }
+
         private List<CharacterData> _characterDatas = new List<CharacterData>();
+
         public void Init(List<CharacterData> characterDatas)
         {
             _characterDatas.AddRange(characterDatas);
@@ -20,7 +27,7 @@ namespace Assets.Scripts.Internal
         {
             return new ReadOnlyCollection<CharacterData>(_characterDatas);
         }
-        public int CharacterCount { get => _characterDatas.Count; }
+
         public void Clear()
         {
             _characterDatas.Clear();
@@ -29,6 +36,16 @@ namespace Assets.Scripts.Internal
         {
             SelectedCharacterData = characterData;
         }
-        public CharacterData SelectedCharacterData { get; private set; }
+
+        public GameObject LoadCharcterResource()
+        {
+            var jobType = SelectedCharacterData.Job;
+            var prefab = KosherUnityResourceManager.Instance.LoadResouce<GameObject>($"Prefabs/Character/{jobType}");
+
+            var go = KosherUnityObjectPool.Instance.Pop(prefab);
+
+            return go;
+        }
+
     }
 }

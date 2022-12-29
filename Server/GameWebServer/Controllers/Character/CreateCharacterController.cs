@@ -1,4 +1,5 @@
 ﻿using BA.Repository;
+using DataContainer;
 using Protocol.GameWebServerAndClient;
 using Protocol.GameWebServerAndClient.ShareModels;
 
@@ -18,7 +19,7 @@ namespace GameWebServer.Controllers.Character
             {
                 return MakeErrorMessage(account, $"character name is empty");
             }
-            if (request.Job == Protocol.GameWebServerAndClient.ShareModels.JobType.Max)
+            if (request.Job == JobType.Max)
             {
                 return MakeErrorMessage(account, $"character job is invalid");
             }

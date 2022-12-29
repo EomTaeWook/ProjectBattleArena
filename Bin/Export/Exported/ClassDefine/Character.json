@@ -1,0 +1,156 @@
+[
+  {
+    "Name": "Id",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "StringId",
+    "Count": 1,
+    "Required": true,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Stat",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Class",
+    "Members": [
+      "HP",
+      "Attack",
+      "Defense",
+      "AttackSpeed",
+      "Critical",
+      "Patience",
+      "Block",
+      "Hit",
+      "Dodge",
+      "Destruction"
+    ],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "HP",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Attack",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Defense",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "AttackSpeed",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Critical",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Patience",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Block",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Hit",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Dodge",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Destruction",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
+  }
+]

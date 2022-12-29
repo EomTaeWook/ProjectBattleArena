@@ -6,7 +6,7 @@ public class Loading : UIComponent
 {
     public static Loading Instantiate()
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<Loading>($"Prefabs/UI/Common/Loading");
+        var prefab = KosherUnityResourceManager.Instance.LoadResouce<Loading>($"Prefabs/UI/Loading");
 
         if (prefab == null)
         {

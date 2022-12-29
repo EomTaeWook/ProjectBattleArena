@@ -1,4 +1,7 @@
-﻿namespace Protocol.GameWebServerAndClient.ShareModels
+﻿using DataContainer;
+using System.Collections.Generic;
+
+namespace Protocol.GameWebServerAndClient.ShareModels
 {
     public class CharacterData
     {
@@ -17,5 +20,7 @@
         public int StatPoint { get; set; }
 
         public long CreateTime { get; set; }
+
+        public List<SkillData> SkillDatas { get; set; }
     }
 }

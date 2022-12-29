@@ -1,4 +1,5 @@
 ﻿using BA.Repository;
+using GameWebServer.Manager;
 using Protocol.GameWebServerAndClient;
 using System.Security.Principal;
 
@@ -7,14 +8,12 @@ namespace GameWebServer.Controllers.Auth
     public class LoginController : APIController<Login>
     {
         private AuthRepository _authRepository;
-        private CharacterRepository _characterRepository;
         private UserAssetRepository _userAssetRepository;
         public LoginController(AuthRepository authRepository,
                             CharacterRepository characterRepository,
                             UserAssetRepository userAssetRepository)
         {
             _authRepository = authRepository;
-            _characterRepository = characterRepository;
             _userAssetRepository = userAssetRepository;
         }
         public override async Task<IGWCResponse> Process(Login request)
@@ -42,9 +41,9 @@ namespace GameWebServer.Controllers.Auth
                 return MakeErrorMessage(tokenData.Account, $"failed to login {tokenData.Account} invalid password");
             }
 
-            var loadCharacter = await _characterRepository.LoadCharacters(tokenData.Account);
+            var loadCharacter = await CharacterManager.Instance.LoadCharacterAsync(tokenData.Account);
 
-            if(loadCharacter == null)
+            if (loadCharacter == null)
             {
                 return MakeErrorMessage(tokenData.Account, $"failed to load characters");
             }

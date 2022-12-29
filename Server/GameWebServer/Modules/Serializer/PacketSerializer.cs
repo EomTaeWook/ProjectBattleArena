@@ -1,5 +1,4 @@
-﻿using GameWebServer.Models;
-using Kosher.Collections;
+﻿using Kosher.Collections;
 using Kosher.Sockets.Interface;
 
 namespace GameWebServer.Modules.Serializer

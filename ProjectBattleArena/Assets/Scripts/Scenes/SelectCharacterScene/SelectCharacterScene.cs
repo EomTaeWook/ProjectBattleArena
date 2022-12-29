@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Assets.Scripts.Internal;
+using TMPro;
 using UnityEngine;
 
 public class SelectCharacterScene : BaseScene<SelectCharacterSceneModel>
@@ -23,6 +24,11 @@ public class SelectCharacterScene : BaseScene<SelectCharacterSceneModel>
         }
         RefreshCharacter();
     }
+    public void OnGameStartClick()
+    {
+        SelectCharacterSceneController.Instance.Dispose();
+        SceneManager.Instance.LoadScene(Assets.Scripts.Models.SceneType.LobbyScene);
+    }
     public void RefreshCharacter()
     {
         SceneModel.SelectCharacter.transform.SetParent(characterTransform.transform, false);
@@ -30,5 +36,6 @@ public class SelectCharacterScene : BaseScene<SelectCharacterSceneModel>
     }
     public override void OnDestroyScene()
     {
+        
     }
 }

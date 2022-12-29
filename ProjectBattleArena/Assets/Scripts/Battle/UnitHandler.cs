@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Models;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class UnitHandler : MonoBehaviour
@@ -18,10 +17,6 @@ public class UnitHandler : MonoBehaviour
     public void Die()
     {
         SetTrigger(AnimationType.Die);
-    }
-    public void Hit()
-    {
-        SetTrigger(AnimationType.Hit);
     }
     public void Attack1()
     {

@@ -1,4 +1,5 @@
-﻿using Protocol.GameWebServerAndClient.ShareModels;
+﻿using DataContainer;
+using Protocol.GameWebServerAndClient.ShareModels;
 
 namespace Protocol.GameWebServerAndClient
 {
