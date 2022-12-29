@@ -38,3 +38,15 @@ Server/BA.DedicatedServer/.vs/*
 Server/BA.DedicatedServer/bin/*
 Server/BA.DedicatedServer/obj/*
 Server/ShareLogic/ShareLogic.csproj.user
+Bin/GameWebServer/archive/*
+Bin/GameWebServer/config.json
+Bin/GameWebServer/KosherLog.config
+Share/DataContainer/obj/*
+Share/ShareLogic/obj/*
+Share/ShareLogic/bin/*
+Share/ShareLogic/.vs/*
+Share/.vs/*
+Share/DataContainer/bin/*
+Share/DataContainer/DataContainer.csproj.user
+Server/GameWebServer/Properties/PublishProfiles/*
+Bin/GameWebServer/logs/*
