@@ -1,6 +1,9 @@
 ﻿using Protocol.GameWebServerAndClient.ShareModels;
 using System.Collections.Generic;
 using System;
+using TemplateContainers;
+using DataContainer.Generated;
+
 public class Party
 {
     public Battle Battle { get; private set; }
@@ -9,7 +12,7 @@ public class Party
     {
         foreach(var item in characterDatas)
         {
-            
+            _units.Add(new Unit(item));
         }
     }
     public void SetBattle(Battle battle)
@@ -19,6 +22,10 @@ public class Party
             throw new ArgumentNullException(nameof(battle));
         }
         this.Battle = battle;
+        foreach(var item in _units)
+        {
+            item.SetBattle(battle);
+        }
     }
     public void DoAction(int currentTicks)
     {

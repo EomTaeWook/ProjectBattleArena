@@ -13,10 +13,11 @@
           "BA.Repository": "1.0.0",
           "Protocol.GameWebServerAndClient": "1.0.0",
           "Protocol.InterAndGWS": "1.0.0",
-          "ShareLogic": "1.0.0",
+          "DataContainer": "1.0.0.0",
           "Kosher": "1.0.0.0",
           "Kosher.Extensions": "1.0.0.0",
           "Kosher.Sockets": "1.0.0.0",
+          "ShareLogic": "1.0.0.0",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "6.0.12",
           "runtimepack.Microsoft.AspNetCore.App.Runtime.win-x64": "6.0.12"
         },
@@ -1287,9 +1288,12 @@
           "Protocol.InterAndGWS.dll": {}
         }
       },
-      "ShareLogic/1.0.0": {
+      "DataContainer/1.0.0.0": {
         "runtime": {
-          "ShareLogic.dll": {}
+          "DataContainer.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Kosher/1.0.0.0": {
@@ -1311,6 +1315,14 @@
       "Kosher.Sockets/1.0.0.0": {
         "runtime": {
           "Kosher.Sockets.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "ShareLogic/1.0.0.0": {
+        "runtime": {
+          "ShareLogic.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1494,8 +1506,8 @@
       "serviceable": false,
       "sha512": ""
     },
-    "ShareLogic/1.0.0": {
-      "type": "project",
+    "DataContainer/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
@@ -1510,6 +1522,11 @@
       "sha512": ""
     },
     "Kosher.Sockets/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ShareLogic/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Internal;
 using Assets.Scripts.Scenes;
 using Assets.Scripts.Scenes.SceneModels;
+using DataContainer;
 using Protocol.GameWebServerAndClient;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ internal class CreateCharacterController : SceneController<CreateCharacterContro
         var request = new CreateCharacter()
         {
             CharacterName = sceneModel.CharacterName,
-            Job = sceneModel.CurrentJobType
+            Job = (JobType)sceneModel.CurrentTemplateId
         };
         var response = await HttpRequestHelper.AuthRequest<CreateCharacter, CreateCharacterResponse>(request);
 

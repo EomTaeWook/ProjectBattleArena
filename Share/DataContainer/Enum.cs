@@ -8,9 +8,30 @@ namespace DataContainer
 {
     public enum JobType
     {
-        SwordMan,
+        SwordMan = 1000,
         Wizard,
 
         Max,
     }
+    public enum EffectType
+    {
+        Damage,
+        Buff,
+        AbnormalStatus,
+
+        Max
+    }
+
+    public enum TargetType
+    {
+        OneNearbyEnemy,
+        Me,
+        AllAllies,
+        AllEnemies,
+
+
+        Max,
+    }
+
+
 }

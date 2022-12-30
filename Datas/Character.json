@@ -1,7 +1,7 @@
 [
   {
     "Id": 1000,
-    "StringId": "SwordMan",
+    "Name": "SwordMan",
     "Stat": {
       "HP": 1000,
       "Attack": 80,
@@ -13,11 +13,12 @@
       "Hit": 260,
       "Dodge": 60,
       "Destruction": 100
-    }
+    },
+    "BaseAttackSkill": "BasicAttack"
   },
   {
     "Id": 1001,
-    "StringId": "Wizard",
+    "Name": "Wizard",
     "Stat": {
       "HP": 800,
       "Attack": 140,
@@ -29,6 +30,7 @@
       "Hit": 260,
       "Dodge": 60,
       "Destruction": 100
-    }
+    },
+    "BaseAttackSkill": "BasicRangedAttack"
   }
 ]

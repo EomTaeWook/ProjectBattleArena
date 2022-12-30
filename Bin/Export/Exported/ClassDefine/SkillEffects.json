@@ -1,0 +1,52 @@
+[
+  {
+    "Name": "Id",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": "",
+    "Conditions": []
+  },
+  {
+    "Name": "Name",
+    "Count": 1,
+    "Required": true,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": "",
+    "Conditions": []
+  },
+  {
+    "Name": "EffectType",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Enum",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": "",
+    "Conditions": []
+  },
+  {
+    "Name": "EffectRef",
+    "Count": 1,
+    "Required": true,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": "EffectType",
+    "Conditions": [
+      {
+        "Is": "Damage",
+        "Ref": "SkillEffectsDamage",
+        "RefField": "Name"
+      }
+    ]
+  }
+]

@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Internal;
 using Assets.Scripts.Models;
 using Assets.Scripts.Scenes.SceneModels;
-using Protocol.GameWebServerAndClient.ShareModels;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -45,10 +44,11 @@ internal class CreateCharacterScene : BaseScene<CreateCharacterSceneModel>
             SceneManager.Instance.LoadScene(Assets.Scripts.Models.SceneType.SelectCharacterScene);
         }
     }
-    public void OnCharacterButtonClick(int index)
+    public void OnCharacterButtonClick(int templateId)
     {
-        SceneModel.CurrentJobType = (JobType)index;
-        RefreshCharacter(index);
+        SceneModel.CurrentTemplateId = templateId;
+
+        RefreshCharacter(templateId % 1000);
     }
     public async void OnCreateButtonClickAsync()
     {

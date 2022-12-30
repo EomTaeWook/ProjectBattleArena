@@ -1,11 +1,26 @@
 {
   "EnumNamespace": {
-    "JobType": "DataContainer"
+    "JobType": "DataContainer",
+    "EffectType": "DataContainer",
+    "TargetType": "DataContainer"
   },
   "EnumValueDatas": {
     "JobType": [
       "SwordMan",
       "Wizard",
+      "Max"
+    ],
+    "EffectType": [
+      "Damage",
+      "Buff",
+      "AbnormalStatus",
+      "Max"
+    ],
+    "TargetType": [
+      "OneNearbyEnemy",
+      "Me",
+      "AllAllies",
+      "AllEnemies",
       "Max"
     ]
   }

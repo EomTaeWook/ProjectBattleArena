@@ -21,7 +21,16 @@ namespace DataContainer.Generated
             public int Dodge { get; set; }
             public int Destruction { get; set; }
         }
-        public string StringId { get; set; }
         public InnerStat Stat { get; set; }
+        public string BaseAttackSkill { get; set; }
+        public SkillsTemplate BaseAttackSkillRef { get; set; }
+        public override void MakeRefTemplate()
+        {
+            BaseAttackSkillRef = TemplateContainer<SkillsTemplate>.Find(BaseAttackSkill);
+            if(BaseAttackSkillRef.Invalid() == true)
+            {
+                Debug.Assert(false, $"CharacterTemplate Ref Data not found! Ref Field : {BaseAttackSkill}");
+            }
+        }
     }
 }
