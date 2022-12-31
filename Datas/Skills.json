@@ -5,9 +5,15 @@
     "JobType": "SwordMan",
     "Range": 0,
     "NeedCost": 0,
-    "TargetType": "OneNearbyEnemy",
-    "Effect": [
-      "BasicAttackEffect"
+    "Effets": [
+      {
+        "TargetType": "OneNearbyEnemy",
+        "Effect": "BasicAttackEffect"
+      },
+      {
+        "TargetType": "Max",
+        "Effect": null
+      }
     ]
   },
   {
@@ -16,9 +22,15 @@
     "JobType": "Wizard",
     "Range": 1,
     "NeedCost": 0,
-    "TargetType": "OneNearbyEnemy",
-    "Effect": [
-      "BasicAttackEffect"
+    "Effets": [
+      {
+        "TargetType": "OneNearbyEnemy",
+        "Effect": "BasicAttackEffect"
+      },
+      {
+        "TargetType": "Max",
+        "Effect": null
+      }
     ]
   },
   {
@@ -27,9 +39,15 @@
     "JobType": "SwordMan",
     "Range": 0,
     "NeedCost": 3,
-    "TargetType": "OneNearbyEnemy",
-    "Effect": [
-      "BasicAttackEffect"
+    "Effets": [
+      {
+        "TargetType": "OneNearbyEnemy",
+        "Effect": "BasicAttackEffect"
+      },
+      {
+        "TargetType": "Max",
+        "Effect": null
+      }
     ]
   },
   {
@@ -38,9 +56,15 @@
     "JobType": "Wizard",
     "Range": 1,
     "NeedCost": 3,
-    "TargetType": "OneNearbyEnemy",
-    "Effect": [
-      "BasicAttackEffect"
+    "Effets": [
+      {
+        "TargetType": "OneNearbyEnemy",
+        "Effect": "BasicAttackEffect"
+      },
+      {
+        "TargetType": "Max",
+        "Effect": null
+      }
     ]
   }
 ]

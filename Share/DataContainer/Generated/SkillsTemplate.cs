@@ -8,22 +8,25 @@ namespace DataContainer.Generated
 {
     public partial class SkillsTemplate : BaseTemplate
     {
+        public sealed partial class InnerEffets
+        {
+            public DataContainer.TargetType TargetType { get; set; }
+            public string Effect { get; set; }
+            public SkillEffectsTemplate EffectRef { get; set; }
+        }
         public DataContainer.JobType JobType { get; set; }
         public int Range { get; set; }
         public int NeedCost { get; set; }
-        public DataContainer.TargetType TargetType { get; set; }
-        public List<string> Effect { get; set; } = new List<string>();
-        public List<SkillEffectsTemplate> EffectRef { get; set; } = new List<SkillEffectsTemplate>();
+        public List<InnerEffets> Effets { get; set; } = new List<InnerEffets>();
         public override void MakeRefTemplate()
         {
-            foreach(var EffectItem in Effect)
+            foreach(var item in Effets)
             {
-                var template = TemplateContainer<SkillEffectsTemplate>.Find(EffectItem);
-                if(template.Invalid() == true)
+                item.EffectRef = TemplateContainer<SkillEffectsTemplate>.Find(item.Effect);
+                if (item.EffectRef.Invalid() == true)
                 {
-                    Debug.Assert(false, $"SkillsTemplate Ref Data not found! Ref Field : {EffectItem}");
+                    Debug.Assert(false, $"SkillsTemplate Ref Data not found! Ref Field : {item.Effect}");
                 }
-                EffectRef.Add(template);
             }
         }
     }

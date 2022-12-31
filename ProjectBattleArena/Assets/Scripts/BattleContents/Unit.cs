@@ -12,7 +12,7 @@ public class Unit
 
     private float _attackedRemainTicks = 0;
 
-    private Vector2 _position;
+    public Vector2 Position { get; private set; }
 
     private CharacterTemplate _characterTemplate;
 
@@ -28,7 +28,6 @@ public class Unit
     {
         _characterTemplate = TemplateContainer<CharacterTemplate>.Find((int)characterData.Job);
         _unitStats = new UnitStats(_characterTemplate, characterData);
-
         MakeSkills(characterData.EquippedSkillDatas);
     }
 
@@ -39,21 +38,18 @@ public class Unit
 
     public void MakeSkills(List<SkillData> equippedSkillDatas)
     {
-        baseAttackSkill = new UnitSkill()
-        {
-            SkillsTemplate = _characterTemplate.BaseAttackSkillRef
-        };
+        baseAttackSkill = new UnitSkill(this, _characterTemplate.BaseAttackSkillRef);
 
         foreach (var item in equippedSkillDatas)
         {
             var skillsTemplate = TemplateContainer<SkillsTemplate>.Find(item.SkillTemplate);
-            _skillDatas.Add(new UnitSkill()
-            {
-                SkillsTemplate = skillsTemplate
-            });
+            _skillDatas.Add(new UnitSkill(this, skillsTemplate));
         }
     }
-
+    public bool IsDead()
+    {
+        return _unitStats.Hp.CurrentHp == 0;
+    }
     public bool IsCasting()
     {
         return _castingSkill != null;
@@ -94,7 +90,6 @@ public class Unit
         return _skillDatas[_usedSkillIndex];
     }
    
-
     public void DoAction()
     {
         if (_attackedRemainTicks > 0)
@@ -129,7 +124,7 @@ public class Unit
 
         _attackedRemainTicks = _unitStats.AttackSpeed;
 
-        unitSkill.Invoke(_battle);
+        unitSkill.Invoke(this._battle);
 
         EndSkillEvent endSkillEvent = new EndSkillEvent(unitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
     }

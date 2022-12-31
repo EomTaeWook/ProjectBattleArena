@@ -37,7 +37,7 @@ namespace BA.DedicatedServer.Modules.Stun
             Task.Run(async () =>
             {
                 _server.Start("", 31100, ProtocolType.Udp);
-                LogHelper.Debug($"inter server start... port : 31100 ");
+                LogHelper.Debug($"stun server start... port : 31100 ");
                 isActive = true;
                 while (isActive)
                 {

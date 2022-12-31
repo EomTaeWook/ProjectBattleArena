@@ -57,30 +57,44 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\CharacterSlot.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Stats\HpStats.cs" />
     <Compile Include="Assets\Scripts\Internal\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Models\SceneType.cs" />
     <Compile Include="Assets\Scripts\Scenes\ArenaScene\ArenaSceneModel.cs" />
     <Compile Include="Assets\Scripts\Scenes\BaseScene.cs" />
+    <Compile Include="Assets\Scripts\Scenes\MainScene\MainHomeUI.cs" />
     <Compile Include="Assets\Scripts\Internal\ApplicationManager.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Party.cs" />
+    <Compile Include="Assets\Scripts\Scenes\MainScene\MainSceneUI.cs" />
     <Compile Include="Assets\Scripts\Battle\UnitHandler.cs" />
     <Compile Include="Assets\Scripts\Scenes\UI\Loading.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainSceneController.cs" />
     <Compile Include="Assets\Scripts\Models\AnimationType.cs" />
     <Compile Include="Assets\Scripts\Battle\GameManager.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Effects\DamageEffect.cs" />
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterScene.cs" />
+    <Compile Include="Assets\Scripts\Internal\UnityLogTarget.cs" />
     <Compile Include="Assets\Scripts\Scenes\TitleScene\TitleSceneController.cs" />
     <Compile Include="Assets\Scripts\Models\UserData.cs" />
     <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene\CreateCharacterController.cs" />
     <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene\CreateCharacterSceneModel.cs" />
     <Compile Include="Assets\Scripts\Internal\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Scenes\StageScene\StageSceneController.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Events\BattleEvents.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Skill\CastingSkill.cs" />
+    <Compile Include="Assets\Scripts\Scenes\MainScene\SkillContentsUI.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Stats\UnitStats.cs" />
+    <Compile Include="Assets\Scripts\Scenes\MainScene\EquipmentSlots.cs" />
     <Compile Include="Assets\Scripts\Scenes\ISceneModel.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Skill\UnitSkill.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainSceneModel.cs" />
     <Compile Include="Assets\Scripts\Scenes\UI\AlertPopup.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainScene.cs" />
     <Compile Include="Assets\Scripts\Models\UIElement.cs" />
     <Compile Include="Assets\Scripts\Internal\UIManager.cs" />
     <Compile Include="Assets\Scripts\Internal\SceneManager.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Events\BattleEventHandler.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Events\Interface\IBattleEventHandler.cs" />
     <Compile Include="Assets\Scripts\Scenes\TitleScene\TitleScene.cs" />
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterSceneModel.cs" />
     <Compile Include="Assets\Scripts\Scenes\ArenaScene\ArenaScene.cs" />
@@ -90,27 +104,13 @@
     <Compile Include="Assets\Scripts\Scenes\ArenaScene\ArenaSceneController.cs" />
     <Compile Include="Assets\Scripts\Internal\HttpRequestHelper.cs" />
     <Compile Include="Assets\Scripts\Scenes\StageScene\StageSceneModel.cs" />
-    <Compile Include="Assets\Scripts\Internal\GameObjectExtensions.cs" />
-    <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterSceneController.cs" />
-    <Compile Include="Assets\Scripts\Scenes\MainScene\MainCharacterUI.cs" />
-    <Compile Include="Assets\Scripts\Scenes\MainScene\EquipmentSlots.cs" />
-    <Compile Include="Assets\Scripts\Scenes\MainScene\SkillContentsUI.cs" />
-    <Compile Include="Assets\Scripts\Scenes\MainScene\MainHomeUI.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Battle.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Unit.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Party.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Stats\HpStats.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Damage.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Effects\DamageEffect.cs" />
-    <Compile Include="Assets\Scripts\Internal\UnityLogTarget.cs" />
-    <Compile Include="Assets\Scripts\Scenes\MainScene\MainSceneUI.cs" />
     <Compile Include="Assets\Scripts\BattleContents\Stats\Interface\IUnitStats.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Stats\UnitStats.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Skill\UnitSkill.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Events\BattleEvents.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Skill\CastingSkill.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Events\BattleEventHandler.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Events\Interface\IBattleEventHandler.cs" />
+    <Compile Include="Assets\Scripts\Internal\GameObjectExtensions.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Damage.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Unit.cs" />
+    <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterSceneController.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\Battle.cs" />
+    <Compile Include="Assets\Scripts\Scenes\MainScene\MainCharacterUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -359,6 +359,9 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Users\trim0\Documents\2020.3.33f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="DataContainer">
+      <HintPath>Assets\Plugins\Debug\DataContainer.dll</HintPath>
+    </Reference>
     <Reference Include="Kosher.Extensions">
       <HintPath>Assets\Plugins\Debug\Kosher.Extensions.dll</HintPath>
     </Reference>
@@ -376,9 +379,6 @@
     </Reference>
     <Reference Include="Protocol.GameWebServerAndClient">
       <HintPath>Assets\Plugins\Debug\Protocol.GameWebServerAndClient.dll</HintPath>
-    </Reference>
-    <Reference Include="DataContainer">
-      <HintPath>Assets\Plugins\Debug\DataContainer.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Users\trim0\Documents\2020.3.33f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

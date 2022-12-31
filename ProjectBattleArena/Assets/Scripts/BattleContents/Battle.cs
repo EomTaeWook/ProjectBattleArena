@@ -9,8 +9,8 @@ public class Battle
     private RandomGenerator _randomGenerator;
     private long _startedTime;
     private int _currentTicks;
-    private Party allyParty;
-    private Party enemyParty;
+    private Party _allyParty;
+    private Party _enemyParty;
     private IBattleEventHandler _battleEventHandler;
     private int _battleEventIndex = 0;
     public Battle(IBattleEventHandler battleEventHandler,
@@ -21,13 +21,13 @@ public class Battle
     {
         _battleEventHandler = battleEventHandler;
         _randomGenerator = new RandomGenerator(randomSeed);
-        allyParty = new Party(ally);
-        enemyParty = new Party(enemy);
+        _allyParty = new Party(ally);
+        _enemyParty = new Party(enemy);
     }
     public void Init()
     {
-        allyParty.SetBattle(this);
-        enemyParty.SetBattle(this);
+        _allyParty.SetBattle(this);
+        _enemyParty.SetBattle(this);
         _startedTime = DateTime.Now.Ticks;
     }
     public int GetBattleIndex()
@@ -38,7 +38,6 @@ public class Battle
     {
         return _currentTicks;
     }
-
     
     public void ProcessTicks()
     {
@@ -61,7 +60,33 @@ public class Battle
 
     private void DoAction()
     {
-        allyParty.DoAction(_currentTicks);
-        enemyParty.DoAction(_currentTicks);
+        _allyParty.DoAction(_currentTicks);
+        _enemyParty.DoAction(_currentTicks);
     }
+
+    public Party GetOpponentParty(Unit unit)
+    {
+        if (_allyParty.IsExist(unit) == true)
+        {
+            return _enemyParty;
+        }
+        else
+        {
+            return _allyParty;
+        }
+    }
+
+    public Party GetMyParty(Unit unit)
+    {
+        if (_allyParty.IsExist(unit) == true)
+        {
+            return _allyParty;
+        }
+        else
+        {
+            return _enemyParty;
+        }
+    }
+
+
 }

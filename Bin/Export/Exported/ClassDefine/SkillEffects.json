@@ -33,7 +33,7 @@
     "Conditions": []
   },
   {
-    "Name": "EffectRef",
+    "Name": "EffectPart",
     "Count": 1,
     "Required": true,
     "DataType": "String",

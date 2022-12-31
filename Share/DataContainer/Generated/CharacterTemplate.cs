@@ -31,6 +31,7 @@ namespace DataContainer.Generated
             {
                 Debug.Assert(false, $"CharacterTemplate Ref Data not found! Ref Field : {BaseAttackSkill}");
             }
+
         }
     }
 }

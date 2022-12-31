@@ -55,6 +55,20 @@
     "Conditions": []
   },
   {
+    "Name": "Effets",
+    "Count": 2,
+    "Required": true,
+    "DataType": "Class",
+    "Members": [
+      "TargetType",
+      "Effect"
+    ],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
     "Name": "TargetType",
     "Count": 1,
     "Required": true,
@@ -67,7 +81,7 @@
   },
   {
     "Name": "Effect",
-    "Count": 2,
+    "Count": 1,
     "Required": false,
     "DataType": "String",
     "Members": [],

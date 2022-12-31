@@ -1,8 +1,6 @@
 ﻿using Protocol.GameWebServerAndClient.ShareModels;
-using System.Collections.Generic;
 using System;
-using TemplateContainers;
-using DataContainer.Generated;
+using System.Collections.Generic;
 
 public class Party
 {
@@ -14,6 +12,33 @@ public class Party
         {
             _units.Add(new Unit(item));
         }
+    }
+    public bool IsExist(Unit unit)
+    {
+        for(int i=0; i<_units.Count; ++i)
+        {
+            if (_units[i] == unit)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public ICollection<Unit> GetAliveTargets()
+    {
+        var list = new List<Unit>();
+
+        foreach(var unit in _units)
+        {
+            if(unit.IsDead() == true)
+            {
+                continue;
+            }
+            list.Add(unit);
+        }
+
+        return list;
+
     }
     public void SetBattle(Battle battle)
     {
