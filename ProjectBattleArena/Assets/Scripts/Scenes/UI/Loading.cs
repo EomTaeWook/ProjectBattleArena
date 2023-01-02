@@ -1,12 +1,11 @@
 using Assets.Scripts.Internal;
 using Kosher.Log;
-using Kosher.Unity;
 
 public class Loading : UIComponent
 {
     public static Loading Instantiate()
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<Loading>($"Prefabs/UI/Loading");
+        var prefab = ResourceManager.Instance.LoadAsset<Loading>($"Prefabs/UI/Loading");
 
         if (prefab == null)
         {

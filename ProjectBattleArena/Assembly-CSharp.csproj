@@ -71,7 +71,6 @@
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainSceneController.cs" />
     <Compile Include="Assets\Scripts\Models\AnimationType.cs" />
     <Compile Include="Assets\Scripts\Battle\GameManager.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Effects\DamageEffect.cs" />
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterScene.cs" />
     <Compile Include="Assets\Scripts\Internal\UnityLogTarget.cs" />
     <Compile Include="Assets\Scripts\Scenes\TitleScene\TitleSceneController.cs" />
@@ -93,7 +92,7 @@
     <Compile Include="Assets\Scripts\Models\UIElement.cs" />
     <Compile Include="Assets\Scripts\Internal\UIManager.cs" />
     <Compile Include="Assets\Scripts\Internal\SceneManager.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\Events\BattleEventHandler.cs" />
+    <Compile Include="Assets\Scripts\Battle\BattleEventHandler.cs" />
     <Compile Include="Assets\Scripts\BattleContents\Events\Interface\IBattleEventHandler.cs" />
     <Compile Include="Assets\Scripts\Scenes\TitleScene\TitleScene.cs" />
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterSceneModel.cs" />
@@ -111,6 +110,8 @@
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterSceneController.cs" />
     <Compile Include="Assets\Scripts\BattleContents\Battle.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainCharacterUI.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\BattleManager.cs" />
+    <Compile Include="Assets\Scripts\Internal\ResourceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

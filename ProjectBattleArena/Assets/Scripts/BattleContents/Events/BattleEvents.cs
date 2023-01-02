@@ -1,4 +1,5 @@
-﻿using DataContainer.Generated;
+﻿using DataContainer;
+using DataContainer.Generated;
 
 public abstract class BattleEvent
 {
@@ -24,6 +25,46 @@ public class StartSkillEvent : BattleEvent
         SkillsTemplate = template;
     }
 }
+public class DamageEvent : BattleEvent
+{
+    public Damage Damage { get; private set; }
+
+    public int ShildDamaged { get; private set; }
+    public DamageEvent(
+        Damage damage,
+        int shildDamaged,
+        int id,
+        int ticks) : base(id, ticks)
+    {
+        Damage = damage;
+        ShildDamaged = shildDamaged;
+    }
+}
+
+public class AddAbnormalStatusEvent : BattleEvent
+{
+    public AbnormalStatusType AbnormalStatusType { get; private set; }
+
+    public int DurationTicks { get; private set; }
+    public AddAbnormalStatusEvent(AbnormalStatusType abnormalStatusType,
+        int durationTicks,
+        int id,
+        int ticks) : base(id, ticks)
+    {
+        DurationTicks = durationTicks;
+        AbnormalStatusType = abnormalStatusType;
+    }
+}
+
+public class RemoveAbnormalStatusEvent : BattleEvent
+{
+    public AbnormalStatusType AbnormalStatusType { get; private set; }
+    public RemoveAbnormalStatusEvent(AbnormalStatusType abnormalStatusType, int id, int ticks) : base(id, ticks)
+    {
+        AbnormalStatusType = abnormalStatusType;
+    }
+}
+
 
 public class EndSkillEvent : BattleEvent
 {

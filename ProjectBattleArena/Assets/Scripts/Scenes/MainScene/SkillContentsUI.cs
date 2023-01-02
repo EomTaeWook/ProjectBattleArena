@@ -1,12 +1,12 @@
-﻿using Kosher.Log;
+﻿using Assets.Scripts.Internal;
+using Kosher.Log;
 using Kosher.Unity;
-using UnityEngine.UI;
 
 public class SkillContentsUI : UIComponent
 {
     public static SkillContentsUI Instantiate()
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<SkillContentsUI>($"Prefabs/Lobby/SkillContentsUI");
+        var prefab = ResourceManager.Instance.LoadAsset<SkillContentsUI>($"Prefabs/Lobby/SkillContentsUI");
 
         if (prefab == null)
         {

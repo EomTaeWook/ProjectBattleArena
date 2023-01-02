@@ -2,8 +2,6 @@
 using Assets.Scripts.Scenes;
 using Kosher.Unity;
 using Protocol.GameWebServerAndClient.ShareModels;
-using UnityEngine;
-using static UnityEditor.Progress;
 
 internal class SelectCharacterSceneController : SceneController<SelectCharacterSceneController>
 {
@@ -53,7 +51,7 @@ internal class SelectCharacterSceneController : SceneController<SelectCharacterS
         }
         CharacterManager.Instance.SetSelectedCharacterData(characterData);
 
-        var go = CharacterManager.Instance.LoadCharcterResource();
+        var go = ResourceManager.Instance.LoadCharcterAsset(characterData.TemplateId);
 
         scene.SceneModel.SelectCharacter = go;
 

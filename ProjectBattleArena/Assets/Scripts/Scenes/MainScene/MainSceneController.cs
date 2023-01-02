@@ -20,6 +20,7 @@ public class MainSceneController : SceneController<MainSceneController>
     }
     public void ChangedUI(UIType current)
     {
+        
         if(scene.SceneModel.Character.IsNull() == false)
         {
             scene.SceneModel.Character.Recycle();
@@ -28,8 +29,14 @@ public class MainSceneController : SceneController<MainSceneController>
         if(current == UIType.Character)
         {
             scene.SceneModel.Character.Recycle();
-            scene.SceneModel.Character = CharacterManager.Instance.LoadCharcterResource();
+            var templateId = CharacterManager.Instance.SelectedCharacterData.TemplateId;
+            scene.SceneModel.Character = ResourceManager.Instance.LoadCharcterAsset(templateId);
+            scene.CharacterUI(true);
         }
-        scene.Refresh();
+        else if(current == UIType.Battle)
+        {
+            scene.CharacterUI(false);
+        }
+        
     }
 }

@@ -7,7 +7,7 @@ public class MainCharacterUI : UIComponent
 {
     public static MainCharacterUI Instantiate(Transform parent)
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<MainCharacterUI>($"Prefabs/Lobby/LobbyCharacterUI");
+        var prefab = ResourceManager.Instance.LoadAsset<MainCharacterUI>($"Prefabs/Lobby/LobbyCharacterUI");
 
         if (prefab == null)
         {

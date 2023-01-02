@@ -163,5 +163,16 @@
     "RefTemplateField": "Name",
     "ConditionField": null,
     "Conditions": []
+  },
+  {
+    "Name": "JobType",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Enum",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
   }
 ]

@@ -6,7 +6,7 @@ CREATE PROCEDURE create_character
 (
 	IN param_character_name VARCHAR(100),
 	IN param_account VARCHAR(100),
-	IN param_job int,
+	IN param_template_id int,
 	IN param_create_time bigint
 )
 BEGIN
@@ -14,14 +14,14 @@ BEGIN
 	(
 		character_name,
 		account,
-		job,
+		template_id,
 		create_time
 	)
 	VALUES
 	(
 		param_character_name,
 		param_account,
-		param_job,
+		param_template_id,
 		param_create_time
 	);
 END $$

@@ -6,23 +6,31 @@ using System.Collections.Generic;
 public class Battle
 {
     private const int DefaultPerTicks = 33; //33ms;
-    private RandomGenerator _randomGenerator;
+    private readonly RandomGenerator _randomGenerator;
     private long _startedTime;
     private int _currentTicks;
-    private Party _allyParty;
-    private Party _enemyParty;
+    private readonly Party _allyParty;
+    private readonly Party _enemyParty;
     private IBattleEventHandler _battleEventHandler;
     private int _battleEventIndex = 0;
     public Battle(IBattleEventHandler battleEventHandler,
         int randomSeed,
-        List<CharacterData> ally,
-        List<CharacterData> enemy
+        List<CharacterData> allies,
+        List<CharacterData> enemies
         )
     {
         _battleEventHandler = battleEventHandler;
         _randomGenerator = new RandomGenerator(randomSeed);
-        _allyParty = new Party(ally);
-        _enemyParty = new Party(enemy);
+        _allyParty = new Party(allies);
+        _enemyParty = new Party(enemies);
+    }
+    public Party GetAllyParty()
+    {
+        return _allyParty;
+    }
+    public Party GetEnemyParty()
+    {
+        return _enemyParty;
     }
     public void Init()
     {
@@ -57,7 +65,22 @@ public class Battle
     {
         return _battleEventHandler;
     }
+    public bool IsBattleEnd()
+    {
+        var survivingAllies = _allyParty.GetAliveTargets();
 
+        var survivingEnemies = _enemyParty.GetAliveTargets();
+
+        if(survivingAllies.Count == 0)
+        {
+            return true;
+        }
+        else if(survivingEnemies.Count == 0)
+        {
+            return true;
+        }
+        return false;
+    }
     private void DoAction()
     {
         _allyParty.DoAction(_currentTicks);
@@ -87,6 +110,9 @@ public class Battle
             return _enemyParty;
         }
     }
-
+    public RandomGenerator GetRandomGenerator()
+    {
+        return _randomGenerator;
+    }
 
 }

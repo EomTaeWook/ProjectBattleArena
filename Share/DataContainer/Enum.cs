@@ -8,8 +8,9 @@ namespace DataContainer
 {
     public enum JobType
     {
-        SwordMan = 1000,
-        Wizard,
+        Tanker,
+        Attacker,
+        Healer,
 
         Max,
     }
@@ -22,9 +23,17 @@ namespace DataContainer
         Max
     }
 
+    public enum AbnormalStatusType
+    {
+        Shield,
+
+        Max,
+    }
+
+
     public enum TargetType
     {
-        OneNearbyEnemy,
+        HighAggro,
         Me,
         AllAllies,
         AllEnemies,

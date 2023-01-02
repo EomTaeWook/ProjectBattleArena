@@ -6,8 +6,9 @@
   },
   "EnumValueDatas": {
     "JobType": [
-      "SwordMan",
-      "Wizard",
+      "Tanker",
+      "Attacker",
+      "Healer",
       "Max"
     ],
     "EffectType": [
@@ -17,7 +18,7 @@
       "Max"
     ],
     "TargetType": [
-      "OneNearbyEnemy",
+      "HighAggro",
       "Me",
       "AllAllies",
       "AllEnemies",

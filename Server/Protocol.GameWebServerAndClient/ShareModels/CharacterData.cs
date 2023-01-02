@@ -7,7 +7,7 @@ namespace Protocol.GameWebServerAndClient.ShareModels
     {
         public string CharacterName { get; set; }
 
-        public JobType Job { get; set; }
+        public int TemplateId { get; set; }
 
         public int Exp { get; set; }
 

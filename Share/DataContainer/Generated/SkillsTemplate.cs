@@ -14,7 +14,6 @@ namespace DataContainer.Generated
             public string Effect { get; set; }
             public SkillEffectsTemplate EffectRef { get; set; }
         }
-        public DataContainer.JobType JobType { get; set; }
         public int Range { get; set; }
         public int NeedCost { get; set; }
         public List<InnerEffets> Effets { get; set; } = new List<InnerEffets>();

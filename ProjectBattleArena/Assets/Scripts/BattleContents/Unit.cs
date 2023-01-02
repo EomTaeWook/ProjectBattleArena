@@ -1,36 +1,76 @@
-﻿using DataContainer.Generated;
+﻿using DataContainer;
+using DataContainer.Generated;
 using Protocol.GameWebServerAndClient.ShareModels;
+using ShareLogic;
 using System.Collections.Generic;
 using System.Numerics;
 using TemplateContainers;
 
 public class Unit
 {
-    private int _attackedStackPoint = 0;
-
-    private int _usedSkillIndex = 0;
-
-    private float _attackedRemainTicks = 0;
-
     public Vector2 Position { get; private set; }
 
-    private CharacterTemplate _characterTemplate;
+    public UnitStats UnitStats { get; private set; }
 
-    public UnitStats _unitStats;
+    private int _aggroGauge;
 
+    public int GetAggroGauge()
+    {
+        return _aggroGauge;
+    }
+    public CharacterTemplate CharacterTemplate { get; private set; }
+
+    private int _attackedStackPoint = 0;
+    private int _usedSkillIndex = 0;
+    private float _attackedRemainTicks = 0;
+    
     private CastingSkill _castingSkill;
-
     private List<UnitSkill> _skillDatas = new List<UnitSkill>();
-
     private UnitSkill baseAttackSkill;
     private Battle _battle;
+    
     public Unit(CharacterData characterData)
     {
-        _characterTemplate = TemplateContainer<CharacterTemplate>.Find((int)characterData.Job);
-        _unitStats = new UnitStats(_characterTemplate, characterData);
+        CharacterTemplate = TemplateContainer<CharacterTemplate>.Find(characterData.TemplateId);
+        UnitStats = new UnitStats(CharacterTemplate, characterData);
         MakeSkills(characterData.EquippedSkillDatas);
+        if(CharacterTemplate.JobType == DataContainer.JobType.Tanker)
+        {
+            _aggroGauge = ConstHelper.TankAggro;
+        }
+        else if(CharacterTemplate.JobType == DataContainer.JobType.Attacker)
+        {
+            _aggroGauge = ConstHelper.AttakerAggro;
+        }
+        else if(CharacterTemplate.JobType == DataContainer.JobType.Healer)
+        {
+            _aggroGauge = ConstHelper.HealerAggro;
+        }
     }
+    public void ModifyAggro(int diff)
+    {
+        _aggroGauge += diff;
+        var minAggro = 0;
 
+        if (CharacterTemplate.JobType == DataContainer.JobType.Tanker)
+        {
+            minAggro = ConstHelper.TankAggro;
+        }
+        else if (CharacterTemplate.JobType == DataContainer.JobType.Attacker)
+        {
+            minAggro = ConstHelper.AttakerAggro;
+        }
+        else if (CharacterTemplate.JobType == DataContainer.JobType.Healer)
+        {
+            minAggro = ConstHelper.HealerAggro;
+        }
+
+        if(_aggroGauge <= minAggro)
+        {
+            _aggroGauge = minAggro;
+        }
+        
+    }
     public void SetBattle(Battle battle)
     {
         _battle = battle;
@@ -38,7 +78,7 @@ public class Unit
 
     public void MakeSkills(List<SkillData> equippedSkillDatas)
     {
-        baseAttackSkill = new UnitSkill(this, _characterTemplate.BaseAttackSkillRef);
+        baseAttackSkill = new UnitSkill(this, CharacterTemplate.BaseAttackSkillRef);
 
         foreach (var item in equippedSkillDatas)
         {
@@ -48,7 +88,7 @@ public class Unit
     }
     public bool IsDead()
     {
-        return _unitStats.Hp.CurrentHp == 0;
+        return UnitStats.Hp.CurrentHp == 0;
     }
     public bool IsCasting()
     {
@@ -122,7 +162,7 @@ public class Unit
     {
         StartSkillEvent startSkillEvent = new StartSkillEvent(unitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
 
-        _attackedRemainTicks = _unitStats.AttackSpeed;
+        _attackedRemainTicks = UnitStats.AttackSpeed;
 
         unitSkill.Invoke(this._battle);
 
@@ -132,7 +172,34 @@ public class Unit
 
     public void OnDamaged(Unit attacker, Damage damage)
     {
-        
+        if(damage.DamageValue <= 0)
+        {
+            _battle.GetBattleEventHandler().Process(new DamageEvent(damage,
+                0,
+                _battle.GetBattleIndex(),
+                _battle.GetCurrentTicks()));
+            return;
+        }
+        var shieldDiff = 0;
+        if (UnitStats.Hp.Shield > 0)
+        {
+            shieldDiff = damage.DamageValue;
+            if (UnitStats.Hp.Shield < shieldDiff)
+            {
+                shieldDiff = UnitStats.Hp.Shield;
+                damage.DamageValue = -shieldDiff;
+                _battle.GetBattleEventHandler().Process(new RemoveAbnormalStatusEvent(AbnormalStatusType.Shield,
+                    _battle.GetBattleIndex(),
+                    _battle.GetCurrentTicks()));
+            }
+            UnitStats.Hp.ModifyShield(-shieldDiff);
+        }
+        UnitStats.Hp.ModifyHp(-damage.DamageValue);
+
+        _battle.GetBattleEventHandler().Process(new DamageEvent(damage,
+            shieldDiff,
+            _battle.GetBattleIndex(),
+            _battle.GetCurrentTicks()));
     }
 
 }

@@ -1,13 +1,12 @@
 ﻿using Assets.Scripts.Internal;
 using Kosher.Log;
-using Kosher.Unity;
 using UnityEngine;
 
 public class MainHomeUI : UIComponent
 {
     public static MainHomeUI Instantiate(Transform parent)
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<MainHomeUI>($"Prefabs/Lobby/LobbyHomeUI");
+        var prefab = ResourceManager.Instance.LoadAsset<MainHomeUI>($"Prefabs/Lobby/LobbyHomeUI");
 
         if (prefab == null)
         {

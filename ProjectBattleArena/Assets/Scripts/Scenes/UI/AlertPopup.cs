@@ -1,6 +1,5 @@
 using Assets.Scripts.Internal;
 using Kosher.Log;
-using Kosher.Unity;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ public class AlertPopup : UIComponent
 
     public static AlertPopup Instantiate()
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<AlertPopup>($"Prefabs/UI/AlertPopup");
+        var prefab = ResourceManager.Instance.LoadAsset<AlertPopup>($"Prefabs/UI/AlertPopup");
 
         if(prefab == null)
         {

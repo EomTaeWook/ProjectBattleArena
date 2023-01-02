@@ -2,12 +2,11 @@
   {
     "Id": 1000,
     "Name": "BasicAttack",
-    "JobType": "SwordMan",
     "Range": 0,
     "NeedCost": 0,
     "Effets": [
       {
-        "TargetType": "OneNearbyEnemy",
+        "TargetType": "HighAggro",
         "Effect": "BasicAttackEffect"
       },
       {
@@ -19,12 +18,11 @@
   {
     "Id": 1001,
     "Name": "BasicRangedAttack",
-    "JobType": "Wizard",
     "Range": 1,
     "NeedCost": 0,
     "Effets": [
       {
-        "TargetType": "OneNearbyEnemy",
+        "TargetType": "HighAggro",
         "Effect": "BasicAttackEffect"
       },
       {
@@ -36,12 +34,11 @@
   {
     "Id": 1002,
     "Name": "BasicStrongAttack",
-    "JobType": "SwordMan",
     "Range": 0,
     "NeedCost": 3,
     "Effets": [
       {
-        "TargetType": "OneNearbyEnemy",
+        "TargetType": "HighAggro",
         "Effect": "BasicAttackEffect"
       },
       {
@@ -53,12 +50,11 @@
   {
     "Id": 1003,
     "Name": "BasicStrongRangedAttack",
-    "JobType": "Wizard",
     "Range": 1,
     "NeedCost": 3,
     "Effets": [
       {
-        "TargetType": "OneNearbyEnemy",
+        "TargetType": "HighAggro",
         "Effect": "BasicAttackEffect"
       },
       {

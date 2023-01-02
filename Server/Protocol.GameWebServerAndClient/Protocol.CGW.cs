@@ -25,7 +25,7 @@ namespace Protocol.GameWebServerAndClient
     {
         public string CharacterName { get; set; }
 
-        public JobType Job { get; set; }
+        public int CharacterTemplateId { get; set; }
     }
 
 }

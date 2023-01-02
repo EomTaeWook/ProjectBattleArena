@@ -1,6 +1,7 @@
 ﻿using Protocol.GameWebServerAndClient.ShareModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 public class Party
 {
@@ -12,6 +13,10 @@ public class Party
         {
             _units.Add(new Unit(item));
         }
+    }
+    public ReadOnlyCollection<Unit> GetUnits()
+    {
+        return new ReadOnlyCollection<Unit>(_units);
     }
     public bool IsExist(Unit unit)
     {

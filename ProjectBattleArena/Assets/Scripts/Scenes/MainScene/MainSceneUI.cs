@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Internal;
 using Kosher.Log;
-using Kosher.Unity;
 using UnityEngine;
 
 public class MainSceneUI : UIComponent
@@ -12,7 +11,7 @@ public class MainSceneUI : UIComponent
 
     public static MainSceneUI Instantiate()
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<MainSceneUI>($"Prefabs/Main/MainSceneUI");
+        var prefab = ResourceManager.Instance.LoadAsset<MainSceneUI>($"Prefabs/Main/MainSceneUI");
 
         if (prefab == null)
         {

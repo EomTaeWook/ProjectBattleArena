@@ -1,8 +1,10 @@
 using Assets.Scripts.Internal;
 using Assets.Scripts.Models;
+using DataContainer.Generated;
 using Kosher.Log;
 using Kosher.Unity;
 using Protocol.GameWebServerAndClient.ShareModels;
+using TemplateContainers;
 using TMPro;
 using UnityEngine;
 
@@ -19,7 +21,7 @@ public class CharacterSlot : UIComponent
     CharacterData characterData;
     public static CharacterSlot Instantiate()
     {
-        var prefab = KosherUnityResourceManager.Instance.LoadResouce<CharacterSlot>($"Prefabs/SelectCharacter/CharacterSlot");
+        var prefab = ResourceManager.Instance.LoadAsset<CharacterSlot>($"Prefabs/SelectCharacter/CharacterSlot");
 
         if (prefab == null)
         {
@@ -40,8 +42,9 @@ public class CharacterSlot : UIComponent
     }
     public void Init(CharacterData characterData)
     {
+        var template = TemplateContainer<CharacterTemplate>.Find(characterData.TemplateId);
         txtCharcterName.text = characterData.CharacterName;
-        txtCharcterJobType.text = characterData.Job.ToString();
+        txtCharcterJobType.text = template.Name;
         this.characterData = characterData;
     }
     public void OnSelectButtonClick()

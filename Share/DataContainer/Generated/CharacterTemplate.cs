@@ -24,6 +24,7 @@ namespace DataContainer.Generated
         public InnerStat Stat { get; set; }
         public string BaseAttackSkill { get; set; }
         public SkillsTemplate BaseAttackSkillRef { get; set; }
+        public DataContainer.JobType JobType { get; set; }
         public override void MakeRefTemplate()
         {
             BaseAttackSkillRef = TemplateContainer<SkillsTemplate>.Find(BaseAttackSkill);

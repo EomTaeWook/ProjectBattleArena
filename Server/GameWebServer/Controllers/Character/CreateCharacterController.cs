@@ -1,7 +1,9 @@
 ﻿using BA.Repository;
 using DataContainer;
+using DataContainer.Generated;
 using Protocol.GameWebServerAndClient;
 using Protocol.GameWebServerAndClient.ShareModels;
+using TemplateContainers;
 
 namespace GameWebServer.Controllers.Character
 {
@@ -19,7 +21,9 @@ namespace GameWebServer.Controllers.Character
             {
                 return MakeErrorMessage(account, $"character name is empty");
             }
-            if (request.Job == JobType.Max)
+
+            var template = TemplateContainer<CharacterTemplate>.Find(request.CharacterTemplateId);
+            if (template.Invalid())
             {
                 return MakeErrorMessage(account, $"character job is invalid");
             }
@@ -40,7 +44,7 @@ namespace GameWebServer.Controllers.Character
             {
                 CharacterName = request.CharacterName,
                 CreateTime = DateTime.Now.Ticks,
-                Job = request.Job,
+                TemplateId = request.CharacterTemplateId,
             };
             var created = await _characterRepository.CreateCharacter(characterData, account);
 

@@ -21,7 +21,7 @@ internal class CreateCharacterController : SceneController<CreateCharacterContro
         var request = new CreateCharacter()
         {
             CharacterName = sceneModel.CharacterName,
-            Job = (JobType)sceneModel.CurrentTemplateId
+            CharacterTemplateId = sceneModel.CurrentTemplateId
         };
         var response = await HttpRequestHelper.AuthRequest<CreateCharacter, CreateCharacterResponse>(request);
 

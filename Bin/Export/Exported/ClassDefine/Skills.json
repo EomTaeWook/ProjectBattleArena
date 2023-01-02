@@ -22,17 +22,6 @@
     "Conditions": []
   },
   {
-    "Name": "JobType",
-    "Count": 1,
-    "Required": true,
-    "DataType": "Enum",
-    "Members": [],
-    "RefTemplate": "",
-    "RefTemplateField": "",
-    "ConditionField": null,
-    "Conditions": []
-  },
-  {
     "Name": "Range",
     "Count": 1,
     "Required": true,

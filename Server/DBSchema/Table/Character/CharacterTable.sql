@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS tb_character;
 CREATE TABLE tb_character (
 	character_name varchar(100) not null,
 	account varchar(100) not null,
-	job int default 0,
+	template_id int default 0,
 	exp int default 0,
 	atk int default 0,
 	con int default 0,

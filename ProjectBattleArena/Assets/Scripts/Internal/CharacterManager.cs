@@ -1,8 +1,10 @@
-﻿using Kosher.Framework;
+﻿using DataContainer.Generated;
+using Kosher.Framework;
 using Kosher.Unity;
 using Protocol.GameWebServerAndClient.ShareModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using TemplateContainers;
 using UnityEngine;
 
 namespace Assets.Scripts.Internal
@@ -36,16 +38,5 @@ namespace Assets.Scripts.Internal
         {
             SelectedCharacterData = characterData;
         }
-
-        public GameObject LoadCharcterResource()
-        {
-            var jobType = SelectedCharacterData.Job;
-            var prefab = KosherUnityResourceManager.Instance.LoadResouce<GameObject>($"Prefabs/Character/{jobType}");
-
-            var go = KosherUnityObjectPool.Instance.Pop(prefab);
-
-            return go;
-        }
-
     }
 }

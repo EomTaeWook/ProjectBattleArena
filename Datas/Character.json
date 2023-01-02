@@ -14,7 +14,8 @@
       "Dodge": 60,
       "Destruction": 100
     },
-    "BaseAttackSkill": "BasicAttack"
+    "BaseAttackSkill": "BasicAttack",
+    "JobType": "Attacker"
   },
   {
     "Id": 1001,
@@ -31,6 +32,7 @@
       "Dodge": 60,
       "Destruction": 100
     },
-    "BaseAttackSkill": "BasicRangedAttack"
+    "BaseAttackSkill": "BasicRangedAttack",
+    "JobType": "Attacker"
   }
 ]

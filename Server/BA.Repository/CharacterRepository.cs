@@ -25,7 +25,7 @@ namespace BA.Repository
                     var param = new DynamicParameters();
                     param.AddParam(account, nameof(account));
                     param.AddParam(characterData.CharacterName, nameof(characterData.CharacterName));
-                    param.AddParam(characterData.Job, nameof(characterData.Job));
+                    param.AddParam(characterData.TemplateId, nameof(characterData.TemplateId));
                     param.AddParam(characterData.CreateTime, nameof(characterData.CreateTime));
                     CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.CreateCharacter),
                                                                                 param,
