@@ -1,14 +1,17 @@
-﻿public interface IBattleEventHandler
+﻿namespace GameContents
 {
-    void Process(TickPassedEvent tickPassedEvent);
+    public interface IBattleEventHandler
+    {
+        void Process(TickPassedEvent tickPassedEvent);
 
-    void Process(StartSkillEvent startSkillEvent);
+        void Process(StartSkillEvent startSkillEvent);
 
-    void Process(EndSkillEvent endSkillEvent);
+        void Process(EndSkillEvent endSkillEvent);
 
-    void Process(DamageEvent damageEvent);
+        void Process(DamageEvent damageEvent);
 
-    void Process(RemoveAbnormalStatusEvent removeAbnormalStatusEvent);
+        void Process(RemoveAbnormalStatusEvent removeAbnormalStatusEvent);
 
-    void Process(AddAbnormalStatusEvent addAbnormalStatusEvent);
+        void Process(AddAbnormalStatusEvent addAbnormalStatusEvent);
+    }
 }

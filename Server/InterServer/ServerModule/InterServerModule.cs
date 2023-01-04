@@ -1,12 +1,10 @@
-﻿using BA.InterServer.ServerModule.Serializer;
-using BA.Repository.Helper;
-using BA.Repository;
+﻿using BA.InterServer.Manager;
+using BA.InterServer.ServerModule.Serializer;
 using Kosher.Framework;
 using Kosher.Log;
 using Kosher.Sockets;
 using Kosher.Sockets.Interface;
 using Protocol.InterAndGWS;
-using BA.InterServer.Manager;
 using Protocol.InterAndGWS.ShareModels;
 
 namespace BA.InterServer.ServerModule

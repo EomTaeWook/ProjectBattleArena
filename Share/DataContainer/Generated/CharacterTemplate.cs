@@ -25,6 +25,7 @@ namespace DataContainer.Generated
         public string BaseAttackSkill { get; set; }
         public SkillsTemplate BaseAttackSkillRef { get; set; }
         public DataContainer.JobType JobType { get; set; }
+        public DataContainer.AttackType AttackType { get; set; }
         public override void MakeRefTemplate()
         {
             BaseAttackSkillRef = TemplateContainer<SkillsTemplate>.Find(BaseAttackSkill);

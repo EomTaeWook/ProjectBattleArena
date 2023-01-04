@@ -1,8 +1,8 @@
-﻿using BA.DedicatedServer.Modules.Stun;
+﻿using BA.GameServer.Modules.Stun;
 using Kosher.Extensions.Log;
 using Kosher.Log;
 
-namespace BA.DedicatedServer
+namespace BA.GameServer
 {
     internal class Program
     {

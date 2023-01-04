@@ -17,6 +17,7 @@
           "Kosher": "1.0.0.0",
           "Kosher.Extensions": "1.0.0.0",
           "Kosher.Sockets": "1.0.0.0",
+          "Newtonsoft.Json": "13.0.0.0",
           "ShareLogic": "1.0.0.0",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "6.0.12",
           "runtimepack.Microsoft.AspNetCore.App.Runtime.win-x64": "6.0.12"
@@ -87,8 +88,16 @@
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.1222.56807"
           },
+          "System.Core.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "6.0.1222.56807"
+          },
           "System.Data.Common.dll": {
             "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1222.56807"
+          },
+          "System.Data.dll": {
+            "assemblyVersion": "4.0.0.0",
             "fileVersion": "6.0.1222.56807"
           },
           "System.Diagnostics.Debug.dll": {
@@ -211,6 +220,10 @@
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.1222.56807"
           },
+          "System.Numerics.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "6.0.1222.56807"
+          },
           "System.ObjectModel.dll": {
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.1222.56807"
@@ -297,6 +310,10 @@
           },
           "System.Runtime.Serialization.Xml.dll": {
             "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1222.56807"
+          },
+          "System.Runtime.Serialization.dll": {
+            "assemblyVersion": "4.0.0.0",
             "fileVersion": "6.0.1222.56807"
           },
           "System.Runtime.dll": {
@@ -405,6 +422,10 @@
           },
           "System.Xml.XmlSerializer.dll": {
             "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.1222.56807"
+          },
+          "System.Xml.dll": {
+            "assemblyVersion": "4.0.0.0",
             "fileVersion": "6.0.1222.56807"
           },
           "System.dll": {
@@ -1320,6 +1341,14 @@
           }
         }
       },
+      "Newtonsoft.Json/13.0.0.0": {
+        "runtime": {
+          "Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.2.27524"
+          }
+        }
+      },
       "ShareLogic/1.0.0.0": {
         "runtime": {
           "ShareLogic.dll": {
@@ -1522,6 +1551,11 @@
       "sha512": ""
     },
     "Kosher.Sockets/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json/13.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

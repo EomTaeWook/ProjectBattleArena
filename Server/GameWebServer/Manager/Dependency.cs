@@ -1,7 +1,9 @@
 ﻿using BA.Repository.Helper;
 using BA.Repository.Interface;
+using DataContainer.Generated;
 using GameWebServer.Models;
 using System.Text.Json;
+using TemplateContainers;
 
 namespace GameWebServer.Manager
 {
@@ -25,6 +27,16 @@ namespace GameWebServer.Manager
             }
             DBServiceHelper.AddSingleton<IDBContext>(gameDBContext);
             builder.Services.AddSingleton<IDBContext>(gameDBContext);
+
+            InitTemplate();
+        }
+        public static void InitTemplate()
+        {
+            var path = $"{AppContext.BaseDirectory}../../Datas/";
+#if DEBUG
+            path = $"{AppContext.BaseDirectory}../../../../../Datas/";
+#endif
+            TemplateLoader.Load(path);
         }
     }
 }

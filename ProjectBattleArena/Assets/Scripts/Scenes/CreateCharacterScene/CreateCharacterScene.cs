@@ -21,13 +21,14 @@ internal class CreateCharacterScene : BaseScene<CreateCharacterSceneModel>
         {
             if(selectIndex == i)
             {
-                chracters[i].gameObject.SetActive(true);
+                chracters[i].SetActive(true);
             }
             else
             {
-                chracters[i].gameObject.SetActive(false);
+                chracters[i].SetActive(false);
             }
         }
+        CreateCharacterController.Instance.SelectCharacter(1000 + selectIndex);
     }
     public override void OnDestroyScene()
     {

@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\ProjectBattleArena\Assets\Scripts\BattleContents\**\*.cs">
+      <Link>GameContents\%(RecursiveDir)/%(FileName)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DataContainer">
+      <HintPath>..\..\Dll\DataContainer.dll</HintPath>
+    </Reference>
+    <Reference Include="Kosher">
+      <HintPath>..\..\Dll\Kosher.dll</HintPath>
+    </Reference>
+    <Reference Include="Kosher.Extensions">
+      <HintPath>..\..\Dll\Kosher.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Kosher.Sockets">
+      <HintPath>..\..\Dll\Kosher.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="ShareLogic">
+      <HintPath>..\..\Dll\ShareLogic.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

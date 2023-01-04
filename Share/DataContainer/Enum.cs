@@ -42,5 +42,12 @@ namespace DataContainer
         Max,
     }
 
+    public enum AttackType
+    {
+        Melee,
+        LongRange,
+
+        Max,
+    }
 
 }

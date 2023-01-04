@@ -30,6 +30,9 @@
     <Reference Include="Kosher.Sockets">
       <HintPath>..\Dll\Kosher.Sockets.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Share\Dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="ShareLogic">
       <HintPath>..\Dll\ShareLogic.dll</HintPath>
     </Reference>

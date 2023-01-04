@@ -2,7 +2,9 @@
   "EnumNamespace": {
     "JobType": "DataContainer",
     "EffectType": "DataContainer",
-    "TargetType": "DataContainer"
+    "AbnormalStatusType": "DataContainer",
+    "TargetType": "DataContainer",
+    "AttackType": "DataContainer"
   },
   "EnumValueDatas": {
     "JobType": [
@@ -17,11 +19,20 @@
       "AbnormalStatus",
       "Max"
     ],
+    "AbnormalStatusType": [
+      "Shield",
+      "Max"
+    ],
     "TargetType": [
       "HighAggro",
       "Me",
       "AllAllies",
       "AllEnemies",
+      "Max"
+    ],
+    "AttackType": [
+      "Melee",
+      "LongRange",
       "Max"
     ]
   }

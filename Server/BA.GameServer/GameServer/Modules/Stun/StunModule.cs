@@ -1,10 +1,10 @@
-﻿using BA.DedicatedServer.Modules.Serializer;
+﻿using BA.GameServer.Modules.Serializer;
 using Kosher.Framework;
 using Kosher.Log;
 using Kosher.Sockets;
 using Kosher.Sockets.Interface;
 
-namespace BA.DedicatedServer.Modules.Stun
+namespace BA.GameServer.Modules.Stun
 {
     public class StunModule : Singleton<StunModule>
     {
@@ -16,7 +16,7 @@ namespace BA.DedicatedServer.Modules.Stun
 
             protected override void OnAccepted(Session session)
             {
-                
+
             }
 
             protected override void OnDisconnected(Session session)

@@ -2,7 +2,7 @@
 using Kosher.Log;
 using Kosher.Sockets.Interface;
 
-namespace BA.DedicatedServer.Modules.Serializer
+namespace BA.GameServer.Modules.Serializer
 {
     internal class PacketSerializer : IPacketSerializer
     {
@@ -16,7 +16,7 @@ namespace BA.DedicatedServer.Modules.Serializer
 
             buffer.AddRange(BitConverter.GetBytes(packetSize));
 
-            buffer.AddRange(BitConverter.GetBytes((ushort)sendPacket.Protocol));
+            buffer.AddRange(BitConverter.GetBytes(sendPacket.Protocol));
 
             buffer.AddRange(sendPacket.Body);
             LogHelper.Debug($"send : {sendPacket.Protocol}");

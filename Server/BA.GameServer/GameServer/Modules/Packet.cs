@@ -1,6 +1,6 @@
 ﻿using Kosher.Sockets.Interface;
 
-namespace BA.DedicatedServer.Modules
+namespace BA.GameServer.Modules
 {
     public class Packet : IPacket
     {

@@ -20,7 +20,6 @@ public class MainSceneController : SceneController<MainSceneController>
     }
     public void ChangedUI(UIType current)
     {
-        
         if(scene.SceneModel.Character.IsNull() == false)
         {
             scene.SceneModel.Character.Recycle();
@@ -36,7 +35,7 @@ public class MainSceneController : SceneController<MainSceneController>
         else if(current == UIType.Battle)
         {
             scene.CharacterUI(false);
+            scene.BattleUI(true);
         }
-        
     }
 }

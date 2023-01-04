@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BA.DedicatedServer.Modules.Stun
+namespace BA.GameServer.Modules.Stun
 {
     public class StunSession
     {

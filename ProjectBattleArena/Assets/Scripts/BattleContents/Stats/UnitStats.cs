@@ -1,65 +1,65 @@
-﻿using DataContainer.Generated;
-using Protocol.GameWebServerAndClient.ShareModels;
-using ShareLogic;
+﻿using ShareLogic;
 
-public class UnitStats : IUnitStats
-{        
-    //atk - 공격 명중 파괴
-    //con - 생명력, 차단, 회피
-    //Dex - 방어 치명타, 인내
-    public UnitStats(CharacterTemplate characterTemplate,
-                    CharacterData characterData)
+namespace GameContents
+{
+    public class UnitStats : IUnitStats
     {
-        Level = LevelUpHelper.GetLevel(characterData.Exp);
+        //atk - 공격 명중 파괴
+        //con - 생명력, 차단, 회피
+        //Dex - 방어 치명타, 인내
+        public UnitStats(UnitInfo unitInfo)
+        {
+            Level = unitInfo.Level;
 
-        var maxHp = characterTemplate.Stat.HP + (characterData.Con);
-        Hp = new HpStats(maxHp);
+            var maxHp = unitInfo.CharacterTemplate.Stat.HP + (unitInfo.Con);
+            Hp = new HpStats(maxHp);
 
-        Attack = characterTemplate.Stat.Attack + (characterData.Atk);
+            Attack = unitInfo.CharacterTemplate.Stat.Attack + (unitInfo.Atk);
 
-        Defense = characterTemplate.Stat.Defense + (characterData.Dex);
+            Defense = unitInfo.CharacterTemplate.Stat.Defense + (unitInfo.Dex);
 
-        AttackSpeed = characterTemplate.Stat.AttackSpeed;
+            AttackSpeed = unitInfo.CharacterTemplate.Stat.AttackSpeed;
 
-        CriticalRate = CharacterStatHelper.GetCriticalRate(Level,
-            characterTemplate.Stat.Critical + (characterData.Dex));
+            CriticalRate = CharacterStatHelper.GetCriticalRate(Level,
+                unitInfo.CharacterTemplate.Stat.Critical + (unitInfo.Dex));
 
-        CriticalResistance = CharacterStatHelper.GetCriticalResistance(Level,
-                                characterTemplate.Stat.Patience + characterData.Dex);
+            CriticalResistance = CharacterStatHelper.GetCriticalResistance(Level,
+                                    unitInfo.CharacterTemplate.Stat.Patience + unitInfo.Dex);
 
-        CriticalDamage = CharacterStatHelper.GetCriticalDamgagePercent(Level,
-                                characterTemplate.Stat.Destruction + characterData.Atk);
+            CriticalDamage = CharacterStatHelper.GetCriticalDamgagePercent(Level,
+                                    unitInfo.CharacterTemplate.Stat.Destruction + unitInfo.Atk);
 
-        BlockRate = CharacterStatHelper.GetBlockRate(Level, characterTemplate.Stat.Block + characterData.Con);
+            BlockRate = CharacterStatHelper.GetBlockRate(Level, unitInfo.CharacterTemplate.Stat.Block + unitInfo.Con);
 
-        BlockPenetration = CharacterStatHelper.GetBlockPenetration(Level, characterTemplate.Stat.Destruction + characterData.Atk);
+            BlockPenetration = CharacterStatHelper.GetBlockPenetration(Level, unitInfo.CharacterTemplate.Stat.Destruction + unitInfo.Atk);
 
-        HitRate = CharacterStatHelper.GetHitRate(Level, characterTemplate.Stat.Hit + characterData.Atk);
+            HitRate = CharacterStatHelper.GetHitRate(Level, unitInfo.CharacterTemplate.Stat.Hit + unitInfo.Atk);
 
-        Dodge = CharacterStatHelper.GetDodgeRate(Level, characterTemplate.Stat.Hit + characterData.Con);
+            Dodge = CharacterStatHelper.GetDodgeRate(Level, unitInfo.CharacterTemplate.Stat.Hit + unitInfo.Con);
+        }
+
+        public int Level { get; set; }
+
+        public HpStats Hp { get; private set; }
+
+        public int Attack { get; private set; }
+
+        public int Defense { get; private set; }
+
+        public float AttackSpeed { get; private set; }
+
+        public float CriticalRate { get; private set; }
+
+        public float CriticalResistance { get; private set; }
+
+        public float CriticalDamage { get; private set; }
+
+        public float BlockRate { get; private set; }
+
+        public float BlockPenetration { get; private set; }
+
+        public float HitRate { get; private set; }
+
+        public float Dodge { get; private set; }
     }
-
-    public int Level { get; set; }
-
-    public HpStats Hp { get; private set; }
-
-    public int Attack { get; private set; }
-
-    public int Defense { get; private set; }
-
-    public float AttackSpeed { get; private set; }
-
-    public float CriticalRate { get; private set; }
-
-    public float CriticalResistance { get; private set; }
-
-    public float CriticalDamage { get; private set; }
-
-    public float BlockRate { get; private set; }
-
-    public float BlockPenetration { get; private set; }
-
-    public float HitRate { get; private set; }
-
-    public float Dodge { get; private set; }
 }

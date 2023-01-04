@@ -1,18 +1,20 @@
-﻿public class CastingSkill
+﻿namespace GameContents
 {
-    private int _castingTick = 0;
-    private UnitSkill _unitSkill;
-    public CastingSkill(UnitSkill unitSkill)
+    public class CastingSkill
     {
-        _unitSkill = unitSkill;
+        private int _castingTick = 0;
+        private UnitSkill _unitSkill;
+        public CastingSkill(UnitSkill unitSkill)
+        {
+            _unitSkill = unitSkill;
+        }
+        public void DecreaseTick()
+        {
+            _castingTick--;
+        }
+        public bool IsFinished()
+        {
+            return _castingTick <= 0;
+        }
     }
-    public void DecreaseTick()
-    {
-        _castingTick--;
-    }
-    public bool IsFinished()
-    {
-        return _castingTick <= 0;
-    }
-
 }

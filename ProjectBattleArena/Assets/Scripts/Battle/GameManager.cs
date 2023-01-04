@@ -1,6 +1,5 @@
 using Assets.Scripts.Internal;
 using Kosher.Coroutine;
-using Kosher.Unity;
 using Protocol.GameWebServerAndClient.ShareModels;
 using System.Collections;
 using UnityEngine;
@@ -39,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         while(_currentBattle.IsBattleEnd () == false)
         {
-
+            _currentBattle.ProcessTicks();
         }
 
         yield return null;

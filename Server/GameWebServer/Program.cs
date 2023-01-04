@@ -18,9 +18,9 @@ namespace GameWebServer
             LogBuilder.Configuration(LogConfigXmlReader.Load(logConfigPath));
             var configuration = LogBuilder.Build();
 
-            DBHelper.Build();
-
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
+            DBHelper.Build();
 
             var builder = WebApplication.CreateBuilder(new WebApplicationOptions() 
             {
@@ -32,6 +32,8 @@ namespace GameWebServer
             builder.Services.AddControllersWithViews();
 
             Dependency.Init(builder);
+
+            Dependency.InitTemplate();
 
             var app = builder.Build();
 

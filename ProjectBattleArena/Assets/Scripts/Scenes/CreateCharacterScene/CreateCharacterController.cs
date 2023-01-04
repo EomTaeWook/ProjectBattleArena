@@ -16,6 +16,10 @@ internal class CreateCharacterController : SceneController<CreateCharacterContro
     {
         scene = null;
     }
+    public void SelectCharacter(int templateId)
+    {
+        scene.SceneModel.CurrentTemplateId = templateId;
+    }
     public async Task<bool> RequestCreateCharacterAsync(CreateCharacterSceneModel sceneModel)
     {
         var request = new CreateCharacter()

@@ -11,7 +11,7 @@
     "Conditions": []
   },
   {
-    "Name": "StringId",
+    "Name": "Name",
     "Count": 1,
     "Required": true,
     "DataType": "String",

@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BA.Repository", "..\BA.Repo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Protocol.InterAndGWS", "..\Protocol.InterAndGWS\Protocol.InterAndGWS.csproj", "{42AF7AFF-CF4D-438C-9996-D36935819670}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareLogic", "..\ShareLogic\ShareLogic.csproj", "{7254029D-8E3D-4CEF-8D79-AB152B706B1E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{42AF7AFF-CF4D-438C-9996-D36935819670}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42AF7AFF-CF4D-438C-9996-D36935819670}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42AF7AFF-CF4D-438C-9996-D36935819670}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7254029D-8E3D-4CEF-8D79-AB152B706B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7254029D-8E3D-4CEF-8D79-AB152B706B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7254029D-8E3D-4CEF-8D79-AB152B706B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7254029D-8E3D-4CEF-8D79-AB152B706B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

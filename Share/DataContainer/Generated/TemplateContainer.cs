@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 namespace TemplateContainers
 {
-    public class TemplateContainer<T> where T : BaseTemplate
+    public class TemplateContainer<T> where T : BaseTemplate, new ()
     {
         public static IEnumerable<T> Values => _dataToMap.Values;
         private static readonly Dictionary<int, T> _dataToMap = new Dictionary<int, T>();
@@ -12,7 +12,7 @@ namespace TemplateContainers
         {
             if (_dataToMap.ContainsKey(id) == false)
             {
-                return default;
+                return new T();
             }
             return _dataToMap[id];
         }
@@ -20,7 +20,7 @@ namespace TemplateContainers
         {
             if (_nameKeyToMap.ContainsKey(name) == false)
             {
-               return default;
+               return new T();
             }
             return _nameKeyToMap[name];
         }

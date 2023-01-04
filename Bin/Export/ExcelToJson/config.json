@@ -2,5 +2,8 @@
   "ReadAssemblyPath": "..\\..\\..\\Share\\DataContainer\\bin\\Debug\\DataContainer.dll",
   "ReadPath": "..\\..\\..\\Template\\",
   "OutputRefPath": "..\\Exported\\",
-  "OutputTemplatePath": "..\\..\\..\\Datas"
+  "OutputTemplatePath": [
+    "..\\..\\..\\Datas",
+    "..\\..\\..\\ProjectBattleArena\\Assets\\StreamingAssets\\Datas"
+  ]
 }

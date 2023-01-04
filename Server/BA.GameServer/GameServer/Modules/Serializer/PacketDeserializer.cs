@@ -1,7 +1,7 @@
 ﻿using Kosher.Collections;
 using Kosher.Sockets.Interface;
 
-namespace BA.DedicatedServer.Modules.Serializer
+namespace BA.GameServer.Modules.Serializer
 {
     internal class PacketDeserializer : IPacketDeserializer
     {

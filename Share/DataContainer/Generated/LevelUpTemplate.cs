@@ -8,7 +8,6 @@ namespace DataContainer.Generated
 {
     public partial class LevelUpTemplate : BaseTemplate
     {
-        public string StringId { get; set; }
         public int Level { get; set; }
         public int NeedExp { get; set; }
     }

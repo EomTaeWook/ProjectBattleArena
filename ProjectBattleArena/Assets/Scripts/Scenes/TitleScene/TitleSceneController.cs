@@ -1,9 +1,12 @@
 ﻿using Assets.Scripts.Internal;
 using Assets.Scripts.Scenes;
+using DataContainer.Generated;
 using Kosher.Log;
 using Protocol.GameWebServerAndClient;
 using ShareLogic;
+using System.IO;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class TitleSceneController : SceneController<TitleSceneController>
 {
@@ -18,7 +21,7 @@ public class TitleSceneController : SceneController<TitleSceneController>
         LogBuilder.Configuration(logConfiguration);
         LogBuilder.Build();
 
-
+        TemplateLoader.Load(Path.Combine(Application.streamingAssetsPath, "Datas"));
     }
     public override void BindScene(BaseScene baseScene)
     {

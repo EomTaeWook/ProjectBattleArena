@@ -174,5 +174,16 @@
     "RefTemplateField": "",
     "ConditionField": null,
     "Conditions": []
+  },
+  {
+    "Name": "AttackType",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Enum",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
   }
 ]
