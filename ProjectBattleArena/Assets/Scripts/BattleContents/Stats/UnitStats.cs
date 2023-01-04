@@ -35,7 +35,7 @@ namespace GameContents
 
             HitRate = CharacterStatHelper.GetHitRate(Level, unitInfo.CharacterTemplate.Stat.Hit + unitInfo.Atk);
 
-            Dodge = CharacterStatHelper.GetDodgeRate(Level, unitInfo.CharacterTemplate.Stat.Hit + unitInfo.Con);
+            DodgeRate = CharacterStatHelper.GetDodgeRate(Level, unitInfo.CharacterTemplate.Stat.Dodge + unitInfo.Con);
         }
 
         public int Level { get; set; }
@@ -60,6 +60,6 @@ namespace GameContents
 
         public float HitRate { get; private set; }
 
-        public float Dodge { get; private set; }
+        public float DodgeRate { get; private set; }
     }
 }

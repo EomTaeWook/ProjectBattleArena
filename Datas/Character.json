@@ -4,14 +4,14 @@
     "Name": "SwordMan",
     "Stat": {
       "HP": 1000,
-      "Attack": 80,
-      "Defense": 120,
+      "Attack": 100,
+      "Defense": 90,
       "AttackSpeed": 140,
       "Critical": 48,
       "Patience": 0,
       "Block": 0,
       "Hit": 260,
-      "Dodge": 60,
+      "Dodge": 40,
       "Destruction": 100
     },
     "BaseAttackSkill": "BasicAttack",
@@ -24,13 +24,13 @@
     "Stat": {
       "HP": 800,
       "Attack": 140,
-      "Defense": 80,
+      "Defense": 70,
       "AttackSpeed": 180,
       "Critical": 48,
       "Patience": 0,
       "Block": 0,
       "Hit": 260,
-      "Dodge": 60,
+      "Dodge": 40,
       "Destruction": 100
     },
     "BaseAttackSkill": "BasicRangedAttack",

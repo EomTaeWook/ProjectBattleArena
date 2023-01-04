@@ -17,15 +17,15 @@ namespace GameContents
 
         public void Invoke(Battle battle)
         {
-            var maxRangeY = _invoker.Position.Y + SkillsTemplate.Range;
+            var maxRangeY = _invoker.Position.Y + SkillsTemplate.Range + 1;
 
-            var minRangeY = _invoker.Position.Y - SkillsTemplate.Range;
+            var minRangeY = _invoker.Position.Y - SkillsTemplate.Range - 1;
 
-            var maxRangeX = _invoker.Position.X + SkillsTemplate.Range;
+            var maxRangeX = _invoker.Position.X + SkillsTemplate.Range + 1;
 
-            var minRangeX = _invoker.Position.X - SkillsTemplate.Range;
+            var minRangeX = _invoker.Position.X - SkillsTemplate.Range - 1;
 
-            foreach (var item in SkillsTemplate.Effets)
+            foreach (var item in SkillsTemplate.EffectRef)
             {
                 var targetCandidates = new List<Unit>();
 
@@ -79,21 +79,19 @@ namespace GameContents
                     }
                 }
 
-
-
                 foreach (var target in targetUnits)
                 {
-                    if (item.EffectRef.EffectType == DataContainer.EffectType.Damage)
+                    if (item.EffectType == DataContainer.EffectType.Damage)
                     {
-                        var tempalte = TemplateContainer<SkillEffectsDamageTemplate>.Find(item.EffectRef.EffectPart);
+                        var tempalte = TemplateContainer<SkillEffectsDamageTemplate>.Find(item.EffectPart);
 
                         InvokeDamageEffect(tempalte, target, battle);
                     }
-                    else if (item.EffectRef.EffectType == DataContainer.EffectType.Buff)
+                    else if (item.EffectType == DataContainer.EffectType.Buff)
                     {
                         InvokeBuffEffect();
                     }
-                    else if (item.EffectRef.EffectType == DataContainer.EffectType.AbnormalStatus)
+                    else if (item.EffectType == DataContainer.EffectType.AbnormalStatus)
                     {
                         InvokeAbnormalStatusEffect();
                     }
@@ -116,27 +114,29 @@ namespace GameContents
 
             double damage = _invoker.UnitStats.Attack * factor / 100;
 
-            double critical = battle.GetRandomGenerator().Next();
+            double critical = battle.GetRandomGenerator().NextDouble() * 100;
 
             critical += target.UnitStats.CriticalResistance;
 
             if (critical <= _invoker.UnitStats.CriticalRate)
             {
-                damage *= _invoker.UnitStats.CriticalDamage;
+                damage = damage * 1 + _invoker.UnitStats.CriticalDamage;
             }
 
             damage -= target.UnitStats.Defense;
+            if(damage <= 0)
+            {
+                damage = 1;
+            }
 
             var damageData = new Damage()
             {
                 DamageValue = (int)damage,
             };
 
-            double hit = battle.GetRandomGenerator().Next();
+            double hit = battle.GetRandomGenerator().NextDouble() * 100;
 
-            hit += target.UnitStats.Dodge;
-
-            if (hit >= _invoker.UnitStats.HitRate)
+            if (hit > _invoker.UnitStats.HitRate)
             {
                 damageData.IsDodge = true;
                 damageData.DamageValue = 0;
@@ -144,7 +144,16 @@ namespace GameContents
                 return;
             }
 
-            double block = battle.GetRandomGenerator().Next();
+            double dodge = battle.GetRandomGenerator().NextDouble() * 100;
+            if(dodge < target.UnitStats.DodgeRate)
+            {
+                damageData.IsDodge = true;
+                damageData.DamageValue = 0;
+                target.OnDamaged(_invoker, damageData);
+                return;
+            }
+
+            double block = battle.GetRandomGenerator().NextDouble() * 100;
             block += _invoker.UnitStats.BlockPenetration;
             if (block <= target.UnitStats.BlockRate)
             {

@@ -4,15 +4,8 @@
     "Name": "BasicAttack",
     "Range": 0,
     "NeedCost": 0,
-    "Effets": [
-      {
-        "TargetType": "HighAggro",
-        "Effect": "BasicAttackEffect"
-      },
-      {
-        "TargetType": "Max",
-        "Effect": null
-      }
+    "Effect": [
+      "BasicAttackEffect"
     ]
   },
   {
@@ -20,15 +13,8 @@
     "Name": "BasicRangedAttack",
     "Range": 1,
     "NeedCost": 0,
-    "Effets": [
-      {
-        "TargetType": "HighAggro",
-        "Effect": "BasicAttackEffect"
-      },
-      {
-        "TargetType": "Max",
-        "Effect": null
-      }
+    "Effect": [
+      "BasicAttackEffect"
     ]
   },
   {
@@ -36,15 +22,8 @@
     "Name": "BasicStrongAttack",
     "Range": 0,
     "NeedCost": 3,
-    "Effets": [
-      {
-        "TargetType": "HighAggro",
-        "Effect": "BasicAttackEffect"
-      },
-      {
-        "TargetType": "Max",
-        "Effect": null
-      }
+    "Effect": [
+      "BasicAttackEffect"
     ]
   },
   {
@@ -52,15 +31,8 @@
     "Name": "BasicStrongRangedAttack",
     "Range": 1,
     "NeedCost": 3,
-    "Effets": [
-      {
-        "TargetType": "HighAggro",
-        "Effect": "BasicAttackEffect"
-      },
-      {
-        "TargetType": "Max",
-        "Effect": null
-      }
+    "Effect": [
+      "BasicAttackEffect"
     ]
   }
 ]

@@ -7,7 +7,7 @@ namespace GameContents
     public class Unit
     {
         public bool IsNpc { get; private set; }
-        public Position Position { get; private set; }
+        public Position Position { get; private set; } = new Position();
         public UnitStats UnitStats { get; private set; }
         public int GetAggroGauge()
         {
@@ -29,6 +29,7 @@ namespace GameContents
 
         public Unit(UnitInfo unitInfo)
         {
+            UnitInfo = unitInfo;
             UnitStats = new UnitStats(unitInfo);
             MakeSkills(unitInfo.EquippedSkillDatas);
             if (CharacterTemplate.JobType == DataContainer.JobType.Tanker)
@@ -108,7 +109,7 @@ namespace GameContents
                 _attackedRemainTicks = 0;
             }
 
-            if (IsCasting() == false)
+            if (IsCasting() == true)
             {
                 _castingSkill.DecreaseTick();
 
@@ -163,7 +164,7 @@ namespace GameContents
         {
             StartSkillEvent startSkillEvent = new StartSkillEvent(unitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
 
-            _attackedRemainTicks = UnitStats.AttackSpeed;
+            _attackedRemainTicks = 3 * (UnitStats.AttackSpeed / 100);
 
             unitSkill.Invoke(this._battle);
 

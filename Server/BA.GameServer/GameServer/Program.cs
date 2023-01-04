@@ -1,4 +1,5 @@
 ﻿using BA.GameServer.Modules.Stun;
+using DataContainer.Generated;
 using Kosher.Extensions.Log;
 using Kosher.Log;
 
@@ -17,7 +18,18 @@ namespace BA.GameServer
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException; ;
 
+            TemplateLoad();
+
             StunModule.Instance.Start();
+        }
+
+        private static void TemplateLoad()
+        {
+            var path = "../../Datas";
+#if DEBUG
+            path = $"{AppContext.BaseDirectory}../../../../../../Datas";
+#endif
+            TemplateLoader.Load(path);
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

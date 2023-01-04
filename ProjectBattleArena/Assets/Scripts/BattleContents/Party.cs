@@ -74,7 +74,7 @@ namespace GameContents
             var index = 0;
             foreach (var item in meleeUnits)
             {
-                var initX = meleeUnits.Count / 2 - 1;
+                var initX = 2 / meleeUnits.Count  - 1;
                 if (_isAlly == true)
                 {
                     item.Move(initX + index, 2);
@@ -89,7 +89,7 @@ namespace GameContents
 
             foreach (var item in longRangeUnits)
             {
-                var initX = longRangeUnits.Count / 2 - 1;
+                var initX = 2 / longRangeUnits.Count - 1;
                 if (_isAlly == true)
                 {
                     item.Move(initX + index, 3);

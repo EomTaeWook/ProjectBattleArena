@@ -12,6 +12,14 @@ namespace GameContents
         private IBattleEventHandler _battleEventHandler;
         private int _battleEventIndex = 0;
         private readonly int[,] _map = new int[4, 4];
+        public int GetMapMaxX()
+        {
+            return 4;
+        }
+        public int GetMapMaxY()
+        {
+            return 4;
+        }
         public Battle(IBattleEventHandler battleEventHandler,
             int randomSeed,
             List<UnitInfo> allies,
@@ -22,6 +30,11 @@ namespace GameContents
             _randomGenerator = new RandomGenerator(randomSeed);
             _allyParty = new Party(allies, true);
             _enemyParty = new Party(enemies, false);
+
+            _allyParty.SetBattle(this);
+            _enemyParty.SetBattle(this);
+
+            _startedTime = DateTime.Now.Ticks;
         }
 
         public Party GetAllyParty()
@@ -31,12 +44,6 @@ namespace GameContents
         public Party GetEnemyParty()
         {
             return _enemyParty;
-        }
-        public void Init()
-        {
-            _allyParty.SetBattle(this);
-            _enemyParty.SetBattle(this);
-            _startedTime = DateTime.Now.Ticks;
         }
         public int GetBattleIndex()
         {

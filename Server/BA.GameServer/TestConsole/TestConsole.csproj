@@ -1,16 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="..\..\..\ProjectBattleArena\Assets\Scripts\BattleContents\**\*.cs">
-      <Link>GameContents\%(RecursiveDir)/%(FileName)%(Extension)</Link>
-    </Compile>
+    <ProjectReference Include="..\GameServer\BA.GameServer.csproj" />
   </ItemGroup>
+
   <ItemGroup>
     <Reference Include="DataContainer">
       <HintPath>..\..\Dll\DataContainer.dll</HintPath>
@@ -24,8 +24,12 @@
     <Reference Include="Kosher.Sockets">
       <HintPath>..\..\Dll\Kosher.Sockets.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\Share\Dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="ShareLogic">
       <HintPath>..\..\Dll\ShareLogic.dll</HintPath>
     </Reference>
   </ItemGroup>
+
 </Project>

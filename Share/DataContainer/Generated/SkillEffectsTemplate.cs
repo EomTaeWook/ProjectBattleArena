@@ -8,6 +8,7 @@ namespace DataContainer.Generated
 {
     public partial class SkillEffectsTemplate : BaseTemplate
     {
+        public DataContainer.TargetType TargetType { get; set; }
         public DataContainer.EffectType EffectType { get; set; }
         public string EffectPart { get; set; }
     }

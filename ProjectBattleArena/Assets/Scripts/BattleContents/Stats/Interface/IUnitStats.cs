@@ -20,6 +20,6 @@
 
         public float HitRate { get; }
 
-        public float Dodge { get; }
+        public float DodgeRate { get; }
     }
 }

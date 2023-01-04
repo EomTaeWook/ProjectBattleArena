@@ -22,6 +22,17 @@
     "Conditions": []
   },
   {
+    "Name": "TargetType",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Enum",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": "",
+    "Conditions": []
+  },
+  {
     "Name": "EffectType",
     "Count": 1,
     "Required": true,

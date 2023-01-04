@@ -51,3 +51,5 @@ Server/BA.GameServer/GameServer/.vs/*
 Server/BA.GameServer/GameServer/bin/*
 Server/BA.GameServer/GameServer/obj/*
 Server/BA.GameServer/.vs/*
+Server/BA.GameServer/TestConsole/obj/*
+Server/BA.GameServer/TestConsole/bin/*
