@@ -1,5 +1,6 @@
 ﻿using DataContainer;
 using DataContainer.Generated;
+using ShareLogic;
 
 namespace GameContents
 {
@@ -25,6 +26,16 @@ namespace GameContents
         public EndBattleEvent(bool isWin, int id, int ticks) : base(id, ticks)
         {
             IsWin = isWin;
+        }
+    }
+    public class MoveEvent : BattleEvent
+    {
+        public Position OldPosition { get; private set; }
+        public Position NewPosition { get; private set; }
+        public MoveEvent(Position oldPosition, Position newPosition, int id, int ticks) : base(id, ticks)
+        {
+            OldPosition = oldPosition;
+            NewPosition = newPosition;
         }
     }
 

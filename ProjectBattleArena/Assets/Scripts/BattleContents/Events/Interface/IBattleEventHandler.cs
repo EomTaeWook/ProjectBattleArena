@@ -10,5 +10,6 @@
         void Process(Unit unit, AddAbnormalStatusEvent addAbnormalStatusEvent);
         void Process(Unit unit, DieEvent dieEvent);
         void Process(EndBattleEvent endBattleEvent);
+        void Process(Unit unit, MoveEvent moveEvent);
     }
 }

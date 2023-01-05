@@ -48,5 +48,10 @@ namespace BA.GameServer.Game
         {
             _invokedEvents.Add(Tuple.Create<Unit, BattleEvent>(null, endBattleEvent));
         }
+
+        public void Process(Unit unit, MoveEvent moveEvent)
+        {
+            _invokedEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, moveEvent));
+        }
     }
 }

@@ -101,7 +101,7 @@ namespace GameContents
                 index++;
             }
         }
-        public void DoAction()
+        public void OnTickPassed()
         {
             foreach (var unit in _units)
             {
@@ -111,14 +111,10 @@ namespace GameContents
                 }
                 unit.OnTickPassed();
             }
-            foreach (var unit in _units)
-            {
-                if(unit.IsDead() == true)
-                {
-                    continue;
-                }
-                unit.DoAction();
-            }
+        }
+        public bool IsAlly()
+        {
+            return _isAlly;
         }
     }
 }

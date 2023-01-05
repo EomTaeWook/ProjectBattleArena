@@ -27,6 +27,13 @@ namespace GameContents
         private UnitSkill baseAttackSkill;
         private Battle _battle;
 
+        private const int AddDefaultTicks = 3;
+
+        public float GetAttackedRemainTicks()
+        {
+            return _attackedRemainTicks;
+        }
+
         public Unit(UnitInfo unitInfo)
         {
             UnitInfo = unitInfo;
@@ -146,9 +153,58 @@ namespace GameContents
 
             var nextSkill = GetSkillsOfNextIndex();
 
-            if (nextSkill == null)
+            if(nextSkill == null)
             {
-                UseSkill(baseAttackSkill);
+                nextSkill = baseAttackSkill;
+            }
+
+            var canUsed = false;
+            foreach(var item in nextSkill.SkillsTemplate.EffectRef)
+            {
+                var targets = _battle.GetSkillTargets(this,
+                    nextSkill.SkillsTemplate.Range,
+                    item);
+
+                if(targets.Count > 0)
+                {
+                    canUsed = true;
+                    break;
+                }
+            }
+            if(canUsed == false)
+            {
+                var party = _battle.GetMyParty(this);
+
+                var oldPosition = new Position()
+                {
+                    X = Position.X,
+                    Y = Position.Y
+                };
+
+                if (party.IsAlly() == true)
+                {
+                    this.Move(0, -1);
+                }
+                else
+                {
+                    this.Move(0, 1);
+                }
+
+                var newPosition = new Position()
+                {
+                    X = Position.X,
+                    Y = Position.Y
+                };
+
+                _battle.GetBattleEventHandler().Process(this,
+                                            new MoveEvent(
+                                                oldPosition,
+                                                newPosition,
+                                                _battle.GetBattleIndex(),
+                                                _battle.GetCurrentTicks()));
+
+                _attackedRemainTicks = AddDefaultTicks;
+
                 return;
             }
 
@@ -171,7 +227,7 @@ namespace GameContents
 
             _battle.GetBattleEventHandler().Process(this, startSkillEvent);
 
-            _attackedRemainTicks = 3 * (UnitStats.AttackSpeed / 100);
+            _attackedRemainTicks = AddDefaultTicks * (UnitStats.AttackSpeed / 100);
 
             unitSkill.Invoke(this._battle);
 
@@ -220,6 +276,5 @@ namespace GameContents
                 _battle.GetCurrentTicks()));
             }
         }
-
     }
 }

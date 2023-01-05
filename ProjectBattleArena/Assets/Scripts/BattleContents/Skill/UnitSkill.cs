@@ -1,6 +1,4 @@
 ﻿using DataContainer.Generated;
-using Kosher.Log;
-using Org.BouncyCastle.Crypto.Modes.Gcm;
 using TemplateContainers;
 
 namespace GameContents
@@ -15,84 +13,25 @@ namespace GameContents
             _invoker = unit;
             SkillsTemplate = skillsTemplate;
         }
-
         public void Invoke(Battle battle)
         {
-            var maxRangeY = _invoker.Position.Y + SkillsTemplate.Range + 1;
-
-            var minRangeY = _invoker.Position.Y - SkillsTemplate.Range - 1;
-
-            var maxRangeX = _invoker.Position.X + SkillsTemplate.Range + 1;
-
-            var minRangeX = _invoker.Position.X - SkillsTemplate.Range - 1;
-
-            foreach (var item in SkillsTemplate.EffectRef)
+            foreach(var effect in SkillsTemplate.EffectRef)
             {
-                var targetCandidates = new List<Unit>();
+                var targets = battle.GetSkillTargets(_invoker, SkillsTemplate.Range, effect);
 
-                if (item.TargetType == DataContainer.TargetType.AllAllies)
+                foreach (var target in targets)
                 {
-                    var party = battle.GetMyParty(_invoker);
-                    targetCandidates.AddRange(party.GetAliveTargets());
-                }
-                else if (item.TargetType == DataContainer.TargetType.AllEnemies)
-                {
-                    var party = battle.GetOpponentParty(_invoker);
-                    targetCandidates.AddRange(party.GetAliveTargets());
-                }
-                else if (item.TargetType == DataContainer.TargetType.Me)
-                {
-                    targetCandidates.Add(_invoker);
-                }
-                else if (item.TargetType == DataContainer.TargetType.HighAggro)
-                {
-                    var party = battle.GetOpponentParty(_invoker);
-                    var targetCandidate = party.GetAliveTargets();
-                    Unit targetUnit = null;
-                    var aggro = 0;
-                    foreach (var opponentUnit in targetCandidate)
+                    if (effect.EffectType == DataContainer.EffectType.Damage)
                     {
-                        if (aggro < opponentUnit.GetAggroGauge())
-                        {
-                            targetUnit = opponentUnit;
-                            aggro = opponentUnit.GetAggroGauge();
-                        }
-                    }
-                    if (targetUnit != null)
-                    {
-                        targetCandidates.Add(targetUnit);
-                    }
-                }
-                else
-                {
-                    LogHelper.Error($"invalid target type : {item.TargetType}");
-                    return;
-                }
-
-                var targetUnits = new List<Unit>();
-
-                foreach (var target in targetCandidates)
-                {
-                    if (target.Position.Y >= minRangeY && target.Position.Y <= maxRangeY &&
-                        target.Position.X >= minRangeX && target.Position.X <= maxRangeX)
-                    {
-                        targetUnits.Add(target);
-                    }
-                }
-
-                foreach (var target in targetUnits)
-                {
-                    if (item.EffectType == DataContainer.EffectType.Damage)
-                    {
-                        var tempalte = TemplateContainer<SkillEffectsDamageTemplate>.Find(item.EffectPart);
+                        var tempalte = TemplateContainer<SkillEffectsDamageTemplate>.Find(effect.EffectPart);
 
                         InvokeDamageEffect(tempalte, target, battle);
                     }
-                    else if (item.EffectType == DataContainer.EffectType.Buff)
+                    else if (effect.EffectType == DataContainer.EffectType.Buff)
                     {
                         InvokeBuffEffect();
                     }
-                    else if (item.EffectType == DataContainer.EffectType.AbnormalStatus)
+                    else if (effect.EffectType == DataContainer.EffectType.AbnormalStatus)
                     {
                         InvokeAbnormalStatusEffect();
                     }

@@ -1,4 +1,6 @@
-﻿using ShareLogic.Random;
+﻿using DataContainer.Generated;
+using Kosher.Log;
+using ShareLogic.Random;
 namespace GameContents
 {
     public class Battle
@@ -101,6 +103,68 @@ namespace GameContents
                 }
             }
         }
+
+        public List<Unit> GetSkillTargets(Unit invoker,
+            int range,
+            SkillEffectsTemplate skillEffectsTemplate )
+        {
+            var targetCandidates = new List<Unit>();
+
+            var maxRangeY = invoker.Position.Y + range + 1;
+
+            var minRangeY = invoker.Position.Y - range - 1;
+
+            var maxRangeX = invoker.Position.X + range + 1;
+
+            var minRangeX = invoker.Position.X - range - 1;
+
+            if (skillEffectsTemplate.TargetType == DataContainer.TargetType.AllAllies)
+            {
+                var party = GetMyParty(invoker);
+                targetCandidates.AddRange(party.GetAliveTargets());
+            }
+            else if (skillEffectsTemplate.TargetType == DataContainer.TargetType.AllEnemies)
+            {
+                var party = GetOpponentParty(invoker);
+                targetCandidates.AddRange(party.GetAliveTargets());
+            }
+            else if (skillEffectsTemplate.TargetType == DataContainer.TargetType.Me)
+            {
+                targetCandidates.Add(invoker);
+            }
+            else if (skillEffectsTemplate.TargetType == DataContainer.TargetType.HighAggro)
+            {
+                var party = GetOpponentParty(invoker);
+                var targetCandidate = party.GetAliveTargets();
+                Unit targetUnit = null;
+                var aggro = 0;
+                foreach (var opponentUnit in targetCandidate)
+                {
+                    if (aggro < opponentUnit.GetAggroGauge())
+                    {
+                        targetUnit = opponentUnit;
+                        aggro = opponentUnit.GetAggroGauge();
+                    }
+                }
+                if (targetUnit != null)
+                {
+                    targetCandidates.Add(targetUnit);
+                }
+            }
+
+            var targetUnits = new List<Unit>();
+
+            foreach (var target in targetCandidates)
+            {
+                if (target.Position.Y >= minRangeY && target.Position.Y <= maxRangeY &&
+                    target.Position.X >= minRangeX && target.Position.X <= maxRangeX)
+                {
+                    targetUnits.Add(target);
+                }
+            }
+            return targetUnits;
+        }
+
         public IBattleEventHandler GetBattleEventHandler()
         {
             return _battleEventHandler;
@@ -111,9 +175,38 @@ namespace GameContents
         }
         private void DoAction()
         {
-            _allyParty.DoAction();
+            _allyParty.OnTickPassed();
+            _enemyParty.OnTickPassed();
 
-            _enemyParty.DoAction();
+            List<Unit> actionUnits = new List<Unit>();
+
+            foreach(var item in _allyParty.GetUnits())
+            {
+                if (item.IsDead() == true)
+                {
+                    continue;
+                }
+                if(item.GetAttackedRemainTicks() <=0)
+                {
+                    actionUnits.Add(item);
+                }
+            }
+            foreach (var item in _enemyParty.GetUnits())
+            {
+                if (item.IsDead() == true)
+                {
+                    continue;
+                }
+                if (item.GetAttackedRemainTicks() <= 0)
+                {
+                    actionUnits.Add(item);
+                }
+            }
+            var order = actionUnits.OrderByDescending(r => r.UnitInfo.Level);
+            foreach(var item in order)
+            {
+                item.DoAction();
+            }
         }
 
         public Party GetOpponentParty(Unit unit)

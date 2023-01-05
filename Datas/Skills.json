@@ -2,37 +2,37 @@
   {
     "Id": 1000,
     "Name": "BasicAttack",
-    "Range": 0,
     "NeedCost": 0,
     "Effect": [
       "BasicAttackEffect"
-    ]
+    ],
+    "Range": 0
   },
   {
     "Id": 1001,
     "Name": "BasicRangedAttack",
-    "Range": 1,
     "NeedCost": 0,
     "Effect": [
       "BasicAttackEffect"
-    ]
+    ],
+    "Range": 1
   },
   {
     "Id": 1002,
     "Name": "BasicStrongAttack",
-    "Range": 0,
     "NeedCost": 3,
     "Effect": [
       "BasicAttackEffect"
-    ]
+    ],
+    "Range": 0
   },
   {
     "Id": 1003,
     "Name": "BasicStrongRangedAttack",
-    "Range": 1,
     "NeedCost": 3,
     "Effect": [
       "BasicAttackEffect"
-    ]
+    ],
+    "Range": 1
   }
 ]

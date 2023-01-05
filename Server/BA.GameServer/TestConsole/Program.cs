@@ -21,7 +21,7 @@ namespace TestConsole
             var enemy = new List<UnitInfo>() { new UnitInfo()
             {
                 CharacterName = "test2",
-                CharacterTemplate = TemplateContainer<CharacterTemplate>.Find(1000),
+                CharacterTemplate = TemplateContainer<CharacterTemplate>.Find(1001),
                 Level = 1,
             } };
 
@@ -52,7 +52,6 @@ namespace TestConsole
                     Console.WriteLine($"{characterName} - {item.Item2.GetType().Name}");
                 }
                 eventHandler.InvokedEvents().Clear();
-
             }
         }
         private static void TemplateLoad()
