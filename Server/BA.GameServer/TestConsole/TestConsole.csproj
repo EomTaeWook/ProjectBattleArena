@@ -13,22 +13,22 @@
 
   <ItemGroup>
     <Reference Include="DataContainer">
-      <HintPath>..\..\Dll\DataContainer.dll</HintPath>
+      <HintPath>..\..\..\ShareDll\DataContainer.dll</HintPath>
     </Reference>
     <Reference Include="Kosher">
-      <HintPath>..\..\Dll\Kosher.dll</HintPath>
+      <HintPath>..\..\..\ShareDll\Kosher.dll</HintPath>
     </Reference>
     <Reference Include="Kosher.Extensions">
-      <HintPath>..\..\Dll\Kosher.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Kosher.Sockets">
-      <HintPath>..\..\Dll\Kosher.Sockets.dll</HintPath>
+      <HintPath>..\..\..\ShareDll\Kosher.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\Share\Dll\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\ShareDll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Protocol.GSC">
+      <HintPath>..\..\..\ShareDll\Protocol.GSC.dll</HintPath>
     </Reference>
     <Reference Include="ShareLogic">
-      <HintPath>..\..\Dll\ShareLogic.dll</HintPath>
+      <HintPath>..\..\..\ShareDll\ShareLogic.dll</HintPath>
     </Reference>
   </ItemGroup>
 

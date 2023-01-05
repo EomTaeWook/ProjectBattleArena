@@ -1,27 +1,23 @@
-﻿namespace GameWebServer.Modules.IGWModule.Handler
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+namespace ShareLogic.Network
 {
-    public class HandlerBinder<TKey, TBody>
+    public class CallbackBinder<TKey, TBody>
     {
         private readonly Dictionary<TKey, Action<TBody>> _callbackMap = new Dictionary<TKey, Action<TBody>>();
 
         public delegate Action<TBody> OnCallback(TBody body);
-        public void BindCallback(TKey protocol, Action<TBody> action)
+
+        public void Bind(TKey protocol, Action<TBody> action)
         {
             _callbackMap.Add(protocol, action);
         }
         public void Execute(TKey protocol, TBody body)
         {
             _callbackMap[protocol].Invoke(body);
-        }
-        public void BindCallback(TKey protocol)
-        {
-            var method = this.GetType().GetMethod(protocol.ToString());
-            if(method == null)
-            {
-                throw new MissingMethodException(protocol.ToString());
-            }
-            Action<TBody> action = (Action<TBody>)Delegate.CreateDelegate(typeof(Action<TBody>), this, method);
-            _callbackMap.Add(protocol, action);
         }
         public bool CheckProtocol(TKey protocol)
         {

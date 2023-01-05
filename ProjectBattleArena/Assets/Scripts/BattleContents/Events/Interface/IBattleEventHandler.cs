@@ -3,15 +3,12 @@
     public interface IBattleEventHandler
     {
         void Process(TickPassedEvent tickPassedEvent);
-
-        void Process(StartSkillEvent startSkillEvent);
-
-        void Process(EndSkillEvent endSkillEvent);
-
-        void Process(DamageEvent damageEvent);
-
-        void Process(RemoveAbnormalStatusEvent removeAbnormalStatusEvent);
-
-        void Process(AddAbnormalStatusEvent addAbnormalStatusEvent);
+        void Process(Unit unit, StartSkillEvent startSkillEvent);
+        void Process(Unit unit, EndSkillEvent endSkillEvent);
+        void Process(Unit unit, DamageEvent damageEvent);
+        void Process(Unit unit, RemoveAbnormalStatusEvent removeAbnormalStatusEvent);
+        void Process(Unit unit, AddAbnormalStatusEvent addAbnormalStatusEvent);
+        void Process(Unit unit, DieEvent dieEvent);
+        void Process(EndBattleEvent endBattleEvent);
     }
 }

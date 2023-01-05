@@ -1,6 +1,7 @@
 ﻿using Kosher.Collections;
 using Kosher.Log;
 using Kosher.Sockets.Interface;
+using ShareLogic.Network;
 
 namespace BA.InterServer.ServerModule.Serializer
 {

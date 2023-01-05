@@ -42,7 +42,7 @@ namespace GameWebServer
                 name: "default",
                 pattern: "{controller=KeepAlive}/{action=index}/{id?}"
             );
-
+            InterServerClientModule.Instance.Init();
             InterServerClientModule.Instance.Start();
 
             app.Run();

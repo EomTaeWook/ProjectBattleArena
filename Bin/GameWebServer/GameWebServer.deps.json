@@ -11,13 +11,13 @@
         "dependencies": {
           "BA.Models": "1.0.0",
           "BA.Repository": "1.0.0",
-          "Protocol.GameWebServerAndClient": "1.0.0",
-          "Protocol.InterAndGWS": "1.0.0",
           "DataContainer": "1.0.0.0",
           "Kosher": "1.0.0.0",
           "Kosher.Extensions": "1.0.0.0",
           "Kosher.Sockets": "1.0.0.0",
           "Newtonsoft.Json": "13.0.0.0",
+          "Protocol.GameWebServerAndClient": "1.0.0.0",
+          "Protocol.InterAndGWS": "1.0.0.0",
           "ShareLogic": "1.0.0.0",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "6.0.12",
           "runtimepack.Microsoft.AspNetCore.App.Runtime.win-x64": "6.0.12"
@@ -88,16 +88,8 @@
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.1222.56807"
           },
-          "System.Core.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "6.0.1222.56807"
-          },
           "System.Data.Common.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.1222.56807"
-          },
-          "System.Data.dll": {
-            "assemblyVersion": "4.0.0.0",
             "fileVersion": "6.0.1222.56807"
           },
           "System.Diagnostics.Debug.dll": {
@@ -220,10 +212,6 @@
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.1222.56807"
           },
-          "System.Numerics.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "6.0.1222.56807"
-          },
           "System.ObjectModel.dll": {
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.1222.56807"
@@ -310,10 +298,6 @@
           },
           "System.Runtime.Serialization.Xml.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.1222.56807"
-          },
-          "System.Runtime.Serialization.dll": {
-            "assemblyVersion": "4.0.0.0",
             "fileVersion": "6.0.1222.56807"
           },
           "System.Runtime.dll": {
@@ -422,10 +406,6 @@
           },
           "System.Xml.XmlSerializer.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.1222.56807"
-          },
-          "System.Xml.dll": {
-            "assemblyVersion": "4.0.0.0",
             "fileVersion": "6.0.1222.56807"
           },
           "System.dll": {
@@ -1282,9 +1262,6 @@
         }
       },
       "BA.Models/1.0.0": {
-        "dependencies": {
-          "Protocol.GameWebServerAndClient": "1.0.0"
-        },
         "runtime": {
           "BA.Models.dll": {}
         }
@@ -1297,16 +1274,6 @@
         },
         "runtime": {
           "BA.Repository.dll": {}
-        }
-      },
-      "Protocol.GameWebServerAndClient/1.0.0": {
-        "runtime": {
-          "Protocol.GameWebServerAndClient.dll": {}
-        }
-      },
-      "Protocol.InterAndGWS/1.0.0": {
-        "runtime": {
-          "Protocol.InterAndGWS.dll": {}
         }
       },
       "DataContainer/1.0.0.0": {
@@ -1346,6 +1313,22 @@
           "Newtonsoft.Json.dll": {
             "assemblyVersion": "13.0.0.0",
             "fileVersion": "13.0.2.27524"
+          }
+        }
+      },
+      "Protocol.GameWebServerAndClient/1.0.0.0": {
+        "runtime": {
+          "Protocol.GameWebServerAndClient.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Protocol.InterAndGWS/1.0.0.0": {
+        "runtime": {
+          "Protocol.InterAndGWS.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -1525,16 +1508,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Protocol.GameWebServerAndClient/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Protocol.InterAndGWS/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "DataContainer/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1556,6 +1529,16 @@
       "sha512": ""
     },
     "Newtonsoft.Json/13.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Protocol.GameWebServerAndClient/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Protocol.InterAndGWS/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

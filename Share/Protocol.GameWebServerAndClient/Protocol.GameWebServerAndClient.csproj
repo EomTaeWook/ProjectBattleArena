@@ -59,6 +59,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)..\..\ProjectBattleArena\Assets\Plugins\$(ConfigurationName)\$(TargetFileName)"</PostBuildEvent>
+    <PostBuildEvent>IF $(ConfigurationName) == Release (
+copy "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\Release\$(TargetFileName)"
+copy "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\Debug\$(TargetFileName)"
+copy "$(TargetPath)" "$(SolutionDir)..\ShareDll\$(TargetFileName)"
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>

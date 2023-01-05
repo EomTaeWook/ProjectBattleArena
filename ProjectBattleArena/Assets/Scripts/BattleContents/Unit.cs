@@ -139,6 +139,11 @@ namespace GameContents
                 return;
             }
 
+            if (IsDead() == true)
+            {
+                return;
+            }
+
             var nextSkill = GetSkillsOfNextIndex();
 
             if (nextSkill == null)
@@ -164,11 +169,15 @@ namespace GameContents
         {
             StartSkillEvent startSkillEvent = new StartSkillEvent(unitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
 
+            _battle.GetBattleEventHandler().Process(this, startSkillEvent);
+
             _attackedRemainTicks = 3 * (UnitStats.AttackSpeed / 100);
 
             unitSkill.Invoke(this._battle);
 
             EndSkillEvent endSkillEvent = new EndSkillEvent(unitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
+
+            _battle.GetBattleEventHandler().Process(this, endSkillEvent);
         }
 
 
@@ -176,7 +185,7 @@ namespace GameContents
         {
             if (damage.DamageValue <= 0)
             {
-                _battle.GetBattleEventHandler().Process(new DamageEvent(damage,
+                _battle.GetBattleEventHandler().Process(this, new DamageEvent(damage,
                     0,
                     _battle.GetBattleIndex(),
                     _battle.GetCurrentTicks()));
@@ -190,7 +199,8 @@ namespace GameContents
                 {
                     shieldDiff = UnitStats.Hp.Shield;
                     damage.DamageValue = -shieldDiff;
-                    _battle.GetBattleEventHandler().Process(new RemoveAbnormalStatusEvent(AbnormalStatusType.Shield,
+                    _battle.GetBattleEventHandler().Process(this, 
+                        new RemoveAbnormalStatusEvent(AbnormalStatusType.Shield,
                         _battle.GetBattleIndex(),
                         _battle.GetCurrentTicks()));
                 }
@@ -198,10 +208,17 @@ namespace GameContents
             }
             UnitStats.Hp.ModifyHp(-damage.DamageValue);
 
-            _battle.GetBattleEventHandler().Process(new DamageEvent(damage,
+            _battle.GetBattleEventHandler().Process(this, new DamageEvent(damage,
                 shieldDiff,
                 _battle.GetBattleIndex(),
                 _battle.GetCurrentTicks()));
+
+            if(UnitStats.Hp.CurrentHp == 0)
+            {
+                _battle.GetBattleEventHandler().Process(this, new DieEvent(attacker,
+                _battle.GetBattleIndex(),
+                _battle.GetCurrentTicks()));
+            }
         }
 
     }

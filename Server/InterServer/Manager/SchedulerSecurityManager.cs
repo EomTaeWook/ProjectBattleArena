@@ -8,6 +8,7 @@ using Kosher.Log;
 using Protocol.InterAndGWS;
 using Protocol.InterAndGWS.ShareModels;
 using ShareLogic;
+using ShareLogic.Network;
 using System.Text.Json;
 
 namespace BA.InterServer.Manager
@@ -69,7 +70,7 @@ namespace BA.InterServer.Manager
                 PrivateKey = cryptoKeyString.Item1
             };
 
-            var packet = ServerModule.Packet.MakePacket(IGWSProtocol.GameWebServerInspection, packetData);
+            var packet = Packet.MakePacket((ushort)IGWSProtocol.GameWebServerInspection, packetData);
 
             InterServerModule.Instance.Broadcast(packet);
 

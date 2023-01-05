@@ -9,8 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BA.Models\BA.Models.csproj" />
     <ProjectReference Include="..\BA.Repository\BA.Repository.csproj" />
-    <ProjectReference Include="..\Protocol.GameWebServerAndClient\Protocol.GameWebServerAndClient.csproj" />
-    <ProjectReference Include="..\Protocol.InterAndGWS\Protocol.InterAndGWS.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,22 +17,28 @@
 
   <ItemGroup>
     <Reference Include="DataContainer">
-      <HintPath>..\Dll\DataContainer.dll</HintPath>
+      <HintPath>..\..\ShareDll\DataContainer.dll</HintPath>
     </Reference>
     <Reference Include="Kosher">
-      <HintPath>..\Dll\Kosher.dll</HintPath>
+      <HintPath>..\ServerDll\Kosher.dll</HintPath>
     </Reference>
     <Reference Include="Kosher.Extensions">
-      <HintPath>..\Dll\Kosher.Extensions.dll</HintPath>
+      <HintPath>..\ServerDll\Kosher.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Kosher.Sockets">
-      <HintPath>..\Dll\Kosher.Sockets.dll</HintPath>
+      <HintPath>..\ServerDll\Kosher.Sockets.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\Share\Dll\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\ShareDll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Protocol.GameWebServerAndClient">
+      <HintPath>..\..\ShareDll\Protocol.GameWebServerAndClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Protocol.InterAndGWS">
+      <HintPath>..\..\ShareDll\Protocol.InterAndGWS.dll</HintPath>
     </Reference>
     <Reference Include="ShareLogic">
-      <HintPath>..\Dll\ShareLogic.dll</HintPath>
+      <HintPath>..\..\ShareDll\ShareLogic.dll</HintPath>
     </Reference>
   </ItemGroup>
 

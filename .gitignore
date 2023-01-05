@@ -8,8 +8,6 @@ Server/GameWebServer/.vs/*
 Server/GameWebServer/bin/*
 Server/GameWebServer/obj/*
 Server/GameWebServer/GameWebServer.csproj.user
-Server/Protocol.GameWebServerAndClient/bin/*
-Server/Protocol.GameWebServerAndClient/obj/*
 Server/BA.Repository/bin/*
 Server/BA.Repository/obj/*
 Server/BA.Models/obj/*
@@ -23,8 +21,6 @@ ProjectBattleArena/UserData.json
 Server/ShareLogic/obj/*
 Server/ShareLogic/bin/*
 Server/ShareLogic/.vs/*
-Server/Protocol.InterAndGWS/obj/*
-Server/Protocol.InterAndGWS/bin/*
 Server/InterServer/Properties/PublishProfiles/*
 Bin/InterServer/KosherLog.config
 Server/InterServer/BA.InterServer.csproj.user
@@ -53,3 +49,10 @@ Server/BA.GameServer/GameServer/obj/*
 Server/BA.GameServer/.vs/*
 Server/BA.GameServer/TestConsole/obj/*
 Server/BA.GameServer/TestConsole/bin/*
+Share/Protocol.GameServerAndClient/bin/*
+Share/Protocol.GameServerAndClient/obj/*
+Share/Protocol.GameWebServerAndClient/bin/*
+Share/Protocol.GameWebServerAndClient/obj/*
+Share/Protocol.InterAndGWS/bin/*
+Share/Protocol.InterAndGWS/obj/*
+Server/Protocol.InterAndGWS/obj/*

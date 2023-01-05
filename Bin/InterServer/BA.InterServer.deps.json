@@ -11,10 +11,10 @@
         "dependencies": {
           "BA.Models": "1.0.0",
           "BA.Repository": "1.0.0",
-          "Protocol.InterAndGWS": "1.0.0",
           "Kosher": "1.0.0.0",
           "Kosher.Extensions": "1.0.0.0",
           "Kosher.Sockets": "1.0.0.0",
+          "Protocol.InterAndGWS": "1.0.0.0",
           "ShareLogic": "1.0.0.0",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "6.0.12"
         },
@@ -1021,9 +1021,6 @@
         }
       },
       "BA.Models/1.0.0": {
-        "dependencies": {
-          "Protocol.GameWebServerAndClient": "1.0.0"
-        },
         "runtime": {
           "BA.Models.dll": {}
         }
@@ -1036,16 +1033,6 @@
         },
         "runtime": {
           "BA.Repository.dll": {}
-        }
-      },
-      "Protocol.GameWebServerAndClient/1.0.0": {
-        "runtime": {
-          "Protocol.GameWebServerAndClient.dll": {}
-        }
-      },
-      "Protocol.InterAndGWS/1.0.0": {
-        "runtime": {
-          "Protocol.InterAndGWS.dll": {}
         }
       },
       "Kosher/1.0.0.0": {
@@ -1072,9 +1059,25 @@
           }
         }
       },
+      "Protocol.InterAndGWS/1.0.0.0": {
+        "runtime": {
+          "Protocol.InterAndGWS.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "ShareLogic/1.0.0.0": {
         "runtime": {
           "ShareLogic.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Protocol.GameWebServerAndClient/1.0.0.0": {
+        "runtime": {
+          "Protocol.GameWebServerAndClient.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1085,6 +1088,14 @@
           "DataContainer.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.0.0": {
+        "runtime": {
+          "Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.2.27524"
           }
         }
       }
@@ -1251,16 +1262,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Protocol.GameWebServerAndClient/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Protocol.InterAndGWS/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Kosher/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1276,12 +1277,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Protocol.InterAndGWS/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "ShareLogic/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
+    "Protocol.GameWebServerAndClient/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "DataContainer/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json/13.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

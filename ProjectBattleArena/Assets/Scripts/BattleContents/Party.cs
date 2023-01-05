@@ -101,14 +101,22 @@ namespace GameContents
                 index++;
             }
         }
-        public void DoAction(int currentTicks)
+        public void DoAction()
         {
             foreach (var unit in _units)
             {
+                if (unit.IsDead() == true)
+                {
+                    continue;
+                }
                 unit.OnTickPassed();
             }
             foreach (var unit in _units)
             {
+                if(unit.IsDead() == true)
+                {
+                    continue;
+                }
                 unit.DoAction();
             }
         }

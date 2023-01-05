@@ -1,5 +1,6 @@
 ﻿using DataContainer.Generated;
 using Kosher.Log;
+using Org.BouncyCastle.Crypto.Modes.Gcm;
 using TemplateContainers;
 
 namespace GameContents
@@ -8,7 +9,7 @@ namespace GameContents
     {
         public SkillsTemplate SkillsTemplate { get; private set; }
 
-        private Unit _invoker;
+        private readonly Unit _invoker;
         public UnitSkill(Unit unit, SkillsTemplate skillsTemplate)
         {
             _invoker = unit;
@@ -106,13 +107,31 @@ namespace GameContents
         {
 
         }
+
+        private double GetMinDamage(double attack, int hitFactor)
+        {
+            return attack * (hitFactor * 0.95) / 100.0;
+        }
+        private double GetMaxDamage(double attack, int hitFactor)
+        {
+            return attack * hitFactor / 100.0;
+        }
+
         private void InvokeDamageEffect(SkillEffectsDamageTemplate skillEffectsDamageTemplate,
                                         Unit target,
                                         Battle battle)
         {
             var factor = skillEffectsDamageTemplate.HitFactor;
 
-            double damage = _invoker.UnitStats.Attack * factor / 100;
+            var maxDamage = GetMaxDamage(_invoker.UnitStats.Attack, factor);
+
+            var minDamage = GetMinDamage(_invoker.UnitStats.Attack, factor);
+
+            var random = battle.GetRandomGenerator().Next((int)(maxDamage - minDamage));
+
+            double damage = minDamage + random;
+
+            damage -= target.UnitStats.Defense;
 
             double critical = battle.GetRandomGenerator().NextDouble() * 100;
 
@@ -122,8 +141,7 @@ namespace GameContents
             {
                 damage = damage * 1 + _invoker.UnitStats.CriticalDamage;
             }
-
-            damage -= target.UnitStats.Defense;
+            
             if(damage <= 0)
             {
                 damage = 1;
@@ -134,18 +152,23 @@ namespace GameContents
                 DamageValue = (int)damage,
             };
 
-            double hit = battle.GetRandomGenerator().NextDouble() * 100;
+            double dodgeValue = battle.GetRandomGenerator().NextDouble() * 100;
 
-            if (hit > _invoker.UnitStats.HitRate)
+            var levelDiff = target.UnitInfo.Level - _invoker.UnitInfo.Level;
+            var levelDodge = 1.0;
+            if(levelDiff > 0)
             {
-                damageData.IsDodge = true;
-                damageData.DamageValue = 0;
-                target.OnDamaged(_invoker, damageData);
-                return;
+                levelDodge += levelDiff * 0.02;
+            }
+            else
+            {
+                levelDodge += levelDiff * 0.01;
             }
 
-            double dodge = battle.GetRandomGenerator().NextDouble() * 100;
-            if(dodge < target.UnitStats.DodgeRate)
+            var dodgeRate = target.UnitStats.DodgeRate * levelDodge;
+            var hitRate = _invoker.UnitStats.HitRate - dodgeRate;
+
+            if(dodgeValue > hitRate)
             {
                 damageData.IsDodge = true;
                 damageData.DamageValue = 0;
@@ -157,7 +180,7 @@ namespace GameContents
             block += _invoker.UnitStats.BlockPenetration;
             if (block <= target.UnitStats.BlockRate)
             {
-                damageData.IsDodge = true;
+                damageData.IsBlock = true;
                 damageData.DamageValue = 0;
                 target.OnDamaged(_invoker, damageData);
                 return;

@@ -3,6 +3,7 @@ using Kosher.Framework;
 using Kosher.Log;
 using Kosher.Sockets;
 using Kosher.Sockets.Interface;
+using ShareLogic;
 
 namespace BA.GameServer.Modules.Stun
 {
@@ -36,8 +37,8 @@ namespace BA.GameServer.Modules.Stun
         {
             Task.Run(async () =>
             {
-                _server.Start("", 31100, ProtocolType.Udp);
-                LogHelper.Debug($"stun server start... port : 31100 ");
+                _server.Start("", ConstHelper.StunServerPort, ProtocolType.Udp);
+                LogHelper.Debug($"stun server start... port : {ConstHelper.StunServerPort}");
                 isActive = true;
                 while (isActive)
                 {
@@ -49,7 +50,7 @@ namespace BA.GameServer.Modules.Stun
         {
             return Tuple.Create<IPacketSerializer, IPacketDeserializer, ICollection<ISessionComponent>>(
                 new PacketSerializer(),
-                new PacketDeserializer(),
+                new DefaultPacketDeserializer(),
                 new List<ISessionComponent>() { }
                 );
         }

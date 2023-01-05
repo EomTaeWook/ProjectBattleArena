@@ -1,6 +1,7 @@
-﻿using BA.GameServer.Battle;
+﻿using BA.GameServer.Game;
 using DataContainer.Generated;
 using GameContents;
+using Kosher.Log;
 using TemplateContainers;
 
 namespace TestConsole
@@ -24,7 +25,8 @@ namespace TestConsole
                 Level = 1,
             } };
 
-            var battle = new Battle(new BattleEventHandler(),
+            var eventHandler = new BattleEventHandler();
+            var battle = new Battle(eventHandler,
                 DateTime.Now.Ticks.GetHashCode(),
                 ally,
                 enemy);
@@ -36,6 +38,21 @@ namespace TestConsole
                     break;
                 }
                 battle.ProcessTicks();
+
+                var events = eventHandler.InvokedEvents();
+
+                foreach(var item in events)
+                {
+                    var characterName = "null";
+
+                    if(item.Item1 != null)
+                    {
+                        characterName = item.Item1.UnitInfo.CharacterName;
+                    }
+                    Console.WriteLine($"{characterName} - {item.Item2.GetType().Name}");
+                }
+                eventHandler.InvokedEvents().Clear();
+
             }
         }
         private static void TemplateLoad()

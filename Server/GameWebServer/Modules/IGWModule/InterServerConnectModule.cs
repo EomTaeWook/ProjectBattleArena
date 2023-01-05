@@ -4,7 +4,6 @@ using Kosher.Framework;
 using Kosher.Log;
 using Kosher.Sockets;
 using Kosher.Sockets.Interface;
-using Microsoft.AspNetCore.Hosting.Server;
 
 namespace GameWebServer.Modules.IGWModule
 {
@@ -36,6 +35,10 @@ namespace GameWebServer.Modules.IGWModule
         private int connectd = 0;
         public InterServerClientModule()
         {
+        }
+        public void Init()
+        {
+            InterServerFuncHandler.Initialization();
         }
         public void Connect()
         {

@@ -3,6 +3,7 @@ using Kosher.Framework;
 using Kosher.Log;
 using Protocol.InterAndGWS;
 using Protocol.InterAndGWS.ShareModels;
+using ShareLogic.Network;
 using System.Diagnostics;
 using System.Text;
 
@@ -40,7 +41,7 @@ namespace BA.InterServer.Manager
             {
                 packetData.ServerOn = false;
             }
-            var packet = ServerModule.Packet.MakePacket(IGWSProtocol.GameWebServerInspection, packetData);
+            var packet = Packet.MakePacket((ushort)IGWSProtocol.GameWebServerInspection, packetData);
 
             InterServerModule.Instance.Broadcast(packet);
 

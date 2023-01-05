@@ -31,6 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Kosher.Sockets">
+      <HintPath>..\..\ShareDll\Kosher.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ShareDll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -45,8 +52,12 @@
     <Compile Include="CharacterStatHelper.cs" />
     <Compile Include="ConstHelper.cs" />
     <Compile Include="Cryptogram.cs" />
+    <Compile Include="Incremental.cs" />
+    <Compile Include="Network\EnumCallbackBinderCreator.cs" />
+    <Compile Include="Network\CallbackBinder.cs" />
     <Compile Include="HttpRequestHelper.cs" />
     <Compile Include="LevelUpHelper.cs" />
+    <Compile Include="Network\Packet.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator.cs" />
@@ -61,7 +72,9 @@
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\$(ConfigurationName)\$(TargetFileName)"
 IF $(ConfigurationName) == Release (
-copy "$(TargetPath)" "$(SolutionDir)..\Server\Dll\$(TargetFileName)"
+copy "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\Release\$(TargetFileName)"
+copy "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\Debug\$(TargetFileName)"
+copy "$(TargetPath)" "$(SolutionDir)..\ShareDll\$(TargetFileName)"
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

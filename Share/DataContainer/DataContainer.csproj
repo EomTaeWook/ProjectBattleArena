@@ -60,7 +60,7 @@
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\$(ConfigurationName)\$(TargetFileName)"
 IF $(ConfigurationName) == Release (
-copy "$(TargetPath)" "$(SolutionDir)..\Server\Dll\$(TargetFileName)"
+copy "$(TargetPath)" "$(SolutionDir)..\ShareDll\$(TargetFileName)"
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

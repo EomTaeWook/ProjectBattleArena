@@ -6,6 +6,8 @@ using Kosher.Sockets;
 using Kosher.Sockets.Interface;
 using Protocol.InterAndGWS;
 using Protocol.InterAndGWS.ShareModels;
+using ShareLogic;
+using ShareLogic.Network;
 
 namespace BA.InterServer.ServerModule
 {
@@ -23,7 +25,7 @@ namespace BA.InterServer.ServerModule
             {
                 PrivateKey = SchedulerSecurityManager.Instance.LatestPrivateKey
             };
-            var packet = ServerModule.Packet.MakePacket(IGWSProtocol.ChangedSecurityKey, packetData);
+            var packet = Packet.MakePacket((ushort)IGWSProtocol.ChangedSecurityKey, packetData);
             session.Send(packet);
         }
 
@@ -47,8 +49,8 @@ namespace BA.InterServer.ServerModule
         {
             Task.Run(async () =>
             {
-                _server.Start(31000);
-                LogHelper.Debug($"inter server start... port : 31000 ");
+                _server.Start(ConstHelper.InterServerPort);
+                LogHelper.Debug($"inter server start... port : {ConstHelper.InterServerPort}");
                 isActive = true;
                 while (isActive)
                 {

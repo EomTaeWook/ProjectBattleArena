@@ -19,6 +19,15 @@ namespace GameContents
         {
         }
     }
+    public class EndBattleEvent : BattleEvent
+    {
+        public bool IsWin { get; private set; }
+        public EndBattleEvent(bool isWin, int id, int ticks) : base(id, ticks)
+        {
+            IsWin = isWin;
+        }
+    }
+
     public class StartSkillEvent : BattleEvent
     {
         public SkillsTemplate SkillsTemplate { get; private set; }
@@ -39,6 +48,17 @@ namespace GameContents
         {
             Damage = damage;
             ShildDamaged = shildDamaged;
+        }
+    }
+    public class DieEvent : BattleEvent
+    {
+        public Unit Attacker { get; private set; }
+        public DieEvent(
+            Unit attacker,
+            int id,
+            int ticks) : base(id, ticks)
+        {
+            Attacker = attacker;
         }
     }
     public class AddAbnormalStatusEvent : BattleEvent

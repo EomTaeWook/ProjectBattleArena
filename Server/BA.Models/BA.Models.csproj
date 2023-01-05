@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Protocol.GameWebServerAndClient\Protocol.GameWebServerAndClient.csproj" />
+    <Reference Include="Protocol.GameWebServerAndClient">
+      <HintPath>..\..\ShareDll\Protocol.GameWebServerAndClient.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
-﻿using BA.GameServer.Modules.Stun;
+﻿using BA.GameServer.Modules.Game;
+using BA.GameServer.Modules.Stun;
+using BA.Repository.Helper;
 using DataContainer.Generated;
 using Kosher.Extensions.Log;
 using Kosher.Log;
@@ -19,6 +21,11 @@ namespace BA.GameServer
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException; ;
 
             TemplateLoad();
+
+            DBHelper.Build();
+
+            GameServerModule.Init();
+            GameServerModule.Instance.Start();
 
             StunModule.Instance.Start();
         }

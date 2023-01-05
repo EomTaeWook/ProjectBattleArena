@@ -5,20 +5,15 @@ using Kosher.Sockets.Interface;
 using Protocol.InterAndGWS;
 using Protocol.InterAndGWS.ShareModels;
 using ShareLogic;
+using ShareLogic.Network;
 using System.Text.Json;
 
 namespace GameWebServer.Modules.IGWModule.Handler
 {
-    public class InterServerFuncHandler : HandlerBinder<IGWSProtocol, string>, ISessionComponent
+    public class InterServerFuncHandler : EnumCallbackBinder<InterServerFuncHandler, IGWSProtocol, string>, ISessionComponent
     {
         private Session _session;
-        public InterServerFuncHandler()
-        {
-            for(var e = IGWSProtocol.GameWebServerInspection; e< IGWSProtocol.Max; ++e)
-            {
-                BindCallback(e);
-            }
-        }
+
         public void Process(IGWSProtocol protocol, string body)
         {
             if(CheckProtocol(protocol) == false)

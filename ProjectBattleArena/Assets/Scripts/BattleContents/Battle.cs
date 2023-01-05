@@ -12,6 +12,7 @@ namespace GameContents
         private IBattleEventHandler _battleEventHandler;
         private int _battleEventIndex = 0;
         private readonly int[,] _map = new int[4, 4];
+        private bool _isBattleEnd = false;
         public int GetMapMaxX()
         {
             return 4;
@@ -19,6 +20,10 @@ namespace GameContents
         public int GetMapMaxY()
         {
             return 4;
+        }
+        public bool IsWin()
+        {
+            return _enemyParty.GetAliveTargets().Count == 0;
         }
         public Battle(IBattleEventHandler battleEventHandler,
             int randomSeed,
@@ -56,16 +61,44 @@ namespace GameContents
 
         public void ProcessTicks()
         {
+            if(_isBattleEnd == true)
+            {
+                return;
+            }
+
             var elapsedTime = TimeSpan.FromTicks(DateTime.Now.Ticks - this._startedTime).TotalMilliseconds;
 
             int elapsedTickCount = (int)(elapsedTime / DefaultPerTicks);
 
             for (int i = 0; i < elapsedTickCount; ++i)
             {
-                TickPassedEvent tickPassedEvent = new TickPassedEvent(GetBattleIndex(), _currentTicks);
+                TickPassedEvent tickPassedEvent = new TickPassedEvent(
+                    GetBattleIndex(),
+                    _currentTicks);
                 _battleEventHandler.Process(tickPassedEvent);
                 _currentTicks++;
                 DoAction();
+
+                if(_allyParty.GetAliveTargets().Count == 0)
+                {
+                    EndBattleEvent endBattleEvent = new EndBattleEvent(
+                        false,
+                        GetBattleIndex(),
+                        _currentTicks);
+                    _battleEventHandler.Process(endBattleEvent);
+                    _isBattleEnd = true;
+                    break;
+                }
+                else if(_enemyParty.GetAliveTargets().Count == 0)
+                {
+                    EndBattleEvent endBattleEvent = new EndBattleEvent(
+                        true,
+                        GetBattleIndex(),
+                        _currentTicks);
+                    _battleEventHandler.Process(endBattleEvent);
+                    _isBattleEnd = true;
+                    break;
+                }
             }
         }
         public IBattleEventHandler GetBattleEventHandler()
@@ -74,24 +107,13 @@ namespace GameContents
         }
         public bool IsBattleEnd()
         {
-            var survivingAllies = _allyParty.GetAliveTargets();
-
-            var survivingEnemies = _enemyParty.GetAliveTargets();
-
-            if (survivingAllies.Count == 0)
-            {
-                return true;
-            }
-            else if (survivingEnemies.Count == 0)
-            {
-                return true;
-            }
-            return false;
+            return _isBattleEnd;
         }
         private void DoAction()
         {
-            _allyParty.DoAction(_currentTicks);
-            _enemyParty.DoAction(_currentTicks);
+            _allyParty.DoAction();
+
+            _enemyParty.DoAction();
         }
 
         public Party GetOpponentParty(Unit unit)

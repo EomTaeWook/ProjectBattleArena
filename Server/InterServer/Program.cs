@@ -24,7 +24,6 @@ namespace InterServer
 
             var task = SchedulerSecurityManager.Instance.Start();
             CommandManager.Instance.Run();
-
             InterServerModule.Instance.Start();
         }
 
