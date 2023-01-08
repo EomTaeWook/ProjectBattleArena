@@ -1,40 +1,58 @@
-﻿using System.Collections.Generic;
+﻿using GameContents;
+using System;
+using System.Collections.Generic;
 
 public class BattleEventHandler : IBattleEventHandler
 {
-    private List<BattleEvent> _battleEvents = new List<BattleEvent>();
-    public void Process(TickPassedEvent tickPassedEvent)
-    {
-        _battleEvents.Add(tickPassedEvent);
-    }
-
-    public void Process(StartSkillEvent startSkillEvent)
-    {
-        _battleEvents.Add(startSkillEvent);
-    }
-
-    public void Process(EndSkillEvent endSkillEvent)
-    {
-        _battleEvents.Add(endSkillEvent);
-    }
-
-    public void Process(DamageEvent damageEvent)
-    {
-        _battleEvents.Add(damageEvent);
-    }
-
-    public void Process(RemoveAbnormalStatusEvent removeAbnormalStatusEvent)
-    {
-        _battleEvents.Add(removeAbnormalStatusEvent);
-    }
-    public void Process(AddAbnormalStatusEvent addAbnormalStatusEvent)
-    {
-        _battleEvents.Add(addAbnormalStatusEvent);
-    }
-
-    public List<BattleEvent> GetInvokedEvents()
+    private readonly List<Tuple<Unit, BattleEvent>> _battleEvents = new List<Tuple<Unit, BattleEvent>>();
+    
+    public List<Tuple<Unit, BattleEvent>> GetInvokedEvents()
     {
         return _battleEvents;
     }
 
+    public void Process(Unit unit, StartSkillEvent startSkillEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, startSkillEvent));
+    }
+
+    public void Process(Unit unit, EndSkillEvent endSkillEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, endSkillEvent));
+    }
+
+    public void Process(Unit unit, DamageEvent damageEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, damageEvent));
+    }
+
+    public void Process(Unit unit, RemoveAbnormalStatusEvent removeAbnormalStatusEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, removeAbnormalStatusEvent));
+    }
+
+    public void Process(Unit unit, AddAbnormalStatusEvent addAbnormalStatusEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, addAbnormalStatusEvent));
+    }
+
+    public void Process(Unit unit, DieEvent dieEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, dieEvent));
+    }
+
+    public void Process(EndBattleEvent endBattleEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(null, endBattleEvent));
+    }
+
+    public void Process(Unit unit, MoveEvent moveEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(null, moveEvent));
+    }
+
+    public void Process(TickPassedEvent tickPassedEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(null, tickPassedEvent));
+    }
 }

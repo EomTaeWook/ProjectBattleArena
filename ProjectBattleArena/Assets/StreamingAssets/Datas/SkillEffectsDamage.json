@@ -3,5 +3,10 @@
     "Id": 1000,
     "Name": "BasicAttackDamage",
     "HitFactor": 100
+  },
+  {
+    "Id": 1001,
+    "Name": "FireballDamage",
+    "HitFactor": 160
   }
 ]

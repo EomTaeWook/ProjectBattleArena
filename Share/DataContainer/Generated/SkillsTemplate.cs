@@ -12,6 +12,8 @@ namespace DataContainer.Generated
         public List<string> Effect { get; set; } = new List<string>();
         public List<SkillEffectsTemplate> EffectRef { get; set; } = new List<SkillEffectsTemplate>();
         public int Range { get; set; }
+        public bool IsCasting { get; set; }
+        public int CastingTime { get; set; }
         public override void MakeRefTemplate()
         {
             foreach(var EffectItem in Effect)

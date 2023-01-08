@@ -57,6 +57,11 @@
         "Is": "Damage",
         "Ref": "SkillEffectsDamage",
         "RefField": "Name"
+      },
+      {
+        "Is": "AbnormalStatus",
+        "Ref": "SkillEffectsAbnormalStatus",
+        "RefField": "Name"
       }
     ]
   }

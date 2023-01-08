@@ -49,6 +49,7 @@
     <Compile Include="Generated\BaseTemplate.cs" />
     <Compile Include="Generated\CharacterTemplate.cs" />
     <Compile Include="Generated\LevelUpTemplate.cs" />
+    <Compile Include="Generated\SkillEffectsAbnormalStatusTemplate.cs" />
     <Compile Include="Generated\SkillEffectsDamageTemplate.cs" />
     <Compile Include="Generated\SkillEffectsTemplate.cs" />
     <Compile Include="Generated\SkillsTemplate.cs" />

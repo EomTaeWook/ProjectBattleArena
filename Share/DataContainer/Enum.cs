@@ -26,7 +26,7 @@ namespace DataContainer
     public enum AbnormalStatusType
     {
         Shield,
-
+        ProportionalDamageFromLostHp,
         Max,
     }
 

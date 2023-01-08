@@ -13,6 +13,7 @@ namespace DataContainer.Generated
             TemplateContainer<CharacterTemplate>.Load(path, "Character.json");
             TemplateContainer<LevelUpTemplate>.Load(path, "LevelUp.json");
             TemplateContainer<SkillEffectsTemplate>.Load(path, "SkillEffects.json");
+            TemplateContainer<SkillEffectsAbnormalStatusTemplate>.Load(path, "SkillEffectsAbnormalStatus.json");
             TemplateContainer<SkillEffectsDamageTemplate>.Load(path, "SkillEffectsDamage.json");
             TemplateContainer<SkillsTemplate>.Load(path, "Skills.json");
         }
@@ -21,6 +22,7 @@ namespace DataContainer.Generated
             TemplateContainer<CharacterTemplate>.MakeRefTemplate();
             TemplateContainer<LevelUpTemplate>.MakeRefTemplate();
             TemplateContainer<SkillEffectsTemplate>.MakeRefTemplate();
+            TemplateContainer<SkillEffectsAbnormalStatusTemplate>.MakeRefTemplate();
             TemplateContainer<SkillEffectsDamageTemplate>.MakeRefTemplate();
             TemplateContainer<SkillsTemplate>.MakeRefTemplate();
         }

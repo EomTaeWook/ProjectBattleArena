@@ -1,13 +1,17 @@
-﻿namespace GameContents
+﻿using DataContainer.Generated;
+
+namespace GameContents
 {
     public class CastingSkill
     {
         private int _castingTick = 0;
-        private UnitSkill _unitSkill;
-        public CastingSkill(UnitSkill unitSkill)
+        public UnitSkill UnitSkill { get; private set; }
+        public CastingSkill(UnitSkill unitSkill, int castingTicks)
         {
-            _unitSkill = unitSkill;
+            UnitSkill = unitSkill;
+            _castingTick = castingTicks;
         }
+        
         public void DecreaseTick()
         {
             _castingTick--;

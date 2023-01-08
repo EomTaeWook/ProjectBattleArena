@@ -5,5 +5,19 @@
     "TargetType": "HighAggro",
     "EffectType": "Damage",
     "EffectPart": "BasicAttackDamage"
+  },
+  {
+    "Id": 1001,
+    "Name": "ProportionalDamageFromLostHpEffect",
+    "TargetType": "HighAggro",
+    "EffectType": "AbnormalStatus",
+    "EffectPart": "ProportionalDamageFromLostHp"
+  },
+  {
+    "Id": 1001,
+    "Name": "FireballEffect",
+    "TargetType": "HighAggro",
+    "EffectType": "Damage",
+    "EffectPart": "FireballDamage"
   }
 ]

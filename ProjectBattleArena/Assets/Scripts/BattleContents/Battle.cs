@@ -5,7 +5,7 @@ namespace GameContents
 {
     public class Battle
     {
-        private const int DefaultPerTicks = 33; //33ms;
+        public const int DefaultPerTicks = 33; //33ms;
         private readonly RandomGenerator _randomGenerator;
         private long _startedTime;
         private int _currentTicks;

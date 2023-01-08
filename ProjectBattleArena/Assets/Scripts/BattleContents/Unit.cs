@@ -27,8 +27,6 @@ namespace GameContents
         private UnitSkill baseAttackSkill;
         private Battle _battle;
 
-        private const int AddDefaultTicks = 3;
-
         public float GetAttackedRemainTicks()
         {
             return _attackedRemainTicks;
@@ -119,11 +117,6 @@ namespace GameContents
             if (IsCasting() == true)
             {
                 _castingSkill.DecreaseTick();
-
-                if (_castingSkill.IsFinished() == true)
-                {
-                    _castingSkill = null;
-                }
             }
         }
         public UnitSkill GetSkillsOfNextIndex()
@@ -151,8 +144,23 @@ namespace GameContents
                 return;
             }
 
-            var nextSkill = GetSkillsOfNextIndex();
+            if(_castingSkill.IsFinished()== false)
+            {
+                return;
+            }
 
+            UnitSkill nextSkill;
+
+            if (_castingSkill.IsFinished() == true)
+            {
+                nextSkill = _castingSkill.UnitSkill;
+                _castingSkill = null;
+            }
+            else
+            {
+                nextSkill = GetSkillsOfNextIndex();
+            }
+            
             if(nextSkill == null)
             {
                 nextSkill = baseAttackSkill;
@@ -203,7 +211,7 @@ namespace GameContents
                                                 _battle.GetBattleIndex(),
                                                 _battle.GetCurrentTicks()));
 
-                _attackedRemainTicks = AddDefaultTicks;
+                _attackedRemainTicks = ConstHelper.BaseAttackTicks;
 
                 return;
             }
@@ -217,7 +225,14 @@ namespace GameContents
             {
                 _attackStackedPoint = 0;
                 _usedSkillIndex++;
-                UseSkill(nextSkill);
+                if(nextSkill.SkillsTemplate.IsCasting == true)
+                {
+                    UseCastingSkill(nextSkill);
+                }
+                else
+                {
+                    UseSkill(nextSkill);
+                }
             }
         }
 
@@ -227,7 +242,7 @@ namespace GameContents
 
             _battle.GetBattleEventHandler().Process(this, startSkillEvent);
 
-            _attackedRemainTicks = AddDefaultTicks * (UnitStats.AttackSpeed / 100);
+            _attackedRemainTicks = ConstHelper.BaseAttackTicks * (UnitStats.AttackSpeed / 100);
 
             unitSkill.Invoke(this._battle);
 
@@ -235,7 +250,20 @@ namespace GameContents
 
             _battle.GetBattleEventHandler().Process(this, endSkillEvent);
         }
+        private void UseCastingSkill(UnitSkill castingSkill)
+        {
+            var skill = new CastingSkill(castingSkill, castingSkill.SkillsTemplate.CastingTime / Battle.DefaultPerTicks);
 
+            _castingSkill = skill;
+
+            StartSkillEvent startSkillEvent = new StartSkillEvent(skill.UnitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
+
+            _battle.GetBattleEventHandler().Process(this, startSkillEvent);
+            
+            EndSkillEvent endSkillEvent = new EndSkillEvent(skill.UnitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
+
+            _battle.GetBattleEventHandler().Process(this, endSkillEvent);
+        }
 
         public void OnDamaged(Unit attacker, Damage damage)
         {

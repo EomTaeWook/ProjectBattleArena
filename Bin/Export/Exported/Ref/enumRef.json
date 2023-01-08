@@ -21,6 +21,7 @@
     ],
     "AbnormalStatusType": [
       "Shield",
+      "ProportionalDamageFromLostHp",
       "Max"
     ],
     "TargetType": [

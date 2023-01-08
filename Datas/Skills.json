@@ -6,7 +6,9 @@
     "Effect": [
       "BasicAttackEffect"
     ],
-    "Range": 0
+    "Range": 0,
+    "IsCasting": false,
+    "CastingTime": 0
   },
   {
     "Id": 1001,
@@ -15,7 +17,9 @@
     "Effect": [
       "BasicAttackEffect"
     ],
-    "Range": 1
+    "Range": 1,
+    "IsCasting": false,
+    "CastingTime": 0
   },
   {
     "Id": 1002,
@@ -24,7 +28,9 @@
     "Effect": [
       "BasicAttackEffect"
     ],
-    "Range": 0
+    "Range": 0,
+    "IsCasting": false,
+    "CastingTime": 0
   },
   {
     "Id": 1003,
@@ -33,6 +39,20 @@
     "Effect": [
       "BasicAttackEffect"
     ],
-    "Range": 1
+    "Range": 1,
+    "IsCasting": false,
+    "CastingTime": 0
+  },
+  {
+    "Id": 1004,
+    "Name": "Fireball",
+    "NeedCost": 3,
+    "Effect": [
+      "ProportionalDamageFromLostHpEffect",
+      "FireballEffect"
+    ],
+    "Range": 1,
+    "IsCasting": true,
+    "CastingTime": 1000
   }
 ]

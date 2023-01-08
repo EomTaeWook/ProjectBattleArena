@@ -1,0 +1,7 @@
+[
+  {
+    "Id": 1000,
+    "Name": "ProportionalDamageFromLostHp",
+    "AbnormalStatusType": "ProportionalDamageFromLostHp"
+  }
+]
