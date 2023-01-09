@@ -1,4 +1,6 @@
 ﻿using GameContents;
+using System;
+using System.Collections.Generic;
 
 namespace BA.GameServer.Game
 {

@@ -1,6 +1,7 @@
 ﻿using DataContainer;
 using DataContainer.Generated;
 using ShareLogic;
+using System.Collections.Generic;
 
 namespace GameContents
 {
@@ -27,6 +28,9 @@ namespace GameContents
         private UnitSkill baseAttackSkill;
         private Battle _battle;
 
+        private readonly List<AbnormalStatus> _abnormalStatusHolder = new List<AbnormalStatus>();
+        private readonly List<AbnormalStatus> _oneTimeAbnormalStatusHolder = new List<AbnormalStatus>();
+
         public float GetAttackedRemainTicks()
         {
             return _attackedRemainTicks;
@@ -50,6 +54,96 @@ namespace GameContents
                 _aggroGauge = ConstHelper.HealerAggro;
             }
         }
+        public void AddOneTimeUsedAbnormalStatus(AbnormalStatus abnormalStatus)
+        {
+            AbnormalStatus find = null;
+            foreach (var item in _oneTimeAbnormalStatusHolder)
+            {
+                if (item.AbnormalStatusType == abnormalStatus.AbnormalStatusType)
+                {
+                    find = item;
+                    break;
+                }
+            }
+            if (find == null)
+            {
+                _oneTimeAbnormalStatusHolder.Add(abnormalStatus);
+            }
+        }
+        public AbnormalStatus GetOneTimeUsedAbnormalStatus(AbnormalStatusType abnormalStatusType)
+        {
+            foreach(var item in _oneTimeAbnormalStatusHolder)
+            {
+                if(item.AbnormalStatusType == item.AbnormalStatusType)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        public void RemoveOneTimeUsedAbnormalStatus(AbnormalStatus abnormalStatus)
+        {
+            _oneTimeAbnormalStatusHolder.Remove(abnormalStatus);
+        }
+        public void AddAbnormalStatus(AbnormalStatus abnormalStatus)
+        {
+            AbnormalStatus find = null;
+            foreach(var item in _abnormalStatusHolder)
+            {
+                if(item.AbnormalStatusType == abnormalStatus.AbnormalStatusType)
+                {
+                    find = item;
+                    break;
+                }
+            }
+            if(find == null)
+            {
+                _abnormalStatusHolder.Add(abnormalStatus);
+            }
+            else
+            {
+                var duration = abnormalStatus.Duration > find.Duration ? abnormalStatus.Duration : find.Duration;
+                var value = abnormalStatus.Value > find.Value ? abnormalStatus.Value : find.Value;
+                find.Refresh(value, duration);
+            }
+        }
+        public void RemoveAbnormalStatus(AbnormalStatusType abnormalStatusType)
+        {
+            AbnormalStatus find = null;
+            foreach (var item in _abnormalStatusHolder)
+            {
+                if (item.AbnormalStatusType == abnormalStatusType)
+                {
+                    find = item;
+                    break;
+                }
+            }
+            _abnormalStatusHolder.Remove(find);
+        }
+        public bool IsOnAbnormalStatus(AbnormalStatusType abnormalStatusType)
+        {
+            foreach (var item in _abnormalStatusHolder)
+            {
+                if(item.AbnormalStatusType == abnormalStatusType)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public AbnormalStatus GetAbnormalStatus(AbnormalStatusType abnormalStatusType)
+        {
+            foreach (var item in _abnormalStatusHolder)
+            {
+                if (item.AbnormalStatusType == abnormalStatusType)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
         public void Move(int diffX, int diffY)
         {
             Position.X += diffX;
@@ -117,6 +211,20 @@ namespace GameContents
             if (IsCasting() == true)
             {
                 _castingSkill.DecreaseTick();
+            }
+
+            var removeAbnormalStatus = new List<AbnormalStatus>();
+            foreach (var item in _abnormalStatusHolder)
+            {
+                item.DecreaseTicks();
+                if(item.Duration <=0)
+                {
+                    removeAbnormalStatus.Add(item);
+                }
+            }
+            foreach(var remove in removeAbnormalStatus)
+            {
+                _abnormalStatusHolder.Remove(remove);
             }
         }
         public UnitSkill GetSkillsOfNextIndex()

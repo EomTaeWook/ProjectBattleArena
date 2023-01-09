@@ -74,15 +74,12 @@ namespace GameContents
     }
     public class AddAbnormalStatusEvent : BattleEvent
     {
-        public AbnormalStatusType AbnormalStatusType { get; private set; }
-        public int DurationTicks { get; private set; }
-        public AddAbnormalStatusEvent(AbnormalStatusType abnormalStatusType,
-            int durationTicks,
+        public AbnormalStatus AbnormalStatus { get; private set; }
+        public AddAbnormalStatusEvent(AbnormalStatus abnormalStatus,
             int id,
             int ticks) : base(id, ticks)
         {
-            DurationTicks = durationTicks;
-            AbnormalStatusType = abnormalStatusType;
+            AbnormalStatus = abnormalStatus;
         }
     }
     public class RemoveAbnormalStatusEvent : BattleEvent

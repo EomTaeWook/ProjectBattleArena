@@ -1,6 +1,9 @@
 ﻿using DataContainer.Generated;
-using Kosher.Log;
 using ShareLogic.Random;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace GameContents
 {
     public class Battle

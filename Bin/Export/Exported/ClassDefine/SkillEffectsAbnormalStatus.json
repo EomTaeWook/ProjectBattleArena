@@ -31,5 +31,16 @@
     "RefTemplateField": null,
     "ConditionField": null,
     "Conditions": []
+  },
+  {
+    "Name": "Duration",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": null,
+    "RefTemplateField": null,
+    "ConditionField": null,
+    "Conditions": []
   }
 ]

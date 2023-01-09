@@ -9,5 +9,6 @@ namespace DataContainer.Generated
     public partial class SkillEffectsAbnormalStatusTemplate : BaseTemplate
     {
         public DataContainer.AbnormalStatusType AbnormalStatusType { get; set; }
+        public int Duration { get; set; }
     }
 }

@@ -23,9 +23,9 @@ namespace GameContents
                 {
                     if (effect.EffectType == DataContainer.EffectType.Damage)
                     {
-                        var tempalte = TemplateContainer<SkillEffectsDamageTemplate>.Find(effect.EffectPart);
+                        var effectTemplate = TemplateContainer<SkillEffectsDamageTemplate>.Find(effect.EffectPart);
 
-                        InvokeDamageEffect(tempalte, target, battle);
+                        InvokeDamageEffect(effectTemplate, target, battle);
                     }
                     else if (effect.EffectType == DataContainer.EffectType.Buff)
                     {
@@ -33,14 +33,27 @@ namespace GameContents
                     }
                     else if (effect.EffectType == DataContainer.EffectType.AbnormalStatus)
                     {
-                        InvokeAbnormalStatusEffect();
+                        var effectTemplate = TemplateContainer<SkillEffectsAbnormalStatusTemplate>.Find(effect.EffectPart);
+
+                        InvokeAbnormalStatusEffect(effectTemplate, target, battle);
                     }
                 }
             }
         }
-        private void InvokeAbnormalStatusEffect()
+        private void InvokeAbnormalStatusEffect(SkillEffectsAbnormalStatusTemplate abnormalStatusTemplate, Unit target, Battle battle)
         {
+            if(abnormalStatusTemplate.AbnormalStatusType == DataContainer.AbnormalStatusType.ProportionalDamageFromLostHp)
+            {
+                var lostHpRate = target.UnitStats.Hp.CurrentHp * 1.0F / target.UnitStats.Hp.MaxHp;
 
+                AbnormalStatus abnormalStatus = new AbnormalStatus(
+                    SkillsTemplate,
+                    abnormalStatusTemplate.AbnormalStatusType,
+                    (int)lostHpRate,
+                    abnormalStatusTemplate.Duration);
+                target.AddOneTimeUsedAbnormalStatus(abnormalStatus);
+            }
+            
         }
         private void InvokeBuffEffect()
         {
@@ -69,6 +82,13 @@ namespace GameContents
             var random = battle.GetRandomGenerator().Next((int)(maxDamage - minDamage));
 
             double damage = minDamage + random;
+
+            var proportionalDamageFromLostHp = target.GetOneTimeUsedAbnormalStatus(DataContainer.AbnormalStatusType.ProportionalDamageFromLostHp);
+
+            if(proportionalDamageFromLostHp != null)
+            {
+                damage += (damage * proportionalDamageFromLostHp.Value);
+            }
 
             damage -= target.UnitStats.Defense;
 

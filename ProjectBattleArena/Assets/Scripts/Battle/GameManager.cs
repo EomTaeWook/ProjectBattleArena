@@ -1,4 +1,5 @@
 using Assets.Scripts.Internal;
+using GameContents;
 using Kosher.Coroutine;
 using Protocol.GameWebServerAndClient.ShareModels;
 using System.Collections;

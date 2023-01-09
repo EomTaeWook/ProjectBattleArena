@@ -1,4 +1,5 @@
 ﻿using DataContainer.Generated;
+using GameContents;
 using Kosher.Framework;
 using Protocol.GameWebServerAndClient.ShareModels;
 using ShareLogic;
