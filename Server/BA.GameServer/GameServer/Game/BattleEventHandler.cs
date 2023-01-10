@@ -55,5 +55,25 @@ namespace BA.GameServer.Game
         {
             _invokedEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, moveEvent));
         }
+
+        public void Process(Unit unit, StartSkillEffectEvent startSkillEffectEvent)
+        {
+            _invokedEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, startSkillEffectEvent));
+        }
+
+        public void Process(Unit unit, EndSkillEffectEvent endSkillEffectEvent)
+        {
+            _invokedEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, endSkillEffectEvent));
+        }
+
+        public void Process(Unit unit, StartCastingSkillEvent startCastingSkillEvent)
+        {
+            _invokedEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, startCastingSkillEvent));
+        }
+
+        public void Process(Unit unit, EndCastingSkillEvent endCastingSkillEvent)
+        {
+            _invokedEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, endCastingSkillEvent));
+        }
     }
 }

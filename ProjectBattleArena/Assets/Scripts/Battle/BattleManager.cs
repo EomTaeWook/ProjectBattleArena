@@ -67,6 +67,7 @@ public class BattleManager : Singleton<BattleManager>
             );
         return battle;
     }
+
     public Battle MakeBattle(int seed,
         CharacterData ally,
         CharacterData enemy)

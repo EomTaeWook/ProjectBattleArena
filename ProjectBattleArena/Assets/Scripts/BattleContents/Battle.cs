@@ -1,4 +1,5 @@
 ﻿using DataContainer.Generated;
+using ShareLogic;
 using ShareLogic.Random;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,12 @@ namespace GameContents
 {
     public class Battle
     {
-        public const int DefaultPerTicks = 33; //33ms;
         private readonly RandomGenerator _randomGenerator;
         private long _startedTime;
         private int _currentTicks;
         private readonly Party _allyParty;
         private readonly Party _enemyParty;
-        private IBattleEventHandler _battleEventHandler;
+        private readonly IBattleEventHandler _battleEventHandler;
         private int _battleEventIndex = 0;
         private readonly int[,] _map = new int[4, 4];
         private bool _isBattleEnd = false;
@@ -73,7 +73,7 @@ namespace GameContents
 
             var elapsedTime = TimeSpan.FromTicks(DateTime.Now.Ticks - this._startedTime).TotalMilliseconds;
 
-            int elapsedTickCount = (int)(elapsedTime / DefaultPerTicks);
+            int elapsedTickCount = (int)(elapsedTime / ConstHelper.DefaultPerTicks);
 
             for (int i = 0; i < elapsedTickCount; ++i)
             {

@@ -2,6 +2,7 @@
   "EnumNamespace": {
     "JobType": "DataContainer",
     "EffectType": "DataContainer",
+    "DamageEffectType": "DataContainer",
     "AbnormalStatusType": "DataContainer",
     "TargetType": "DataContainer",
     "AttackType": "DataContainer"
@@ -17,6 +18,11 @@
       "Damage",
       "Buff",
       "AbnormalStatus",
+      "Max"
+    ],
+    "DamageEffectType": [
+      "Normal",
+      "ProportionalDamageFromLostHp",
       "Max"
     ],
     "AbnormalStatusType": [

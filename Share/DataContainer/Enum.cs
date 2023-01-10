@@ -23,6 +23,15 @@ namespace DataContainer
         Max
     }
 
+    public enum DamageEffectType
+    {
+        Normal,
+        ProportionalDamageFromLostHp,
+
+        Max
+    }
+
+
     public enum AbnormalStatusType
     {
         Shield,

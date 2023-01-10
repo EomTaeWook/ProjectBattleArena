@@ -14,7 +14,7 @@
     "EffectPart": "ProportionalDamageFromLostHp"
   },
   {
-    "Id": 1001,
+    "Id": 1002,
     "Name": "FireballEffect",
     "TargetType": "HighAggro",
     "EffectType": "Damage",

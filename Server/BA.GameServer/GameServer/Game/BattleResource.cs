@@ -3,6 +3,8 @@ using DataContainer.Generated;
 using GameContents;
 using Protocol.GameWebServerAndClient.ShareModels;
 using ShareLogic;
+using System;
+using System.Collections.Generic;
 using TemplateContainers;
 
 namespace BA.GameServer.Game

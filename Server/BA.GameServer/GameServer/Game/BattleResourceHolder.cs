@@ -1,6 +1,7 @@
 ﻿using Kosher.Framework;
 using Protocol.GameWebServerAndClient.ShareModels;
 using ShareLogic;
+using System.Collections.Generic;
 
 namespace BA.GameServer.Game
 {

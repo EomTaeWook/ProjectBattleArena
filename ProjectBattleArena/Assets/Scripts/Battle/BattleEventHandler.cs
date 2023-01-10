@@ -55,4 +55,24 @@ public class BattleEventHandler : IBattleEventHandler
     {
         _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(null, tickPassedEvent));
     }
+
+    public void Process(Unit unit, StartSkillEffectEvent startSkillEffectEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(null, startSkillEffectEvent));
+    }
+
+    public void Process(Unit unit, EndSkillEffectEvent endSkillEffectEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(null, endSkillEffectEvent));
+    }
+
+    public void Process(Unit unit, StartCastingSkillEvent startCastingSkillEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, startCastingSkillEvent));
+    }
+
+    public void Process(Unit unit, EndCastingSkillEvent endCastingSkillEvent)
+    {
+        _battleEvents.Add(Tuple.Create<Unit, BattleEvent>(unit, endCastingSkillEvent));
+    }
 }

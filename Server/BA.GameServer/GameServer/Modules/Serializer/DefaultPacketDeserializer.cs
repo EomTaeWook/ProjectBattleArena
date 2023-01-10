@@ -1,5 +1,6 @@
 ﻿using Kosher.Collections;
 using Kosher.Sockets.Interface;
+using System;
 
 namespace BA.GameServer.Modules.Serializer
 {

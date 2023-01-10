@@ -1,5 +1,5 @@
 {
-  "ReadAssemblyPath": "..\\..\\..\\Share\\DataContainer\\bin\\Debug\\DataContainer.dll",
+  "ReadAssemblyPath": "..\\..\\..\\Share\\DataContainer\\bin\\Release\\DataContainer.dll",
   "ReadPath": "..\\..\\..\\Template\\",
   "OutputRefPath": "..\\Exported\\",
   "OutputTemplatePath": [

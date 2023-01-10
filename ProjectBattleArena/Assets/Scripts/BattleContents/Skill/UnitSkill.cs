@@ -17,6 +17,13 @@ namespace GameContents
         {
             foreach(var effect in SkillsTemplate.EffectRef)
             {
+                var startSkillEffect = new StartSkillEffectEvent(SkillsTemplate,
+                    effect,
+                    battle.GetBattleIndex(),
+                    battle.GetCurrentTicks());
+
+                battle.GetBattleEventHandler().Process(_invoker, startSkillEffect);
+
                 var targets = battle.GetSkillTargets(_invoker, SkillsTemplate.Range, effect);
 
                 foreach (var target in targets)
@@ -38,113 +45,43 @@ namespace GameContents
                         InvokeAbnormalStatusEffect(effectTemplate, target, battle);
                     }
                 }
+
+                var endSkillEffect = new EndSkillEffectEvent(SkillsTemplate,
+                    effect,
+                    battle.GetBattleIndex(),
+                    battle.GetCurrentTicks());
+
+                battle.GetBattleEventHandler().Process(_invoker, endSkillEffect);
             }
         }
         private void InvokeAbnormalStatusEffect(SkillEffectsAbnormalStatusTemplate abnormalStatusTemplate, Unit target, Battle battle)
         {
-            if(abnormalStatusTemplate.AbnormalStatusType == DataContainer.AbnormalStatusType.ProportionalDamageFromLostHp)
-            {
-                var lostHpRate = target.UnitStats.Hp.CurrentHp * 1.0F / target.UnitStats.Hp.MaxHp;
+            var abnormalStatusEffect = new AbnormalStatusEffect(SkillsTemplate,
+                abnormalStatusTemplate,
+                _invoker,
+                target,
+                battle);
 
-                AbnormalStatus abnormalStatus = new AbnormalStatus(
-                    SkillsTemplate,
-                    abnormalStatusTemplate.AbnormalStatusType,
-                    (int)lostHpRate,
-                    abnormalStatusTemplate.Duration);
-                target.AddOneTimeUsedAbnormalStatus(abnormalStatus);
-            }
-            
+            abnormalStatusEffect.Invoke();
         }
         private void InvokeBuffEffect()
         {
 
         }
 
-        private double GetMinDamage(double attack, int hitFactor)
-        {
-            return attack * (hitFactor * 0.95) / 100.0;
-        }
-        private double GetMaxDamage(double attack, int hitFactor)
-        {
-            return attack * hitFactor / 100.0;
-        }
+        
 
         private void InvokeDamageEffect(SkillEffectsDamageTemplate skillEffectsDamageTemplate,
                                         Unit target,
                                         Battle battle)
         {
-            var factor = skillEffectsDamageTemplate.HitFactor;
+            var damageEffect = new DamageEffect(SkillsTemplate,
+                skillEffectsDamageTemplate,
+                _invoker,
+                target,
+                battle);
 
-            var maxDamage = GetMaxDamage(_invoker.UnitStats.Attack, factor);
-
-            var minDamage = GetMinDamage(_invoker.UnitStats.Attack, factor);
-
-            var random = battle.GetRandomGenerator().Next((int)(maxDamage - minDamage));
-
-            double damage = minDamage + random;
-
-            var proportionalDamageFromLostHp = target.GetOneTimeUsedAbnormalStatus(DataContainer.AbnormalStatusType.ProportionalDamageFromLostHp);
-
-            if(proportionalDamageFromLostHp != null)
-            {
-                damage += (damage * proportionalDamageFromLostHp.Value);
-            }
-
-            damage -= target.UnitStats.Defense;
-
-            double critical = battle.GetRandomGenerator().NextDouble() * 100;
-
-            critical += target.UnitStats.CriticalResistance;
-
-            if (critical <= _invoker.UnitStats.CriticalRate)
-            {
-                damage = damage * 1 + _invoker.UnitStats.CriticalDamage;
-            }
-            
-            if(damage <= 0)
-            {
-                damage = 1;
-            }
-
-            var damageData = new Damage()
-            {
-                DamageValue = (int)damage,
-            };
-
-            double dodgeValue = battle.GetRandomGenerator().NextDouble() * 100;
-
-            var levelDiff = target.UnitInfo.Level - _invoker.UnitInfo.Level;
-            var levelDodge = 1.0;
-            if(levelDiff > 0)
-            {
-                levelDodge += levelDiff * 0.02;
-            }
-            else
-            {
-                levelDodge += levelDiff * 0.01;
-            }
-
-            var dodgeRate = target.UnitStats.DodgeRate * levelDodge;
-            var hitRate = _invoker.UnitStats.HitRate - dodgeRate;
-
-            if(dodgeValue > hitRate)
-            {
-                damageData.IsDodge = true;
-                damageData.DamageValue = 0;
-                target.OnDamaged(_invoker, damageData);
-                return;
-            }
-
-            double block = battle.GetRandomGenerator().NextDouble() * 100;
-            block += _invoker.UnitStats.BlockPenetration;
-            if (block <= target.UnitStats.BlockRate)
-            {
-                damageData.IsBlock = true;
-                damageData.DamageValue = 0;
-                target.OnDamaged(_invoker, damageData);
-                return;
-            }
-            target.OnDamaged(_invoker, damageData);
+            damageEffect.Invoke();
         }
     }
 }

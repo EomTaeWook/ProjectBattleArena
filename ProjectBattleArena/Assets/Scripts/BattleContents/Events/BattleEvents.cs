@@ -38,11 +38,37 @@ namespace GameContents
             NewPosition = newPosition;
         }
     }
-
+    public class StartSkillEffectEvent : BattleEvent
+    {
+        public SkillsTemplate SkillsTemplate { get; private set; }
+        public SkillEffectsTemplate SkillEffectsTemplate { get; private set; }
+        public StartSkillEffectEvent(SkillsTemplate template, SkillEffectsTemplate skillEffectsTemplate, int id, int ticks) : base(id, ticks)
+        {
+            SkillsTemplate = template;
+            SkillEffectsTemplate = skillEffectsTemplate;
+        }
+    }
+    public class EndSkillEffectEvent : BattleEvent
+    {
+        public SkillsTemplate SkillsTemplate { get; private set; }
+        public SkillEffectsTemplate SkillEffectsTemplate { get; private set; }
+        public EndSkillEffectEvent(SkillsTemplate template, SkillEffectsTemplate skillEffectsTemplate, int id, int ticks) : base(id, ticks)
+        {
+            SkillsTemplate = template;
+        }
+    }
     public class StartSkillEvent : BattleEvent
     {
         public SkillsTemplate SkillsTemplate { get; private set; }
         public StartSkillEvent(SkillsTemplate template, int id, int ticks) : base(id, ticks)
+        {
+            SkillsTemplate = template;
+        }
+    }
+    public class StartCastingSkillEvent : BattleEvent
+    {
+        public SkillsTemplate SkillsTemplate { get; private set; }
+        public StartCastingSkillEvent(SkillsTemplate template, int id, int ticks) : base(id, ticks)
         {
             SkillsTemplate = template;
         }
@@ -98,5 +124,12 @@ namespace GameContents
             SkillsTemplate = template;
         }
     }
-
+    public class EndCastingSkillEvent : BattleEvent
+    {
+        public SkillsTemplate SkillsTemplate { get; private set; }
+        public EndCastingSkillEvent(SkillsTemplate template, int id, int ticks) : base(id, ticks)
+        {
+            SkillsTemplate = template;
+        }
+    }
 }

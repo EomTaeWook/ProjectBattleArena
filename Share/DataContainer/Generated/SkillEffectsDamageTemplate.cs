@@ -9,5 +9,6 @@ namespace DataContainer.Generated
     public partial class SkillEffectsDamageTemplate : BaseTemplate
     {
         public int HitFactor { get; set; }
+        public DataContainer.DamageEffectType DamageEffectType { get; set; }
     }
 }

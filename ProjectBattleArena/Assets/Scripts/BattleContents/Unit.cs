@@ -54,37 +54,6 @@ namespace GameContents
                 _aggroGauge = ConstHelper.HealerAggro;
             }
         }
-        public void AddOneTimeUsedAbnormalStatus(AbnormalStatus abnormalStatus)
-        {
-            AbnormalStatus find = null;
-            foreach (var item in _oneTimeAbnormalStatusHolder)
-            {
-                if (item.AbnormalStatusType == abnormalStatus.AbnormalStatusType)
-                {
-                    find = item;
-                    break;
-                }
-            }
-            if (find == null)
-            {
-                _oneTimeAbnormalStatusHolder.Add(abnormalStatus);
-            }
-        }
-        public AbnormalStatus GetOneTimeUsedAbnormalStatus(AbnormalStatusType abnormalStatusType)
-        {
-            foreach(var item in _oneTimeAbnormalStatusHolder)
-            {
-                if(item.AbnormalStatusType == item.AbnormalStatusType)
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
-        public void RemoveOneTimeUsedAbnormalStatus(AbnormalStatus abnormalStatus)
-        {
-            _oneTimeAbnormalStatusHolder.Remove(abnormalStatus);
-        }
         public void AddAbnormalStatus(AbnormalStatus abnormalStatus)
         {
             AbnormalStatus find = null;
@@ -102,7 +71,7 @@ namespace GameContents
             }
             else
             {
-                var duration = abnormalStatus.Duration > find.Duration ? abnormalStatus.Duration : find.Duration;
+                var duration = abnormalStatus.DurationTicks > find.DurationTicks ? abnormalStatus.DurationTicks : find.DurationTicks;
                 var value = abnormalStatus.Value > find.Value ? abnormalStatus.Value : find.Value;
                 find.Refresh(value, duration);
             }
@@ -143,7 +112,6 @@ namespace GameContents
             }
             return null;
         }
-
         public void Move(int diffX, int diffY)
         {
             Position.X += diffX;
@@ -171,7 +139,6 @@ namespace GameContents
             {
                 _aggroGauge = minAggro;
             }
-
         }
         public void SetBattle(Battle battle)
         {
@@ -195,7 +162,10 @@ namespace GameContents
         {
             return _castingSkill != null;
         }
-
+        public void CancleCasting()
+        {
+            _castingSkill = null;
+        }
         public void OnTickPassed()
         {
             if (_attackedRemainTicks > 0)
@@ -208,26 +178,32 @@ namespace GameContents
                 _attackedRemainTicks = 0;
             }
 
-            if (IsCasting() == true)
-            {
-                _castingSkill.DecreaseTick();
-            }
-
             var removeAbnormalStatus = new List<AbnormalStatus>();
             foreach (var item in _abnormalStatusHolder)
             {
                 item.DecreaseTicks();
-                if(item.Duration <=0)
+                if (item.DurationTicks <= 0)
                 {
                     removeAbnormalStatus.Add(item);
                 }
             }
-            foreach(var remove in removeAbnormalStatus)
+
+            foreach (var remove in removeAbnormalStatus)
             {
                 _abnormalStatusHolder.Remove(remove);
             }
+            if (IsCasting() == true)
+            {
+                _castingSkill.DecreaseTick();
+
+                if (_castingSkill.IsFinished() == true)
+                {
+                    UseSkill(_castingSkill.UnitSkill);
+                    _castingSkill = null;
+                }
+            }
         }
-        public UnitSkill GetSkillsOfNextIndex()
+        private UnitSkill GetSkillsOfNextIndex()
         {
             if (_skillDatas.Count == 0)
             {
@@ -252,27 +228,14 @@ namespace GameContents
                 return;
             }
 
-            if(_castingSkill.IsFinished()== false)
+            if(IsCasting() == true)
             {
                 return;
             }
 
-            UnitSkill nextSkill;
+            UnitSkill nextSkill = GetSkillsOfNextIndex();
 
-            if (_castingSkill.IsFinished() == true)
-            {
-                nextSkill = _castingSkill.UnitSkill;
-                _castingSkill = null;
-            }
-            else
-            {
-                nextSkill = GetSkillsOfNextIndex();
-            }
-            
-            if(nextSkill == null)
-            {
-                nextSkill = baseAttackSkill;
-            }
+            nextSkill ??= baseAttackSkill;
 
             var canUsed = false;
             foreach(var item in nextSkill.SkillsTemplate.EffectRef)
@@ -319,8 +282,8 @@ namespace GameContents
                                                 _battle.GetBattleIndex(),
                                                 _battle.GetCurrentTicks()));
 
-                _attackedRemainTicks = ConstHelper.BaseAttackTicks;
 
+                _attackedRemainTicks = ConstHelper.BaseAttackTicks;
                 return;
             }
 
@@ -333,6 +296,7 @@ namespace GameContents
             {
                 _attackStackedPoint = 0;
                 _usedSkillIndex++;
+
                 if(nextSkill.SkillsTemplate.IsCasting == true)
                 {
                     UseCastingSkill(nextSkill);
@@ -360,17 +324,17 @@ namespace GameContents
         }
         private void UseCastingSkill(UnitSkill castingSkill)
         {
-            var skill = new CastingSkill(castingSkill, castingSkill.SkillsTemplate.CastingTime / Battle.DefaultPerTicks);
+            var skill = new CastingSkill(castingSkill, castingSkill.SkillsTemplate.CastingTime / ConstHelper.DefaultPerTicks);
 
             _castingSkill = skill;
 
-            StartSkillEvent startSkillEvent = new StartSkillEvent(skill.UnitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
+            StartCastingSkillEvent startCastingSkillEvent = new StartCastingSkillEvent(skill.UnitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
 
-            _battle.GetBattleEventHandler().Process(this, startSkillEvent);
-            
-            EndSkillEvent endSkillEvent = new EndSkillEvent(skill.UnitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
+            _battle.GetBattleEventHandler().Process(this, startCastingSkillEvent);
 
-            _battle.GetBattleEventHandler().Process(this, endSkillEvent);
+            EndCastingSkillEvent endCastingSkillEvent = new EndCastingSkillEvent(skill.UnitSkill.SkillsTemplate, _battle.GetBattleIndex(), _battle.GetCurrentTicks());
+
+            _battle.GetBattleEventHandler().Process(this, endCastingSkillEvent);
         }
 
         public void OnDamaged(Unit attacker, Damage damage)

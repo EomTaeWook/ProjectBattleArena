@@ -2,11 +2,13 @@
   {
     "Id": 1000,
     "Name": "BasicAttackDamage",
-    "HitFactor": 100
+    "HitFactor": 100,
+    "DamageEffectType": "Normal"
   },
   {
     "Id": 1001,
     "Name": "FireballDamage",
-    "HitFactor": 160
+    "HitFactor": 160,
+    "DamageEffectType": "ProportionalDamageFromLostHp"
   }
 ]

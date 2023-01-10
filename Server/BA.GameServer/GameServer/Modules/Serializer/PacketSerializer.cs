@@ -2,6 +2,7 @@
 using Kosher.Log;
 using Kosher.Sockets.Interface;
 using ShareLogic.Network;
+using System;
 
 namespace BA.GameServer.Modules.Serializer
 {

@@ -22,6 +22,10 @@ namespace TestConsole
             {
                 CharacterName = "test2",
                 CharacterTemplate = TemplateContainer<CharacterTemplate>.Find(1001),
+                EquippedSkillDatas = new List<SkillsTemplate>()
+                {
+                    TemplateContainer<SkillsTemplate>.Find("Fireball")
+                },
                 Level = 1,
             } };
 
@@ -49,7 +53,20 @@ namespace TestConsole
                     {
                         characterName = item.Item1.UnitInfo.CharacterName;
                     }
-                    Console.WriteLine($"{characterName} - {item.Item2.GetType().Name}");
+                    if(item.Item2 is TickPassedEvent)
+                    {
+                        continue;
+                    }
+                    Console.Write($"{characterName} - {item.Item2.GetType().Name}");
+                    if (item.Item2 is StartSkillEvent startSkillEvent)
+                    {
+                        Console.Write($" - {startSkillEvent.SkillsTemplate.Name} ");
+                    }
+                    else if(item.Item2 is StartCastingSkillEvent startCastingSkillEvent)
+                    {
+                        Console.Write($" - {startCastingSkillEvent.SkillsTemplate.Name} ");
+                    }
+                    Console.WriteLine();
                 }
                 eventHandler.InvokedEvents().Clear();
             }
