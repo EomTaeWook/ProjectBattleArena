@@ -4,6 +4,9 @@ using Kosher.Framework;
 using Kosher.Log;
 using Kosher.Sockets;
 using Kosher.Sockets.Interface;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Protocol.InterAndGWS;
+using System.Reflection;
 
 namespace GameWebServer.Modules.IGWModule
 {

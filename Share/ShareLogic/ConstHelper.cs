@@ -8,7 +8,6 @@
         public const int BaseAttackTicks = 1000 / DefaultPerTicks;
         public const int DefaultPerTicks = 33; //33ms
 
-
         public const int GameServerPort = 31200;
         public const int StunServerPort = 31100;
         public const int InterServerPort = 31000;

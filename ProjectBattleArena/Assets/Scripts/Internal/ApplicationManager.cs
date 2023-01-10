@@ -1,4 +1,5 @@
-﻿using Kosher.Framework;
+﻿using Assets.Scripts.Models;
+using Kosher.Framework;
 using Protocol.GameWebServerAndClient;
 using Protocol.GameWebServerAndClient.ShareModels;
 using ShareLogic;
@@ -10,17 +11,27 @@ namespace Assets.Scripts.Internal
 {
     internal class ApplicationManager : Singleton<ApplicationManager>
     {
-        private const string LocalUrl = @"http://localhost:10000";
-        private const string DevUrl = @"http://localhost:10000";
+        private const string LocalUrl = @"http://localhost:30000";
+        private const string DevUrl = @"http://13.125.232.85:30000";
 
         public string CurrentServerUrl { get; private set; }
         private Vector2Int _resolution = new Vector2Int(768, 1280);
         private int reqeustCount;
-        public void Init()
+        public void Init(ServerType serverType)
         {
             SetResolution(_resolution.x, _resolution.y);
 
-            CurrentServerUrl = LocalUrl;
+            switch(serverType)
+            {
+                case ServerType.Local:
+                    CurrentServerUrl = LocalUrl;
+                    break;
+                case ServerType.Dev:
+                    CurrentServerUrl = DevUrl;
+                    break;
+                default:
+                    throw new InvalidOperationException($"invalid server type : {serverType}");
+            }
         }
         private void SetResolution(int width, int height)
         {

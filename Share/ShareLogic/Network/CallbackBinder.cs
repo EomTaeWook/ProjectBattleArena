@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 
 namespace ShareLogic.Network
 {
-    public class CallbackBinder<TKey, TBody>
+    public class CallbackBinder<TKey, TBody> : ICallbackBinder<TKey, TBody>
     {
         private readonly Dictionary<TKey, Action<TBody>> _callbackMap = new Dictionary<TKey, Action<TBody>>();
 

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Internal;
+using Assets.Scripts.Models;
 using Assets.Scripts.Scenes;
 using DataContainer.Generated;
 using Kosher.Log;
@@ -11,7 +12,7 @@ using UnityEngine;
 public class TitleSceneController : SceneController<TitleSceneController>
 {
     TitleScene scene;
-
+    
     public TitleSceneController()
     {
         var logConfiguration = new LogConfiguration();
@@ -27,9 +28,9 @@ public class TitleSceneController : SceneController<TitleSceneController>
     {
         scene = baseScene as TitleScene;
     }
-    public void Init()
+    public void Init(ServerType serverType)
     {
-        ApplicationManager.Instance.Init();
+        ApplicationManager.Instance.Init(serverType);
         PlayerManager.Instance.LoadUserData();
     }
 

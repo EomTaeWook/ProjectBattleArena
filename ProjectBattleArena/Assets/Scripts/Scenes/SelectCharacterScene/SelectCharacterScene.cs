@@ -27,7 +27,7 @@ public class SelectCharacterScene : BaseScene<SelectCharacterSceneModel>
     public void OnGameStartClick()
     {
         SelectCharacterSceneController.Instance.Dispose();
-        SceneManager.Instance.LoadScene(Assets.Scripts.Models.SceneType.LobbyScene);
+        SceneManager.Instance.LoadScene(Assets.Scripts.Models.SceneType.MainScene);
     }
     public void RefreshCharacter()
     {

@@ -1,4 +1,4 @@
-﻿public class ArenaScene : BaseScene<ArenaSceneModel>
+﻿public class ArenaBattleScene : BaseScene<ArenaBattleSceneModel>
 {
     public override void OnAwakeScene()
     {

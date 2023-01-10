@@ -17,6 +17,7 @@ public class MainScene : BaseScene<MainSceneModel>
         if (this.SceneModel.Character != null)
         {
             this.SceneModel.Character.transform.SetParent(characterLayer.transform, false);
+            this.SceneModel.Character.gameObject.SetActive(isShow);
         }
         characterLayer.gameObject.SetActive(isShow);
     }
@@ -26,6 +27,7 @@ public class MainScene : BaseScene<MainSceneModel>
     }
     public override void OnDestroyScene()
     {
+        this.SceneModel.LobbySceneUI.Dispose();
     }
 
 }

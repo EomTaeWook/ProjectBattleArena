@@ -30,12 +30,21 @@ public class MainSceneController : SceneController<MainSceneController>
             scene.SceneModel.Character.Recycle();
             var templateId = CharacterManager.Instance.SelectedCharacterData.TemplateId;
             scene.SceneModel.Character = ResourceManager.Instance.LoadCharcterAsset(templateId);
+
             scene.CharacterUI(true);
         }
         else if(current == UIType.Battle)
         {
             scene.CharacterUI(false);
             scene.BattleUI(true);
+        }
+    }
+    public void Dispose()
+    {
+        if (scene.SceneModel.Character.IsNull() == false)
+        {
+            scene.SceneModel.Character.Recycle();
+            scene.SceneModel.Character = null;
         }
     }
 }

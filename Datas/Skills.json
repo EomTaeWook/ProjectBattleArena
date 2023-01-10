@@ -48,7 +48,6 @@
     "Name": "Fireball",
     "NeedCost": 3,
     "Effect": [
-      "ProportionalDamageFromLostHpEffect",
       "FireballEffect"
     ],
     "Range": 1,

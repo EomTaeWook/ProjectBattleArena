@@ -53,10 +53,11 @@
     <Compile Include="ConstHelper.cs" />
     <Compile Include="Cryptogram.cs" />
     <Compile Include="Incremental.cs" />
-    <Compile Include="Network\EnumCallbackBinderCreator.cs" />
+    <Compile Include="Network\EnumCallbackBinder.cs" />
     <Compile Include="Network\CallbackBinder.cs" />
     <Compile Include="HttpRequestHelper.cs" />
     <Compile Include="LevelUpHelper.cs" />
+    <Compile Include="Network\ICallbackBinder.cs" />
     <Compile Include="Network\Packet.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

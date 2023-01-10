@@ -1,13 +1,16 @@
 ﻿using Assets.Scripts.Internal;
+using Assets.Scripts.Models;
+using UnityEngine;
 
 public class TitleScene : BaseScene
 {
+    [SerializeField]
+    private ServerType serverType;
     public override void OnAwakeScene()
     {        
         TitleSceneController.Instance.BindScene(this);
-        TitleSceneController.Instance.Init();
+        TitleSceneController.Instance.Init(serverType);
     }
-
     public override void OnDestroyScene()
     {
     }

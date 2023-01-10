@@ -2,8 +2,7 @@
 using BA.Repository.Interface;
 using DataContainer.Generated;
 using GameWebServer.Models;
-using System.Text.Json;
-using TemplateContainers;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace GameWebServer.Manager
 {
@@ -27,8 +26,6 @@ namespace GameWebServer.Manager
             }
             DBServiceHelper.AddSingleton<IDBContext>(gameDBContext);
             builder.Services.AddSingleton<IDBContext>(gameDBContext);
-
-            InitTemplate();
         }
         public static void InitTemplate()
         {

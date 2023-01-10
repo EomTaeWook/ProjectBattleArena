@@ -17,4 +17,10 @@ public class MainHomeUI : UIComponent
         var item = UIManager.Instance.AddUI(prefab, parent);
         return item.GetComponent<MainHomeUI>();
     }
+    public void OnArenaButtonClick()
+    {
+        MainSceneController.Instance.Dispose();
+
+        SceneManager.Instance.LoadScene(Assets.Scripts.Models.SceneType.ArenaBattleScene);
+    }
 }

@@ -58,10 +58,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\CharacterSlot.cs" />
     <Compile Include="Assets\Scripts\BattleContents\StatusEffect\Buff.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\SkillEffects\DamageEffect.cs" />
     <Compile Include="Assets\Scripts\BattleContents\Stats\HpStats.cs" />
     <Compile Include="Assets\Scripts\Internal\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Models\SceneType.cs" />
-    <Compile Include="Assets\Scripts\Scenes\ArenaScene\ArenaSceneModel.cs" />
+    <Compile Include="Assets\Scripts\Scenes\ArenaScene\ArenaBattleSceneModel.cs" />
     <Compile Include="Assets\Scripts\Scenes\BaseScene.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainHomeUI.cs" />
     <Compile Include="Assets\Scripts\Internal\ApplicationManager.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Scripts\Models\UserData.cs" />
     <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene\CreateCharacterController.cs" />
     <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene\CreateCharacterSceneModel.cs" />
+    <Compile Include="Assets\Scripts\BattleContents\SkillEffects\AbnormalStatusEffect.cs" />
     <Compile Include="Assets\Scripts\BattleContents\UnitInfo.cs" />
     <Compile Include="Assets\Scripts\Internal\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Scenes\StageScene\StageSceneController.cs" />
@@ -101,11 +103,11 @@
     <Compile Include="Assets\Scripts\BattleContents\Events\Interface\IBattleEventHandler.cs" />
     <Compile Include="Assets\Scripts\Scenes\TitleScene\TitleScene.cs" />
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterSceneModel.cs" />
-    <Compile Include="Assets\Scripts\Scenes\ArenaScene\ArenaScene.cs" />
+    <Compile Include="Assets\Scripts\Scenes\ArenaScene\ArenaBattleScene.cs" />
     <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene\CreateCharacterScene.cs" />
     <Compile Include="Assets\Scripts\Scenes\SceneContoller.cs" />
     <Compile Include="Assets\Scripts\Scenes\StageScene\StageScene.cs" />
-    <Compile Include="Assets\Scripts\Scenes\ArenaScene\ArenaSceneController.cs" />
+    <Compile Include="Assets\Scripts\Scenes\ArenaScene\ArenaBattleSceneController.cs" />
     <Compile Include="Assets\Scripts\Scenes\StageScene\StageSceneModel.cs" />
     <Compile Include="Assets\Scripts\Internal\HttpRequestHelper.cs" />
     <Compile Include="Assets\Scripts\BattleContents\Stats\Interface\IUnitStats.cs" />
@@ -115,8 +117,7 @@
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterSceneController.cs" />
     <Compile Include="Assets\Scripts\BattleContents\Battle.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainCharacterUI.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\SkillEffects\DamageEffect.cs" />
-    <Compile Include="Assets\Scripts\BattleContents\SkillEffects\AbnormalStatusEffect.cs" />
+    <Compile Include="Assets\Scripts\Models\ServerType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

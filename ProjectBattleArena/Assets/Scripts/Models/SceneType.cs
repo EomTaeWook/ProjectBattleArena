@@ -5,9 +5,9 @@
         TitleScene,
         SelectCharacterScene,
         CreateCharacterScene,
-        LobbyScene,
+        MainScene,
         StageScene,
-        ArenaScece,
+        ArenaBattleScene,
 
         Max
     }
