@@ -26,6 +26,7 @@ public class MainSceneUI : UIComponent
     private void Awake()
     {
         characterUI.gameObject.SetActive(false);
+        LoadHomeUI();
     }
 
     public void LoadCharacterUI()

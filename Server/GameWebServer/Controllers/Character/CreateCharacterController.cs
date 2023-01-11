@@ -9,9 +9,12 @@ namespace GameWebServer.Controllers.Character
     public class CreateCharacterController : AuthAPIController<CreateCharacter>
     {
         private CharacterRepository _characterRepository;
-        public CreateCharacterController(CharacterRepository characterRepository)
+        private SkillRepository _skillRepository;
+        public CreateCharacterController(CharacterRepository characterRepository,
+            SkillRepository skillRepository)
         {
             _characterRepository = characterRepository;
+            _skillRepository = skillRepository;
         }
 
         public override async Task<IGWCResponse> Process(string account, CreateCharacter request)
@@ -50,6 +53,12 @@ namespace GameWebServer.Controllers.Character
             if(created == false)
             {
                 return MakeErrorMessage(account, $"failed to created character");
+            }
+
+            created = await _skillRepository.CreateEquipmentSkill(request.CharacterName, characterData.CreateTime);
+            if (created == false)
+            {
+                return MakeErrorMessage(account, $"failed to created equipment skill");
             }
 
             return new CreateCharacterResponse()

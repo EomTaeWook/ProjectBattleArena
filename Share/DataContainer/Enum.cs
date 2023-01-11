@@ -51,6 +51,18 @@ namespace DataContainer
         Max,
     }
 
+    public enum GradeType
+    {
+        Normal,
+        Rare,
+        Epic,
+        Legendary,
+        Mythic,
+
+        Max,
+    }
+
+
     public enum AttackType
     {
         Melee,

@@ -57,6 +57,9 @@
     <Compile Include="Generated\TemplateLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PartialOfGenerated\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\Debug\$(TargetFileName)"

@@ -21,6 +21,9 @@ public class MainHomeUI : UIComponent
     {
         MainSceneController.Instance.Dispose();
 
+
+
+
         SceneManager.Instance.LoadScene(Assets.Scripts.Models.SceneType.ArenaBattleScene);
     }
 }

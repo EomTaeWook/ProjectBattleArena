@@ -32,4 +32,13 @@ namespace Protocol.GameWebServerAndClient
         public bool Ok { get; set; }
         public string SecurityKey { get; set; }
     }
+
+    public class EquipmentSkillResponse : ServerResponse
+    {
+
+    }
+    public class GachaSkillResponse : ServerResponse
+    {
+        public List<int> SkillDiffs { get; set; } = new List<int>();
+    }
 }

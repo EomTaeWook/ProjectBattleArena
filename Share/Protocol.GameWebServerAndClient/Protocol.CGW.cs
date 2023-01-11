@@ -1,7 +1,4 @@
-﻿using DataContainer;
-using Protocol.GameWebServerAndClient.ShareModels;
-
-namespace Protocol.GameWebServerAndClient
+﻿namespace Protocol.GameWebServerAndClient
 {
     public interface ICGWRequest
     {
@@ -27,5 +24,14 @@ namespace Protocol.GameWebServerAndClient
 
         public int CharacterTemplateId { get; set; }
     }
-
+    public class EquipmentSkill : AuthRequest
+    {
+        public string CharacterName { get; set; }
+        public int SkillTemplateId { get; set; }
+        public int SlotIndex { get; set; }
+    }
+    public class GachaSkill : AuthRequest
+    {
+        public int CharacterTemplate { get; set; }
+    }
 }

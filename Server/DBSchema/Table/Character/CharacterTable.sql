@@ -11,6 +11,7 @@ CREATE TABLE tb_character (
 	con int default 0,
 	dex int default 0,
 	stat_point int default 0,
+	
 	create_time bigint null default 0,
 	modify_time bigint null default 0,
 	PRIMARY KEY (character_name),

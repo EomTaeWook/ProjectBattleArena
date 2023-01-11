@@ -16,6 +16,7 @@ namespace BA.Repository
         {
             _dbContext = dbContext;
         }
+        
         public async Task<bool> CreateCharacter(CharacterData characterData, string account)
         {
             try
