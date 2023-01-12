@@ -17,6 +17,7 @@ namespace Assets.Scripts.Internal
         public string CurrentServerUrl { get; private set; }
         private Vector2Int _resolution = new Vector2Int(768, 1280);
         private int reqeustCount;
+        public ServerType ServerType { get; private set; }
         public void Init(ServerType serverType)
         {
             SetResolution(_resolution.x, _resolution.y);
@@ -32,6 +33,7 @@ namespace Assets.Scripts.Internal
                 default:
                     throw new InvalidOperationException($"invalid server type : {serverType}");
             }
+            ServerType = serverType;
         }
         private void SetResolution(int width, int height)
         {

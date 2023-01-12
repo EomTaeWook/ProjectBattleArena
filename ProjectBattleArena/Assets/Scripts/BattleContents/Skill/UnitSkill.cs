@@ -1,10 +1,12 @@
 ﻿using DataContainer.Generated;
+using ShareLogic;
 using TemplateContainers;
 
 namespace GameContents
 {
     public class UnitSkill
     {
+        public SkillsGroupTemplate SkillsGroupTemplate { get; private set; }
         public SkillsTemplate SkillsTemplate { get; private set; }
 
         private readonly Unit _invoker;
@@ -12,6 +14,7 @@ namespace GameContents
         {
             _invoker = unit;
             SkillsTemplate = skillsTemplate;
+            SkillsGroupTemplate = SkillsHelper.Instance.GetSkillsGroupTemplate(skillsTemplate.Id);
         }
         public void Invoke(Battle battle)
         {
@@ -24,7 +27,7 @@ namespace GameContents
 
                 battle.GetBattleEventHandler().Process(_invoker, startSkillEffect);
 
-                var targets = battle.GetSkillTargets(_invoker, SkillsTemplate.Range, effect);
+                var targets = battle.GetSkillTargets(_invoker, SkillsGroupTemplate.Range, effect);
 
                 foreach (var target in targets)
                 {

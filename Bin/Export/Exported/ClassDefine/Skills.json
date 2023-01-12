@@ -22,17 +22,6 @@
     "Conditions": []
   },
   {
-    "Name": "NeedCost",
-    "Count": 1,
-    "Required": true,
-    "DataType": "Int32",
-    "Members": [],
-    "RefTemplate": "",
-    "RefTemplateField": "",
-    "ConditionField": null,
-    "Conditions": []
-  },
-  {
     "Name": "Effect",
     "Count": 2,
     "Required": false,
@@ -40,39 +29,6 @@
     "Members": [],
     "RefTemplate": "SkillEffects",
     "RefTemplateField": "Name",
-    "ConditionField": null,
-    "Conditions": []
-  },
-  {
-    "Name": "Range",
-    "Count": 1,
-    "Required": true,
-    "DataType": "Int32",
-    "Members": [],
-    "RefTemplate": "",
-    "RefTemplateField": "",
-    "ConditionField": null,
-    "Conditions": []
-  },
-  {
-    "Name": "IsCasting",
-    "Count": 1,
-    "Required": true,
-    "DataType": "Bool",
-    "Members": [],
-    "RefTemplate": "",
-    "RefTemplateField": "",
-    "ConditionField": null,
-    "Conditions": []
-  },
-  {
-    "Name": "CastingTime",
-    "Count": 1,
-    "Required": true,
-    "DataType": "Int32",
-    "Members": [],
-    "RefTemplate": "",
-    "RefTemplateField": "",
     "ConditionField": null,
     "Conditions": []
   }

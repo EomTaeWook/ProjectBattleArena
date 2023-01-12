@@ -23,6 +23,7 @@ public class TitleSceneController : SceneController<TitleSceneController>
         LogBuilder.Build();
 
         TemplateLoader.Load(Path.Combine(Application.streamingAssetsPath, "Datas"));
+        TemplateLoader.MakeRefTemplate();
     }
     public override void BindScene(BaseScene baseScene)
     {
@@ -60,6 +61,7 @@ public class TitleSceneController : SceneController<TitleSceneController>
         }
 
         CharacterManager.Instance.Init(response.CharacterDatas);
+        UserAssetManager.Instance.Init(response.AssetData);
 
         return true;
     }

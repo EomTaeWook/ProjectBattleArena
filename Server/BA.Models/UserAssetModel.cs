@@ -9,5 +9,6 @@
         public int ArenaTicket { get; set; }
 
         public long ArenaTicketLatestTime { get; set; }
+        public int GachaSkill { get; set; }
     }
 }

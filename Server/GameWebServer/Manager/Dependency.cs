@@ -34,6 +34,7 @@ namespace GameWebServer.Manager
             path = $"{AppContext.BaseDirectory}../../../../../Datas/";
 #endif
             TemplateLoader.Load(path);
+            TemplateLoader.MakeRefTemplate();
         }
     }
 }

@@ -7,6 +7,7 @@ CREATE TABLE tb_user_asset (
   cash int default 0,
   arena_ticket int,
   arean_ticket_latest_time bigint,
+  gacha_skill int,
   create_time bigint,
   PRIMARY KEY (account)
 ) COLLATE=utf8mb4_general_ci;

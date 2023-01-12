@@ -86,6 +86,30 @@ namespace BA.Repository
                 return false;
             }
         }
+        public async Task<bool> ModifyGachaSkill(string account, int currentValue, int updateValue)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(_dbContext.GetConnString()))
+                {
+                    var param = new DynamicParameters();
+                    param.AddParam(account, nameof(account));
+                    param.AddParam(currentValue, nameof(currentValue));
+                    param.AddParam(updateValue, nameof(updateValue));
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.UpdateGachaSkill),
+                                                                        param,
+                                                                        commandType: CommandType.StoredProcedure);
+
+                    var result = await connection.ExecuteAsync(command);
+                    return result > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex);
+                return false;
+            }
+        }
         public async Task<bool> ModifyCash(string account, int currentCash, int updateCash)
         {
             try

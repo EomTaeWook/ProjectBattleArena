@@ -241,7 +241,7 @@ namespace GameContents
             foreach(var item in nextSkill.SkillsTemplate.EffectRef)
             {
                 var targets = _battle.GetSkillTargets(this,
-                    nextSkill.SkillsTemplate.Range,
+                    nextSkill.SkillsGroupTemplate.Range,
                     item);
 
                 if(targets.Count > 0)
@@ -287,7 +287,7 @@ namespace GameContents
                 return;
             }
 
-            if (nextSkill.SkillsTemplate.NeedCost > _attackStackedPoint)
+            if (nextSkill.SkillsGroupTemplate.NeedCost > _attackStackedPoint)
             {
                 _attackStackedPoint++;
                 UseSkill(baseAttackSkill);
@@ -297,7 +297,7 @@ namespace GameContents
                 _attackStackedPoint = 0;
                 _usedSkillIndex++;
 
-                if(nextSkill.SkillsTemplate.IsCasting == true)
+                if(nextSkill.SkillsGroupTemplate.IsCasting == true)
                 {
                     UseCastingSkill(nextSkill);
                 }
@@ -324,7 +324,7 @@ namespace GameContents
         }
         private void UseCastingSkill(UnitSkill castingSkill)
         {
-            var skill = new CastingSkill(castingSkill, castingSkill.SkillsTemplate.CastingTime / ConstHelper.DefaultPerTicks);
+            var skill = new CastingSkill(castingSkill, castingSkill.SkillsGroupTemplate.CastingTime / ConstHelper.DefaultPerTicks);
 
             _castingSkill = skill;
 

@@ -5,14 +5,17 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\User\**" />
+    <Content Remove="Controllers\User\**" />
+    <EmbeddedResource Remove="Controllers\User\**" />
+    <None Remove="Controllers\User\**" />
+  </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\BA.Models\BA.Models.csproj" />
     <ProjectReference Include="..\BA.Repository\BA.Repository.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\User\" />
   </ItemGroup>
 
   <ItemGroup>

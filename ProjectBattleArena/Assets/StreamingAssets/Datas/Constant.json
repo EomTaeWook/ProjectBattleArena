@@ -1,0 +1,27 @@
+[
+  {
+    "Id": 1000,
+    "Name": "GachaNormal",
+    "Value": 8000
+  },
+  {
+    "Id": 1001,
+    "Name": "GachaRare",
+    "Value": 1400
+  },
+  {
+    "Id": 1002,
+    "Name": "GachaEpic",
+    "Value": 499
+  },
+  {
+    "Id": 1003,
+    "Name": "GachaLegendary",
+    "Value": 100
+  },
+  {
+    "Id": 1004,
+    "Name": "GachaMythic",
+    "Value": 1
+  }
+]

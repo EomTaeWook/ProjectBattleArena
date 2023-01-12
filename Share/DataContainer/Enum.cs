@@ -61,6 +61,22 @@ namespace DataContainer
 
         Max,
     }
+    public enum AssetType
+    {
+        GachaSkill,
+        Cash,
+
+        Max,
+    }
+
+
+    public enum GoodsCategory
+    {
+        GachaSkill,
+        Cash,
+
+        Max,
+    }
 
 
     public enum AttackType

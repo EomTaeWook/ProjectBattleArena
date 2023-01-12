@@ -1,6 +1,8 @@
 ﻿using BA.Repository;
 using GameWebServer.Manager;
 using Protocol.GameWebServerAndClient;
+using Protocol.GameWebServerAndClient.ShareModels;
+using System.Net.WebSockets;
 using System.Security.Principal;
 
 namespace GameWebServer.Controllers.Auth
@@ -10,7 +12,6 @@ namespace GameWebServer.Controllers.Auth
         private AuthRepository _authRepository;
         private UserAssetRepository _userAssetRepository;
         public LoginController(AuthRepository authRepository,
-                            CharacterRepository characterRepository,
                             UserAssetRepository userAssetRepository)
         {
             _authRepository = authRepository;
@@ -41,25 +42,44 @@ namespace GameWebServer.Controllers.Auth
                 return MakeErrorMessage(tokenData.Account, $"failed to login {tokenData.Account} invalid password");
             }
 
-            var loadCharacter = await CharacterManager.Instance.LoadCharacterAsync(tokenData.Account);
+            var loadCharacters = await CharacterManager.Instance.LoadCharacterByLoginAsync(tokenData.Account);
 
-            if (loadCharacter == null)
+            if (loadCharacters == null)
             {
                 return MakeErrorMessage(tokenData.Account, $"failed to load characters");
             }
 
-            var loadUserAsset = await _userAssetRepository.LoadUserAssetAsync(tokenData.Account);
-
-            if(loadUserAsset == null)
+            var assetData = await LoadUserAssetAsync(tokenData.Account);
+            if(assetData == null)
             {
                 return MakeErrorMessage(tokenData.Account, $"failed to load user asset");
             }
-
+            
             return new LoginResponse()
             {
                 Ok = true,
-                CharacterDatas = loadCharacter
+                CharacterDatas = loadCharacters,
+                AssetData = assetData,
             };
+        }
+        private async Task<AssetData> LoadUserAssetAsync(string account)
+        {
+            var loadUserAsset = await _userAssetRepository.LoadUserAssetAsync(account);
+
+            if (loadUserAsset == null)
+            {
+                return null;
+            }
+            var assetData = new AssetData()
+            {
+                ArenaTicket = loadUserAsset.ArenaTicket,
+                Cash = loadUserAsset.Cash,
+                GachaSkill = loadUserAsset.GachaSkill,
+                Gold = loadUserAsset.Gold,
+                RemainSeconds = 0
+            };
+
+            return assetData;
         }
     }
 }

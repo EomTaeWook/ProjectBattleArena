@@ -1,5 +1,8 @@
 ﻿using Assets.Scripts.Internal;
+using DataContainer.Generated;
 using Kosher.Log;
+using System.Threading.Tasks;
+using TemplateContainers;
 using UnityEngine;
 
 public class MainHomeUI : UIComponent
@@ -22,8 +25,27 @@ public class MainHomeUI : UIComponent
         MainSceneController.Instance.Dispose();
 
 
-
-
         SceneManager.Instance.LoadScene(Assets.Scripts.Models.SceneType.ArenaBattleScene);
+    }
+    public async void OnGachaSkillButtonClickAsync(int count)
+    {
+        GoodsTemplate goodsTemplate;
+        if (count == 1)
+        {
+            goodsTemplate = TemplateContainer<GoodsTemplate>.Find("GachaSkill");
+        }
+        else
+        {
+            goodsTemplate = TemplateContainer<GoodsTemplate>.Find("GachaSkillX10");
+        }
+
+        await MainSceneController.Instance.RequestPurchaseGoodsAsync(goodsTemplate);
+
+    }
+    public async void OnPurchaseCashButtonClickAsync()
+    {
+        var goodsTemplate = TemplateContainer<GoodsTemplate>.Find("CashX100000");
+
+        await MainSceneController.Instance.RequestPurchaseGoodsAsync(goodsTemplate);
     }
 }

@@ -21,5 +21,7 @@ namespace Protocol.GameWebServerAndClient.ShareModels
         public long CreateTime { get; set; }
 
         public List<SkillData> EquippedSkillDatas { get; set; }
+
+        public List<SkillData> SkillDatas { get; set; }
     }
 }

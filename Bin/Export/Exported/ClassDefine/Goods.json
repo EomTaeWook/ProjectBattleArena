@@ -1,0 +1,118 @@
+[
+  {
+    "Name": "Id",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Name",
+    "Count": 1,
+    "Required": true,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "GoodsCategory",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Enum",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Count",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "PreAsset",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Class",
+    "Members": [
+      "AssetType",
+      "ConsumeAssetCount"
+    ],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "AssetType",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Enum",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "ConsumeAssetCount",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Asset",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Class",
+    "Members": [
+      "AssetType",
+      "ConsumeAssetCount"
+    ],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "AssetType",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Enum",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "ConsumeAssetCount",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  }
+]

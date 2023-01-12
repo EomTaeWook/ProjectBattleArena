@@ -17,6 +17,8 @@ namespace Assets.Scripts.Internal
 
         private List<CharacterData> _characterDatas = new List<CharacterData>();
 
+        private List<SkillData> _skillDatas = new List<SkillData>();
+
         public void Init(List<CharacterData> characterDatas)
         {
             _characterDatas.AddRange(characterDatas);

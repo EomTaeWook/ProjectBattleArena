@@ -5,6 +5,9 @@
     "DamageEffectType": "DataContainer",
     "AbnormalStatusType": "DataContainer",
     "TargetType": "DataContainer",
+    "GradeType": "DataContainer",
+    "AssetType": "DataContainer",
+    "GoodsCategory": "DataContainer",
     "AttackType": "DataContainer"
   },
   "EnumValueDatas": {
@@ -35,6 +38,24 @@
       "Me",
       "AllAllies",
       "AllEnemies",
+      "Max"
+    ],
+    "GradeType": [
+      "Normal",
+      "Rare",
+      "Epic",
+      "Legendary",
+      "Mythic",
+      "Max"
+    ],
+    "AssetType": [
+      "GachaSkill",
+      "Cash",
+      "Max"
+    ],
+    "GoodsCategory": [
+      "GachaSkill",
+      "Cash",
       "Max"
     ],
     "AttackType": [

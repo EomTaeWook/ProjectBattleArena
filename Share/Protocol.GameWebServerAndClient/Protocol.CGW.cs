@@ -30,8 +30,15 @@
         public int SkillTemplateId { get; set; }
         public int SlotIndex { get; set; }
     }
-    public class GachaSkill : AuthRequest
+    public class PurchaseGoods : AuthRequest
     {
-        public int CharacterTemplate { get; set; }
+        public string CharacterName { get; set; }
+        public int TemplateId { get; set; }
     }
+    public class PurchaseGoodsByAdmin : AuthRequest
+    {
+        public string CharacterName { get; set; }
+        public int TemplateId { get; set; }
+    }
+
 }

@@ -1,0 +1,128 @@
+[
+  {
+    "Id": 1000,
+    "Name": "GachaSkill",
+    "GoodsCategory": "GachaSkill",
+    "Count": 1,
+    "PreAsset": {
+      "AssetType": "GachaSkill",
+      "ConsumeAssetCount": 1
+    },
+    "Asset": {
+      "AssetType": "Cash",
+      "ConsumeAssetCount": 300
+    }
+  },
+  {
+    "Id": 1001,
+    "Name": "GachaSkillX10",
+    "GoodsCategory": "GachaSkill",
+    "Count": 10,
+    "PreAsset": {
+      "AssetType": "GachaSkill",
+      "ConsumeAssetCount": 10
+    },
+    "Asset": {
+      "AssetType": "Cash",
+      "ConsumeAssetCount": 3000
+    }
+  },
+  {
+    "Id": 1002,
+    "Name": "CashX1000",
+    "GoodsCategory": "Cash",
+    "Count": 1000,
+    "PreAsset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    },
+    "Asset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    }
+  },
+  {
+    "Id": 1003,
+    "Name": "CashX5000",
+    "GoodsCategory": "Cash",
+    "Count": 5000,
+    "PreAsset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    },
+    "Asset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    }
+  },
+  {
+    "Id": 1004,
+    "Name": "CashX10000",
+    "GoodsCategory": "Cash",
+    "Count": 10000,
+    "PreAsset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    },
+    "Asset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    }
+  },
+  {
+    "Id": 1005,
+    "Name": "CashX20000",
+    "GoodsCategory": "Cash",
+    "Count": 20000,
+    "PreAsset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    },
+    "Asset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    }
+  },
+  {
+    "Id": 1006,
+    "Name": "CashX30000",
+    "GoodsCategory": "Cash",
+    "Count": 30000,
+    "PreAsset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    },
+    "Asset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    }
+  },
+  {
+    "Id": 1007,
+    "Name": "CashX50000",
+    "GoodsCategory": "Cash",
+    "Count": 50000,
+    "PreAsset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    },
+    "Asset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    }
+  },
+  {
+    "Id": 1008,
+    "Name": "CashX100000",
+    "GoodsCategory": "Cash",
+    "Count": 100000,
+    "PreAsset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    },
+    "Asset": {
+      "AssetType": "Max",
+      "ConsumeAssetCount": 0
+    }
+  }
+]

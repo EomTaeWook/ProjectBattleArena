@@ -1,0 +1,134 @@
+[
+  {
+    "Name": "Id",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Name",
+    "Count": 1,
+    "Required": true,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "IsBaseAttack",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Bool",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "NeedCost",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Range",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "IsCasting",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Bool",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "CastingTime",
+    "Count": 1,
+    "Required": true,
+    "DataType": "Int32",
+    "Members": [],
+    "RefTemplate": "",
+    "RefTemplateField": "",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "UseCharacter",
+    "Count": 1,
+    "Required": true,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": "Character",
+    "RefTemplateField": "Name",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Normal",
+    "Count": 1,
+    "Required": true,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": "Skills",
+    "RefTemplateField": "Name",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Rare",
+    "Count": 1,
+    "Required": false,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": "Skills",
+    "RefTemplateField": "Name",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Epic",
+    "Count": 1,
+    "Required": false,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": "Skills",
+    "RefTemplateField": "Name",
+    "ConditionField": null,
+    "Conditions": []
+  },
+  {
+    "Name": "Legendary",
+    "Count": 1,
+    "Required": false,
+    "DataType": "String",
+    "Members": [],
+    "RefTemplate": "Skills",
+    "RefTemplateField": "Name",
+    "ConditionField": null,
+    "Conditions": []
+  }
+]

@@ -65,6 +65,10 @@ namespace BA.Repository.Helper
             CreateEquipmentSkill,
             EquipmentSkill,
             UnEquipmentSkill,
+            UpdateGachaSkill,
+            InsertSkill,
+            LoadSkillByCharacterName,
+
 
             Max
         }

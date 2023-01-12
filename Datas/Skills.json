@@ -2,56 +2,85 @@
   {
     "Id": 1000,
     "Name": "BasicAttack",
-    "NeedCost": 0,
     "Effect": [
       "BasicAttackEffect"
-    ],
-    "Range": 0,
-    "IsCasting": false,
-    "CastingTime": 0
+    ]
   },
   {
     "Id": 1001,
     "Name": "BasicRangedAttack",
-    "NeedCost": 0,
     "Effect": [
       "BasicAttackEffect"
-    ],
-    "Range": 1,
-    "IsCasting": false,
-    "CastingTime": 0
+    ]
   },
   {
     "Id": 1002,
     "Name": "BasicStrongAttack",
-    "NeedCost": 3,
     "Effect": [
       "BasicAttackEffect"
-    ],
-    "Range": 0,
-    "IsCasting": false,
-    "CastingTime": 0
+    ]
   },
   {
     "Id": 1003,
     "Name": "BasicStrongRangedAttack",
-    "NeedCost": 3,
     "Effect": [
       "BasicAttackEffect"
-    ],
-    "Range": 1,
-    "IsCasting": false,
-    "CastingTime": 0
+    ]
   },
   {
     "Id": 1004,
-    "Name": "Fireball",
-    "NeedCost": 3,
+    "Name": "FireballNormal",
     "Effect": [
       "FireballEffect"
-    ],
-    "Range": 1,
-    "IsCasting": true,
-    "CastingTime": 1000
+    ]
+  },
+  {
+    "Id": 1005,
+    "Name": "FireballRare",
+    "Effect": [
+      "FireballEffect"
+    ]
+  },
+  {
+    "Id": 1006,
+    "Name": "FireballEpic",
+    "Effect": [
+      "FireballEffect"
+    ]
+  },
+  {
+    "Id": 1007,
+    "Name": "FireballLegendary",
+    "Effect": [
+      "FireballEffect"
+    ]
+  },
+  {
+    "Id": 1008,
+    "Name": "UppercutNormal",
+    "Effect": [
+      "BasicAttackEffect"
+    ]
+  },
+  {
+    "Id": 1009,
+    "Name": "UppercutRare",
+    "Effect": [
+      "BasicAttackEffect"
+    ]
+  },
+  {
+    "Id": 1010,
+    "Name": "UppercutEpic",
+    "Effect": [
+      "BasicAttackEffect"
+    ]
+  },
+  {
+    "Id": 1011,
+    "Name": "UppercutLegendary",
+    "Effect": [
+      "BasicAttackEffect"
+    ]
   }
 ]

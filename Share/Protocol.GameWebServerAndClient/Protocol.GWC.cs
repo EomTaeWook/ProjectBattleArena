@@ -16,6 +16,8 @@ namespace Protocol.GameWebServerAndClient
     public class LoginResponse : ServerResponse
     {
         public List<CharacterData> CharacterDatas { get; set; } = new List<CharacterData>();
+
+        public AssetData AssetData { get; set; }
     }
     public class CreateAccountResponse : ServerResponse
     {
@@ -35,10 +37,13 @@ namespace Protocol.GameWebServerAndClient
 
     public class EquipmentSkillResponse : ServerResponse
     {
-
     }
-    public class GachaSkillResponse : ServerResponse
+    public class PurchaseGoodsResponse : ServerResponse
     {
-        public List<int> SkillDiffs { get; set; } = new List<int>();
+        public RewardData RewardDiff { get; set; }
+    }
+    public class PurchaseGoodsByAdminResponse : ServerResponse
+    {
+        public RewardData RewardDiff { get; set; }
     }
 }
