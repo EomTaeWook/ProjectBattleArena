@@ -10,6 +10,7 @@ CREATE TABLE tb_skill (
 	create_time bigint null default 0,
 	modify_time bigint null default 0,
 	PRIMARY KEY (id),
+	FOREIGN KEY (character_name) REFERENCES tb_character(character_name) ON DELETE CASCADE ON UPDATE CASCADE,
 	INDEX(character_name)
 )
 COLLATE='utf8mb4_general_ci'

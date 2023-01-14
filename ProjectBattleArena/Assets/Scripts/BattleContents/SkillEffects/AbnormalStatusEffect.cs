@@ -1,5 +1,7 @@
-﻿using DataContainer.Generated;
+﻿using DataContainer;
+using DataContainer.Generated;
 using Kosher.Log;
+using UnityEditor;
 
 namespace GameContents
 {
@@ -24,16 +26,29 @@ namespace GameContents
         }
         public void Invoke()
         {
-            AbnormalStatus abnormalStatus;
-            if (SkillEffectsAbnormalStatusTemplate.AbnormalStatusType == DataContainer.AbnormalStatusType.ProportionalDamageFromLostHp)
+            AbnormalStatus abnormalStatus = null;
+            if (SkillEffectsAbnormalStatusTemplate.AbnormalStatusType == AbnormalStatusType.CancelCasting)
             {
-                var lostHpRate = Target.UnitStats.Hp.CurrentHp * 1.0F / Target.UnitStats.Hp.MaxHp;
-
-                abnormalStatus = new AbnormalStatus(
-                    SkillsTemplate,
-                    SkillEffectsAbnormalStatusTemplate.AbnormalStatusType,
-                    (int)lostHpRate,
-                    SkillEffectsAbnormalStatusTemplate.Duration);
+                if (Target.IsCasting() == true)
+                {
+                    abnormalStatus = new AbnormalStatus(SkillsTemplate,
+                         SkillEffectsAbnormalStatusTemplate.AbnormalStatusType,
+                         0,
+                         SkillEffectsAbnormalStatusTemplate.Duration
+                         );
+                }
+            }
+            else if(SkillEffectsAbnormalStatusTemplate.AbnormalStatusType == AbnormalStatusType.Stun)
+            {
+                abnormalStatus = new AbnormalStatus(SkillsTemplate,
+                         SkillEffectsAbnormalStatusTemplate.AbnormalStatusType,
+                         0,
+                         SkillEffectsAbnormalStatusTemplate.Duration
+                         );
+            }
+            else if(SkillEffectsAbnormalStatusTemplate.AbnormalStatusType == AbnormalStatusType.Shield)
+            {
+                
             }
             else
             {
@@ -51,7 +66,7 @@ namespace GameContents
             }
             else
             {
-
+                //not invoke
             }
         }
     }

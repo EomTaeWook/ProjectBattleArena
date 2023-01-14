@@ -63,14 +63,12 @@
     <Compile Include="Assets\Scripts\Scenes\UI\Loading.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainSceneController.cs" />
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\SelectCharacterScene.cs" />
-    <Compile Include="Assets\Scripts\Models\ServerType.cs" />
     <Compile Include="Assets\Scripts\Battle\BattleManager.cs" />
     <Compile Include="Assets\Scripts\Scenes\TitleScene\TitleSceneController.cs" />
     <Compile Include="Assets\Scripts\Models\UserData.cs" />
     <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene\CreateCharacterController.cs" />
     <Compile Include="Assets\Scripts\BattleContents\SkillEffects\AbnormalStatusEffect.cs" />
     <Compile Include="Assets\Scripts\Scenes\StageScene\StageSceneController.cs" />
-    <Compile Include="Assets\Scripts\Scenes\MainScene\SkillContentsUI.cs" />
     <Compile Include="Assets\Scripts\Scenes\ISceneModel.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainSceneModel.cs" />
     <Compile Include="Assets\Scripts\Scenes\UI\AlertPopup.cs" />
@@ -86,12 +84,10 @@
     <Compile Include="Assets\Scripts\BattleContents\SkillEffects\DamageEffect.cs" />
     <Compile Include="Assets\Scripts\BattleContents\Stats\HpStats.cs" />
     <Compile Include="Assets\Scripts\Internal\PlayerManager.cs" />
-    <Compile Include="Assets\Scripts\Models\SceneType.cs" />
     <Compile Include="Assets\Scripts\Scenes\BaseScene.cs" />
     <Compile Include="Assets\Scripts\Internal\ApplicationManager.cs" />
     <Compile Include="Assets\Scripts\BattleContents\Party.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainSceneUI.cs" />
-    <Compile Include="Assets\Scripts\Models\AnimationType.cs" />
     <Compile Include="Assets\Scripts\Battle\GameManager.cs" />
     <Compile Include="Assets\Scripts\BattleContents\StatusEffect\AbnormalStatus.cs" />
     <Compile Include="Assets\Scripts\Internal\UnityLogTarget.cs" />
@@ -119,6 +115,12 @@
     <Compile Include="Assets\Scripts\BattleContents\Battle.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainCharacterUI.cs" />
     <Compile Include="Assets\Scripts\Internal\UserAssetManager.cs" />
+    <Compile Include="Assets\Scripts\Scenes\MainScene\SkillSettingUI.cs" />
+    <Compile Include="Assets\Scripts\Scenes\MainScene\SkillSettingPopup.cs" />
+    <Compile Include="Assets\Scripts\Scenes\MainScene\UIItem\SkillUIItem.cs" />
+    <Compile Include="Assets\Scripts\Models\Enum.cs" />
+    <Compile Include="Assets\Scripts\Internal\RewardManager.cs" />
+    <Compile Include="Assets\Scripts\Internal\Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

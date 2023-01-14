@@ -1,8 +1,8 @@
 USE GameDB;
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS load_character_by_character_name $$
-CREATE PROCEDURE load_character_by_character_name
+DROP PROCEDURE IF EXISTS load_skill_by_character_name $$
+CREATE PROCEDURE load_skill_by_character_name
 (
 	IN param_character_name VARCHAR(100)
 )

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UIComponent : MonoBehaviour
 {
-    public virtual void Dispose()
+    public virtual void DisposeUI()
     {
         UIManager.Instance.CloseUI(this);
     }

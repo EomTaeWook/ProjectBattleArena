@@ -62,13 +62,14 @@ namespace BA.Repository.Helper
             LoadCharacterByCharacterName,
             LoadLatestSecurityKey,
             InsertSecurityKey,
-            CreateEquipmentSkill,
-            EquipmentSkill,
-            UnEquipmentSkill,
+            CreateMountingSkill,
+            UpdateMountingSkill,
+            UnMountingSkill,
             UpdateGachaSkill,
             InsertSkill,
             LoadSkillByCharacterName,
-
+            LoadMountingSkillByCharacterName,
+            LoadSkillByCharacterNameAndId,
 
             Max
         }

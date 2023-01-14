@@ -16,11 +16,11 @@ namespace GameContents
         private readonly Party _enemyParty;
         private readonly IBattleEventHandler _battleEventHandler;
         private int _battleEventIndex = 0;
-        private readonly int[,] _map = new int[4, 4];
+        private readonly int[,] _map = new int[5, 4];
         private bool _isBattleEnd = false;
         public int GetMapMaxX()
         {
-            return 4;
+            return 5;
         }
         public int GetMapMaxY()
         {

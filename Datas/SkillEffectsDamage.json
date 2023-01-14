@@ -1,14 +1,110 @@
 [
   {
     "Id": 1000,
-    "Name": "BasicAttackDamage",
+    "Name": "BasicAttackDamageX100",
     "HitFactor": 100,
     "DamageEffectType": "Normal"
   },
   {
     "Id": 1001,
-    "Name": "FireballDamage",
+    "Name": "BasicAttackDamageX110",
+    "HitFactor": 110,
+    "DamageEffectType": "Normal"
+  },
+  {
+    "Id": 1002,
+    "Name": "BasicAttackDamageX120",
+    "HitFactor": 120,
+    "DamageEffectType": "Normal"
+  },
+  {
+    "Id": 1003,
+    "Name": "BasicAttackDamageX130",
+    "HitFactor": 130,
+    "DamageEffectType": "Normal"
+  },
+  {
+    "Id": 1004,
+    "Name": "BasicAttackDamageX140",
+    "HitFactor": 140,
+    "DamageEffectType": "Normal"
+  },
+  {
+    "Id": 1005,
+    "Name": "BasicAttackDamageX150",
+    "HitFactor": 150,
+    "DamageEffectType": "Normal"
+  },
+  {
+    "Id": 1006,
+    "Name": "BasicAttackDamageX160",
     "HitFactor": 160,
+    "DamageEffectType": "Normal"
+  },
+  {
+    "Id": 1007,
+    "Name": "BasicAttackDamageX170",
+    "HitFactor": 170,
+    "DamageEffectType": "Normal"
+  },
+  {
+    "Id": 1008,
+    "Name": "BasicAttackDamageX180",
+    "HitFactor": 180,
+    "DamageEffectType": "Normal"
+  },
+  {
+    "Id": 1009,
+    "Name": "BasicAttackDamageX190",
+    "HitFactor": 190,
+    "DamageEffectType": "Normal"
+  },
+  {
+    "Id": 1010,
+    "Name": "BasicAttackDamageX200",
+    "HitFactor": 200,
+    "DamageEffectType": "Normal"
+  },
+  {
+    "Id": 1011,
+    "Name": "ProportionalDamageFromLostHpX140",
+    "HitFactor": 140,
+    "DamageEffectType": "ProportionalDamageFromLostHp"
+  },
+  {
+    "Id": 1012,
+    "Name": "ProportionalDamageFromLostHpX150",
+    "HitFactor": 150,
+    "DamageEffectType": "ProportionalDamageFromLostHp"
+  },
+  {
+    "Id": 1013,
+    "Name": "ProportionalDamageFromLostHpX160",
+    "HitFactor": 160,
+    "DamageEffectType": "ProportionalDamageFromLostHp"
+  },
+  {
+    "Id": 1014,
+    "Name": "ProportionalDamageFromLostHpX170",
+    "HitFactor": 170,
+    "DamageEffectType": "ProportionalDamageFromLostHp"
+  },
+  {
+    "Id": 1015,
+    "Name": "ProportionalDamageFromLostHpX180",
+    "HitFactor": 180,
+    "DamageEffectType": "ProportionalDamageFromLostHp"
+  },
+  {
+    "Id": 1016,
+    "Name": "ProportionalDamageFromLostHpX190",
+    "HitFactor": 190,
+    "DamageEffectType": "ProportionalDamageFromLostHp"
+  },
+  {
+    "Id": 1017,
+    "Name": "ProportionalDamageFromLostHpX200",
+    "HitFactor": 200,
     "DamageEffectType": "ProportionalDamageFromLostHp"
   }
 ]

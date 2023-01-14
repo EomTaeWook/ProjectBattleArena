@@ -1,4 +1,5 @@
 ﻿using Kosher.Unity;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,7 +45,13 @@ namespace Assets.Scripts.Internal
         public void ShowAlert(string title, string body)
         {
             var item = AlertPopup.Instantiate();
-            item.SetContent(title, body);
+            item.SetContent(Models.AlertPopupType.Alert, title, body);
+            item.gameObject.SetActive(true);
+        }
+        public void ShowConfirmAlert(string title, string body, Action onConfirmCallback)
+        {
+            var item = AlertPopup.Instantiate();
+            item.SetContent(Models.AlertPopupType.Confirm, title, body, onConfirmCallback);
             item.gameObject.SetActive(true);
         }
         public UIComponent AddUI(UIComponent prefab, Transform parent = null)

@@ -33,6 +33,7 @@ public class MainSceneUI : UIComponent
     {
         lobbyHomeUI.gameObject.SetActive(false);
         characterUI.gameObject.SetActive(true);
+        characterUI.Init();
         MainSceneController.Instance.ChangedUI(MainSceneController.UIType.Character);
     }
     public void LoadHomeUI()
@@ -40,5 +41,14 @@ public class MainSceneUI : UIComponent
         lobbyHomeUI.gameObject.SetActive(true);
         characterUI.gameObject.SetActive(false);
         MainSceneController.Instance.ChangedUI(MainSceneController.UIType.Home);
+    }
+    public void LoadSkillSettingUI()
+    {
+        lobbyHomeUI.gameObject.SetActive(false);
+        characterUI.gameObject.SetActive(false);
+    }
+    public void RefreshUI()
+    {
+
     }
 }

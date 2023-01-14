@@ -29,7 +29,7 @@ namespace Assets.Scripts.Internal
             }
             finally
             {
-                go.Dispose();
+                go.DisposeUI();
             }
             return default;
             

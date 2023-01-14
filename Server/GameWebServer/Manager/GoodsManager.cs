@@ -118,7 +118,11 @@ namespace GameWebServer.Manager
             {
                 for(int i=0; i< count; ++i)
                 {
-                    reward.AcquiredSkills.Add(GachaSkill(characterTemplate, randomGenerator));
+                    var templateId = GachaSkill(characterTemplate, randomGenerator);
+                    reward.AcquiredSkills.Add(new SkillData() 
+                    {
+                        TemplateId = templateId,
+                    });
                 }
             }
             else if (category == GoodsCategory.Cash)

@@ -59,28 +59,32 @@
     "Id": 1008,
     "Name": "UppercutNormal",
     "Effect": [
-      "BasicAttackEffect"
+      "BasicAttackEffect",
+      "CancelCastingEffect"
     ]
   },
   {
     "Id": 1009,
     "Name": "UppercutRare",
     "Effect": [
-      "BasicAttackEffect"
+      "BasicAttackEffect",
+      "CancelCastingEffect"
     ]
   },
   {
     "Id": 1010,
     "Name": "UppercutEpic",
     "Effect": [
-      "BasicAttackEffect"
+      "BasicAttackEffect",
+      "CancelCastingEffect"
     ]
   },
   {
     "Id": 1011,
     "Name": "UppercutLegendary",
     "Effect": [
-      "BasicAttackEffect"
+      "BasicAttackEffect",
+      "CancelCastingEffect"
     ]
   }
 ]

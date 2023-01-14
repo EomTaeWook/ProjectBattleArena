@@ -17,12 +17,14 @@ namespace GameWebServer.Manager
             var currentTime = DateTime.Now.Ticks;
             foreach (var item in rewardData.AcquiredSkills)
             {
-                var inserted = await skillRepository.InsertSkill(characterName, item, currentTime);
+                var inserted = await skillRepository.InsertSkill(characterName, item.TemplateId, currentTime);
 
-                if (inserted == false)
+                if (inserted == -1)
                 {
                     return false;
                 }
+
+                item.Id = inserted;
             }
             var userAssetRepository = DBServiceHelper.Instance.GetService<UserAssetRepository>();
 

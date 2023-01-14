@@ -4,20 +4,20 @@
     "Name": "BasicAttackEffect",
     "TargetType": "HighAggro",
     "EffectType": "Damage",
-    "EffectPart": "BasicAttackDamage"
+    "EffectPart": "BasicAttackDamageX100"
   },
   {
     "Id": 1001,
-    "Name": "ProportionalDamageFromLostHpEffect",
+    "Name": "CancelCastingEffect",
     "TargetType": "HighAggro",
     "EffectType": "AbnormalStatus",
-    "EffectPart": "ProportionalDamageFromLostHp"
+    "EffectPart": "CancelCasting"
   },
   {
     "Id": 1002,
     "Name": "FireballEffect",
     "TargetType": "HighAggro",
     "EffectType": "Damage",
-    "EffectPart": "FireballDamage"
+    "EffectPart": "ProportionalDamageFromLostHpX160"
   }
 ]

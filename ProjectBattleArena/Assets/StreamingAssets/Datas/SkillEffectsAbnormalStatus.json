@@ -1,8 +1,8 @@
 [
   {
     "Id": 1000,
-    "Name": "ProportionalDamageFromLostHp",
-    "AbnormalStatusType": "ProportionalDamageFromLostHp",
-    "Duration": 1
+    "Name": "CancelCasting",
+    "AbnormalStatusType": "CancelCasting",
+    "Duration": 0
   }
 ]

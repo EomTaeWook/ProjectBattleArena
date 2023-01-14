@@ -56,6 +56,12 @@ namespace GameContents
         }
         public void AddAbnormalStatus(AbnormalStatus abnormalStatus)
         {
+            if(abnormalStatus.AbnormalStatusType == AbnormalStatusType.CancelCasting &&
+                this.IsCasting())
+            {
+                CancleCasting();
+            }
+
             AbnormalStatus find = null;
             foreach(var item in _abnormalStatusHolder)
             {
@@ -162,7 +168,7 @@ namespace GameContents
         {
             return _castingSkill != null;
         }
-        public void CancleCasting()
+        private void CancleCasting()
         {
             _castingSkill = null;
         }

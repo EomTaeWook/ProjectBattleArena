@@ -24,10 +24,10 @@
 
         public int CharacterTemplateId { get; set; }
     }
-    public class EquipmentSkill : AuthRequest
+    public class MountingSkill : AuthRequest
     {
         public string CharacterName { get; set; }
-        public int SkillTemplateId { get; set; }
+        public long SkillId { get; set; }
         public int SlotIndex { get; set; }
     }
     public class PurchaseGoods : AuthRequest

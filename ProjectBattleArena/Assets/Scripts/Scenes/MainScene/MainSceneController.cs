@@ -3,7 +3,6 @@ using Assets.Scripts.Scenes;
 using DataContainer.Generated;
 using Protocol.GameWebServerAndClient;
 using System.Threading.Tasks;
-using TemplateContainers;
 
 public class MainSceneController : SceneController<MainSceneController>
 {
@@ -31,7 +30,6 @@ public class MainSceneController : SceneController<MainSceneController>
         }
         if(current == UIType.Character)
         {
-            scene.SceneModel.Character.Recycle();
             var templateId = CharacterManager.Instance.SelectedCharacterData.TemplateId;
             scene.SceneModel.Character = ResourceManager.Instance.LoadCharcterAsset(templateId);
 
@@ -43,24 +41,29 @@ public class MainSceneController : SceneController<MainSceneController>
             scene.BattleUI(true);
         }
     }
-    public void RequestGachaSkill()
+
+    public async Task<bool> RequestMountingSkill(int slotIndex,
+        long skillId)
     {
-        //var goodsTemplate = TemplateContainer<GoodsTemplate>.Find("GachaSkill");
-        //var request = new PurchaseGoods
-        //{
-        //    TemplateId = goodsTemplate.Id,
-        //    CharacterName = CharacterManager.Instance.SelectedCharacterData.CharacterName
-        //};
+        var characterData = CharacterManager.Instance.SelectedCharacterData;
+        var request = new MountingSkill()
+        {
+            CharacterName = characterData.CharacterName,
+            SlotIndex = slotIndex,
+            SkillId  = skillId
+        };
 
-        //var response = await HttpRequestHelper.Request<PurchaseGoods, PurchaseGoodsResponse>(request);
+        var res = await HttpRequestHelper.AuthRequest<MountingSkill, MountingSkillResponse>(request);
 
-        //if (response.Ok == false)
-        //{
-        //    UIManager.Instance.ShowAlert("알림", "상품 구매에 실패하였습니다.");
-        //    return;
-        //}
+        if(res.Ok == false)
+        {
+            return false;
+        }
+        CharacterManager.Instance.SelectedCharacterData.MountingSkillDatas[res.SlotIndex] = res.ChangedSkillId;
+
+        return true;
     }
-    
+
     public async Task RequestPurchaseGoodsAsync(GoodsTemplate goodsTemplate)
     {
         if (goodsTemplate.GoodsCategory == DataContainer.GoodsCategory.Cash)
@@ -79,7 +82,7 @@ public class MainSceneController : SceneController<MainSceneController>
                 return;
             }
 
-            UserAssetManager.Instance.Update(res.RewardDiff);
+            RewardManager.Instance.Update(res.RewardDiff);
 #else
         
 #endif
@@ -99,10 +102,8 @@ public class MainSceneController : SceneController<MainSceneController>
                 return;
             }
 
-            UserAssetManager.Instance.Update(res.RewardDiff);
+            RewardManager.Instance.Update(res.RewardDiff);
         }
-
-
     }
     public void Dispose()
     {

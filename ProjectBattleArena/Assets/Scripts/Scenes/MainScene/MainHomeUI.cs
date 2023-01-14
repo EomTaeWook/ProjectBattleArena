@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Internal;
 using DataContainer.Generated;
 using Kosher.Log;
-using System.Threading.Tasks;
 using TemplateContainers;
 using UnityEngine;
 
@@ -23,7 +22,6 @@ public class MainHomeUI : UIComponent
     public void OnArenaButtonClick()
     {
         MainSceneController.Instance.Dispose();
-
 
         SceneManager.Instance.LoadScene(Assets.Scripts.Models.SceneType.ArenaBattleScene);
     }

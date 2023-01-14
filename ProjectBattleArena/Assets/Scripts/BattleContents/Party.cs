@@ -77,11 +77,11 @@ namespace GameContents
                 var initX = 2 / meleeUnits.Count  - 1;
                 if (_isAlly == true)
                 {
-                    item.Move(initX + index, 2);
+                    item.Move(initX + index, battle.GetMapMaxY() / 2);
                 }
                 else
                 {
-                    item.Move(initX + index, 1);
+                    item.Move(initX + index, battle.GetMapMaxY() / 2 - 1);
                 }
                 index++;
             }
@@ -92,7 +92,7 @@ namespace GameContents
                 var initX = 2 / longRangeUnits.Count - 1;
                 if (_isAlly == true)
                 {
-                    item.Move(initX + index, 3);
+                    item.Move(initX + index, battle.GetMapMaxY() - 1);
                 }
                 else
                 {

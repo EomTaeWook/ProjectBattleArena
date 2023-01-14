@@ -55,10 +55,11 @@ namespace GameWebServer.Controllers.Character
                 return MakeErrorMessage(account, $"failed to created character");
             }
 
-            created = await _skillRepository.CreateEquipmentSkill(request.CharacterName, characterData.CreateTime);
+            created = await _skillRepository.CreateMountingSkill(request.CharacterName,
+                characterData.CreateTime);
             if (created == false)
             {
-                return MakeErrorMessage(account, $"failed to created equipment skill");
+                return MakeErrorMessage(account, $"failed to created mounting skill");
             }
 
             return new CreateCharacterResponse()

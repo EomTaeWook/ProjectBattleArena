@@ -1,4 +1,5 @@
-﻿using DataContainer.Generated;
+﻿using Assets.Scripts.Internal;
+using DataContainer.Generated;
 using GameContents;
 using Kosher.Framework;
 using Protocol.GameWebServerAndClient.ShareModels;
@@ -28,10 +29,14 @@ public class BattleManager : Singleton<BattleManager>
                 Dex = item.Dex,
                 Level = LevelUpHelper.GetLevel(item.Exp),
             };
-            foreach(var skill in item.EquippedSkillDatas)
+            foreach(var id in item.MountingSkillDatas)
             {
-                var skillTemplate = TemplateContainer<SkillsTemplate>.Find(skill.SkillTemplate);
-                unitInfo.EquippedSkillDatas.Add(skillTemplate);
+                var skillData = CharacterManager.Instance.GetSkillData(id);
+                if(skillData != null)
+                {
+                    var skillTemplate = TemplateContainer<SkillsTemplate>.Find(skillData.TemplateId);
+                    unitInfo.EquippedSkillDatas.Add(skillTemplate);
+                }
             }
             alliesDatas.Add(unitInfo);
         }
@@ -51,10 +56,14 @@ public class BattleManager : Singleton<BattleManager>
                 Dex = item.Dex,
                 Level = LevelUpHelper.GetLevel(item.Exp),
             };
-            foreach (var skill in item.EquippedSkillDatas)
+            foreach (var id in item.MountingSkillDatas)
             {
-                var skillTemplate = TemplateContainer<SkillsTemplate>.Find(skill.SkillTemplate);
-                unitInfo.EquippedSkillDatas.Add(skillTemplate);
+                var skillData = CharacterManager.Instance.GetSkillData(id);
+                if (skillData != null)
+                {
+                    var skillTemplate = TemplateContainer<SkillsTemplate>.Find(skillData.TemplateId);
+                    unitInfo.EquippedSkillDatas.Add(skillTemplate);
+                }
             }
             enemiesDatas.Add(unitInfo);
         }

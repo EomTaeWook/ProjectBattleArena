@@ -57,7 +57,7 @@ public class TitleSceneController : SceneController<TitleSceneController>
 
         if (response.Ok == false)
         {
-            return true;
+            return false;
         }
 
         CharacterManager.Instance.Init(response.CharacterDatas);

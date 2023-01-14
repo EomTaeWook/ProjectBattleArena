@@ -35,8 +35,11 @@ namespace Protocol.GameWebServerAndClient
         public string SecurityKey { get; set; }
     }
 
-    public class EquipmentSkillResponse : ServerResponse
+    public class MountingSkillResponse : ServerResponse
     {
+        public int SlotIndex { get; set; }
+
+        public long ChangedSkillId { get; set; }
     }
     public class PurchaseGoodsResponse : ServerResponse
     {

@@ -13,7 +13,7 @@ namespace Protocol.GameWebServerAndClient.ShareModels
 
         public int CashDiff { get; set; }
 
-        public List<int> AcquiredSkills { get; set; } = new List<int>();
+        public List<SkillData> AcquiredSkills { get; set; } = new List<SkillData>();
 
         public void Add(RewardData other)
         {

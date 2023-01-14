@@ -6,7 +6,8 @@ CREATE PROCEDURE insert_skill
 (
 	IN param_character_name VARCHAR(100),
 	IN param_template_id int,
-	IN param_create_time bigint
+	IN param_create_time bigint,
+	OUT param_new_id bigint
 )
 BEGIN
 	INSERT INTO tb_skill
@@ -21,6 +22,9 @@ BEGIN
 		param_template_id,
 		param_create_time
 	);
+
+	SET param_new_id:= last_insert_id();
+
 END $$
 
 DELIMITER ;

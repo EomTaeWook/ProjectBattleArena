@@ -30,7 +30,8 @@
     ],
     "AbnormalStatusType": [
       "Shield",
-      "ProportionalDamageFromLostHp",
+      "CancelCasting",
+      "Stun",
       "Max"
     ],
     "TargetType": [

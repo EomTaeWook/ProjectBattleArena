@@ -27,7 +27,7 @@ public class MainScene : BaseScene<MainSceneModel>
     }
     public override void OnDestroyScene()
     {
-        this.SceneModel.LobbySceneUI.Dispose();
+        this.SceneModel.LobbySceneUI.DisposeUI();
     }
 
 }

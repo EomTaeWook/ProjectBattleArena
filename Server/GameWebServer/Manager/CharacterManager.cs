@@ -1,6 +1,7 @@
 ﻿using BA.Repository;
 using BA.Repository.Helper;
 using Kosher.Framework;
+using Kosher.Log;
 using Protocol.GameWebServerAndClient.ShareModels;
 
 namespace GameWebServer.Manager
@@ -27,13 +28,29 @@ namespace GameWebServer.Manager
             {
                 item.SkillDatas = new List<SkillData>();
 
+                item.MountingSkillDatas = new List<long>();
+
                 var loadSkills = await _skillRepository.LoadSkillByCharacterName(item.CharacterName);
 
                 if(loadSkills == null)
                 {
+                    LogHelper.Error($"failed to load skills");
                     return null;
                 }
                 item.SkillDatas.AddRange(loadSkills);
+
+                var loadMountingSkill = await _skillRepository.LoadMountingSkillByCharacterName(item.CharacterName);
+
+                if(loadMountingSkill == null)
+                {
+                    LogHelper.Error($"failed to load mounting skills");
+                    return null;
+                }
+
+                item.MountingSkillDatas.Add(loadMountingSkill.Slot1);
+                item.MountingSkillDatas.Add(loadMountingSkill.Slot2);
+                item.MountingSkillDatas.Add(loadMountingSkill.Slot3);
+                item.MountingSkillDatas.Add(loadMountingSkill.Slot4);
             }
 
             return loadCharacters;

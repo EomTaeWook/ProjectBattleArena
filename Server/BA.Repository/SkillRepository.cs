@@ -1,4 +1,5 @@
-﻿using BA.Repository.Helper;
+﻿using BA.Models;
+using BA.Repository.Helper;
 using BA.Repository.Interface;
 using Dapper;
 using Kosher.Log;
@@ -16,7 +17,7 @@ namespace BA.Repository
         {
             _dbContext = dbContext;
         }
-        public async Task<bool> CreateEquipmentSkill(string characterName, long createTime)
+        public async Task<bool> CreateMountingSkill(string characterName, long createTime)
         {
             try
             {
@@ -25,7 +26,7 @@ namespace BA.Repository
                     var param = new DynamicParameters();
                     param.AddParam(characterName, nameof(characterName));
                     param.AddParam(createTime, nameof(createTime));
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.CreateEquipmentSkill),
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.CreateMountingSkill),
                                                                                 param,
                                                                                 commandType: CommandType.StoredProcedure);
 
@@ -39,7 +40,7 @@ namespace BA.Repository
                 return false;
             }
         }
-        public async Task<bool> InsertSkill(string characterName, int templateId, long createTime)
+        public async Task<long> InsertSkill(string characterName, int templateId, long createTime)
         {
             try
             {
@@ -49,18 +50,22 @@ namespace BA.Repository
                     param.AddParam(characterName, nameof(characterName));
                     param.AddParam(templateId, nameof(templateId));
                     param.AddParam(createTime, nameof(createTime));
+                    param.Add("param_new_id", dbType: DbType.Int64, direction: ParameterDirection.Output);
+
                     CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.InsertSkill),
                                                                                 param,
                                                                                 commandType: CommandType.StoredProcedure);
 
                     var result = await connection.ExecuteAsync(command);
-                    return result > 0;
+
+                    var newId = param.Get<long>("param_new_id");
+                    return newId;
                 }
             }
             catch (Exception ex)
             {
                 LogHelper.Error(ex);
-                return false;
+                return -1;
             }
         }
         public async Task<List<SkillData>> LoadSkillByCharacterName(string characterName)
@@ -85,9 +90,64 @@ namespace BA.Repository
                 return null;
             }
         }
-        public async Task<bool> EquipmentSkill(string characterName,
-            int currentTemplateId,
-            int updateTemplateId,
+        public async Task<SkillData> LoadSkillByCharacterNameAndId(long id, string characterName)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(_dbContext.GetConnString()))
+                {
+                    var param = new DynamicParameters();
+                    param.AddParam(characterName, nameof(characterName));
+                    param.AddParam(id, nameof(id));
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.LoadSkillByCharacterNameAndId),
+                                                                                param,
+                                                                                commandType: CommandType.StoredProcedure);
+
+                    var result = await connection.QueryAsync<SkillData>(command);
+                    return result.FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex);
+                return null;
+            }
+        }
+        public async Task<MountingSkillModel> LoadMountingSkillByCharacterName(string characterName)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(_dbContext.GetConnString()))
+                {
+                    var param = new DynamicParameters();
+                    param.AddParam(characterName, nameof(characterName));
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.LoadMountingSkillByCharacterName),
+                                                                                param,
+                                                                                commandType: CommandType.StoredProcedure);
+
+                    var result = await connection.QueryAsync<MountingSkillModel>(command);
+                    if(result.Count() > 0)
+                    {
+                        return result.First();
+                    }
+                    return new MountingSkillModel()
+                    {
+                        Slot1 = -1,
+                        Slot2 = -1,
+                        Slot3 = -1,
+                        Slot4 = -1
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex);
+                return null;
+            }
+        }
+        public async Task<bool> UpdateMountingSkill(string characterName,
+            long currentSkillId,
+            long updateSkillId,
             int slotIndex,
             long updateTime)
         {
@@ -97,11 +157,11 @@ namespace BA.Repository
                 {
                     var param = new DynamicParameters();
                     param.AddParam(characterName, nameof(characterName));
-                    param.AddParam(currentTemplateId, nameof(currentTemplateId));
-                    param.AddParam(updateTemplateId, nameof(updateTemplateId));
+                    param.AddParam(currentSkillId, nameof(currentSkillId));
+                    param.AddParam(updateSkillId, nameof(updateSkillId));
                     param.AddParam(updateTime, nameof(updateTime));
-                    param.Add("param_slot_index", $"slot_{slotIndex}");
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.EquipmentSkill),
+                    param.AddParam(slotIndex + 1, nameof(slotIndex));
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.UpdateMountingSkill),
                                                                                 param,
                                                                                 commandType: CommandType.StoredProcedure);
 
@@ -115,7 +175,7 @@ namespace BA.Repository
                 return false;
             }
         }
-        public async Task<bool> UnEquipmentSkill(string characterName, int slotIndex)
+        public async Task<bool> UnMountingSkill(string characterName, int slotIndex)
         {
             try
             {
@@ -126,7 +186,7 @@ namespace BA.Repository
                     param.AddParam(characterName, nameof(characterName));
                     param.AddParam(skillTemplate, nameof(skillTemplate));
                     param.Add("param_slot_index", $"slot_{slotIndex}");
-                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.UnEquipmentSkill),
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.UnMountingSkill),
                                                                                 param,
                                                                                 commandType: CommandType.StoredProcedure);
 

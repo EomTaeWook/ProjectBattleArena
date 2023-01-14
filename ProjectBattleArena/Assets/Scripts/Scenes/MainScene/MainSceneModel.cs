@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.Internal;
-using Protocol.GameWebServerAndClient.ShareModels;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MainSceneModel
 {
