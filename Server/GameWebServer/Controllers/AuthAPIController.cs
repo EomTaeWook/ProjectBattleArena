@@ -1,10 +1,7 @@
 ﻿using GameWebServer.Manager;
 using GameWebServer.Models;
-using Kosher.Log;
 using Protocol.GameWebServerAndClient;
 using Protocol.GameWebServerAndClient.ShareModels;
-using ShareLogic;
-using System.Text.Json;
 
 namespace GameWebServer.Controllers
 {
@@ -19,21 +16,21 @@ namespace GameWebServer.Controllers
                     ErrorMessage = "token is empty"
                 };
             }
-            var authModel = ValidateToken(request.Token);
+            var tokenModel = ValidateToken(request.Token);
 
-            if (authModel == null)
+            if (tokenModel == null)
             {
                 return MakeCommonErrorMessage("token broken");
             }
 
-            var response = await Process(authModel.Account, request);
+            var response = await Process(tokenModel, request);
 
             if(response is ErrorResponse == false)
             {
-                await UserLogManager.Instance.InsertLogAsync(authModel.Account, Request.Path, response);
+                await UserLogManager.Instance.InsertLogAsync(tokenModel.Account, Request.Path, response);
             }
             return response;
         }
-        public abstract Task<IGWCResponse> Process(string account, T request);
+        public abstract Task<IGWCResponse> Process(TokenData tokenData, T request);
     }
 }

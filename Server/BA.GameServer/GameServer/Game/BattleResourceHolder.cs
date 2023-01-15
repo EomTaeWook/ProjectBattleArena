@@ -14,7 +14,10 @@ namespace BA.GameServer.Game
                                                 List<CharacterData> enemies)
         {
             var id = _incremental.Increment();
-            var battle = new BattleResource(id, allies, enemies);
+            var battle = new BattleResource(id,
+                allies,
+                enemies,
+                () => { return new BattleEventHandler(); });
 
             lock (_syncObj)
             {

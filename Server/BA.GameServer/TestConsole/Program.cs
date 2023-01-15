@@ -22,7 +22,7 @@ namespace TestConsole
             {
                 CharacterName = "test2",
                 CharacterTemplate = TemplateContainer<CharacterTemplate>.Find(1001),
-                EquippedSkillDatas = new List<SkillsTemplate>()
+                MountingSkillDatas = new List<SkillsTemplate>()
                 {
                     TemplateContainer<SkillsTemplate>.Find("Fireball")
                 },

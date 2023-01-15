@@ -884,7 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92711e1e1148a06408e027dc90d89e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverType: 0
+  serverType: 1
 --- !u!4 &1906224170
 Transform:
   m_ObjectHideFlags: 0

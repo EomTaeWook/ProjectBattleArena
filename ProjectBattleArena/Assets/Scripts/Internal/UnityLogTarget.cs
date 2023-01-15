@@ -38,7 +38,13 @@ namespace Assets.Scripts.Internal
             {
                 Debug.LogError(_renderer.GetRenderString(logMessage));
             }
+#else
+            if (logMessage.LogLevel == Kosher.Log.LogLevel.Error)
+            {
+                Debug.LogError(_renderer.GetRenderString(logMessage));
+            }
 #endif
+
             return Task.CompletedTask;
         }
     }

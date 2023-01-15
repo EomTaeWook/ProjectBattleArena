@@ -8,8 +8,8 @@ namespace GameWebServer.Manager
 {
     public class CharacterManager : Singleton<CharacterManager>
     {
-        private CharacterRepository _characterRepository;
-        private SkillRepository _skillRepository;
+        private readonly CharacterRepository _characterRepository;
+        private readonly SkillRepository _skillRepository;
         public CharacterManager()
         {
             _characterRepository = DBServiceHelper.GetService<CharacterRepository>();
@@ -21,46 +21,77 @@ namespace GameWebServer.Manager
 
             if (loadCharacters == null)
             {
+                LogHelper.Error($"failed to load characters");
                 return null;
             }
 
             foreach(var item in loadCharacters)
             {
-                item.SkillDatas = new List<SkillData>();
-
-                item.MountingSkillDatas = new List<long>();
-
-                var loadSkills = await _skillRepository.LoadSkillByCharacterName(item.CharacterName);
-
-                if(loadSkills == null)
+                if (await SettingSkillsAsync(item) == false)
                 {
-                    LogHelper.Error($"failed to load skills");
                     return null;
                 }
-                item.SkillDatas.AddRange(loadSkills);
-
-                var loadMountingSkill = await _skillRepository.LoadMountingSkillByCharacterName(item.CharacterName);
-
-                if(loadMountingSkill == null)
-                {
-                    LogHelper.Error($"failed to load mounting skills");
-                    return null;
-                }
-
-                item.MountingSkillDatas.Add(loadMountingSkill.Slot1);
-                item.MountingSkillDatas.Add(loadMountingSkill.Slot2);
-                item.MountingSkillDatas.Add(loadMountingSkill.Slot3);
-                item.MountingSkillDatas.Add(loadMountingSkill.Slot4);
             }
 
             return loadCharacters;
-
         }
+        
         public async Task<CharacterData> LoadCharacterAsync(string characterName)
         {
             var loadCharacter = await _characterRepository.LoadCharacter(characterName);
 
             if(loadCharacter == null)
+            {
+                return null;
+            }
+
+            if(await SettingSkillsAsync(loadCharacter) == false)
+            {
+                return null;
+            }
+
+            return loadCharacter;
+        }
+        private async Task<bool> SettingSkillsAsync(CharacterData characterData)
+        {
+            characterData.SkillDatas = new List<SkillData>();
+
+            characterData.MountingSkillDatas = new List<long>();
+
+            var loadSkills = await _skillRepository.LoadSkillByCharacterName(characterData.CharacterName);
+
+            if (loadSkills == null)
+            {
+                LogHelper.Error($"failed to load skills");
+                return false;
+            }
+            characterData.SkillDatas.AddRange(loadSkills);
+
+            var loadMountingSkill = await _skillRepository.LoadMountingSkillByCharacterName(characterData.CharacterName);
+
+            if (loadMountingSkill == null)
+            {
+                LogHelper.Error($"failed to load mounting skills");
+                return false;
+            }
+
+            characterData.MountingSkillDatas.Add(loadMountingSkill.Slot1);
+            characterData.MountingSkillDatas.Add(loadMountingSkill.Slot2);
+            characterData.MountingSkillDatas.Add(loadMountingSkill.Slot3);
+            characterData.MountingSkillDatas.Add(loadMountingSkill.Slot4);
+
+            return true;
+        }
+        public async Task<CharacterData> LoadCharacterByUniqueIdAsync(string uid)
+        {
+            var loadCharacter = await _characterRepository.LoadCharacterByUniqueId(uid);
+
+            if (loadCharacter == null)
+            {
+                return null;
+            }
+
+            if (await SettingSkillsAsync(loadCharacter) == true)
             {
                 return null;
             }

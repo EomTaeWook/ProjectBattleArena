@@ -2,6 +2,7 @@
 using GameWebServer.Models;
 using Kosher.Log;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Protocol.GameWebServerAndClient;
 using Protocol.GameWebServerAndClient.ShareModels;
 using ShareLogic;
@@ -11,11 +12,10 @@ using System.Text.Json;
 namespace GameWebServer.Controllers
 {
     [Route("[controller]")]
-    [ApiController]
     public abstract class APIController<T> : ControllerBase where T : ICGWRequest
     {
         [HttpPost]
-        public async Task<JsonResult> Post(T request)
+        public async Task<JsonResult> Post([FromBody]T request)
         {
             if(ServiceManager.Instance.IsServerOn() == false)
             {
@@ -49,12 +49,39 @@ namespace GameWebServer.Controllers
                 Ok = false
             };
         }
-        protected TokenData ValidateToken(string token)
+        protected TokenData GetTokenData(string token)
         {
             try
             {
                 var json = Cryptogram.Decrypt(token);
                 return JsonSerializer.Deserialize<TokenData>(json);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex);
+                return null;
+            }
+        }
+        protected TokenData ValidateToken(string token)
+        {
+            try
+            {
+                var json = Cryptogram.Decrypt(token);
+                var data = JsonSerializer.Deserialize<TokenData>(json);
+
+                if (string.IsNullOrEmpty(data.Account) == true)
+                {
+                    return null;
+                }
+                else if(string.IsNullOrEmpty(data.Password) == true)
+                {
+                    return null;
+                }
+                else if(string.IsNullOrEmpty(data.CharacterName) == true)
+                {
+                    return null;
+                }
+                return data;
             }
             catch (Exception ex)
             {

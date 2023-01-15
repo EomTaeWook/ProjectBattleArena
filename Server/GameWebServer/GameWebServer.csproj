@@ -5,19 +5,20 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Controllers\User\**" />
-    <Content Remove="Controllers\User\**" />
-    <EmbeddedResource Remove="Controllers\User\**" />
-    <None Remove="Controllers\User\**" />
-  </ItemGroup>
-  
   <ItemGroup>
     <ProjectReference Include="..\BA.Models\BA.Models.csproj" />
     <ProjectReference Include="..\BA.Repository\BA.Repository.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Compile Include="..\..\ProjectBattleArena\Assets\Scripts\BattleContents\**\*.cs">
+      <Link>GameContents\%(RecursiveDir)/%(FileName)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\BA.GameServer\GameServer\Game\**\*.cs">
+      <Link>GameServerContents\%(RecursiveDir)/%(FileName)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="DataContainer">
       <HintPath>..\..\ShareDll\DataContainer.dll</HintPath>

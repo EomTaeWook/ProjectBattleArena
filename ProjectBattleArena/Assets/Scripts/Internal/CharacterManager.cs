@@ -13,6 +13,7 @@ namespace Assets.Scripts.Internal
 {
     internal class CharacterManager : Singleton<CharacterManager>
     {
+        public string CharacterName { get; private set; }
         public int Level { get; private set; }
         public CharacterData SelectedCharacterData { get; private set; }
 
@@ -53,6 +54,7 @@ namespace Assets.Scripts.Internal
             }
 
             Level = LevelUpHelper.GetLevel(characterData.Exp);
+            CharacterName = characterData.CharacterName;
         }
         public SkillData GetSkillData(long id)
         {

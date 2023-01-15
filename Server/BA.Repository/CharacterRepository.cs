@@ -42,6 +42,30 @@ namespace BA.Repository
                 return false;
             }
         }
+        public async Task<CharacterData> LoadCharacterByUniqueId(string id)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(_dbContext.GetConnString()))
+                {
+                    var param = new DynamicParameters();
+                    param.AddParam(id, nameof(id));
+                    CommandDefinition command = new CommandDefinition(DBHelper.GetSPName(SP.LoadCharacterByUniqueId),
+                                                                                param,
+                                                                                commandType: CommandType.StoredProcedure);
+
+                    var result = await connection.QueryFirstOrDefaultAsync<CharacterData>(command);
+                    result ??= new CharacterData();
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(ex);
+                return null;
+            }
+        }
         public async Task<CharacterData> LoadCharacter(string characterName)
         {
             try

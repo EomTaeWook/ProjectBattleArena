@@ -5,8 +5,8 @@ CREATE TABLE tb_user_asset (
   account varchar(100),
   gold int default 0,
   cash int default 0,
-  arena_ticket int,
-  arean_ticket_latest_time bigint,
+  arena_ticket int default 0,
+  arena_ticket_latest_time bigint default 0,
   gacha_skill int,
   create_time bigint,
   PRIMARY KEY (account)

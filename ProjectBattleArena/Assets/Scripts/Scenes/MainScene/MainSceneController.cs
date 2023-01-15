@@ -48,7 +48,6 @@ public class MainSceneController : SceneController<MainSceneController>
         var characterData = CharacterManager.Instance.SelectedCharacterData;
         var request = new MountingSkill()
         {
-            CharacterName = characterData.CharacterName,
             SlotIndex = slotIndex,
             SkillId  = skillId
         };
@@ -72,7 +71,6 @@ public class MainSceneController : SceneController<MainSceneController>
             var purchaseGoodsByAdmin = new PurchaseGoodsByAdmin
             {
                 TemplateId = goodsTemplate.Id,
-                CharacterName = CharacterManager.Instance.SelectedCharacterData.CharacterName
             };
             var res = await HttpRequestHelper.AuthRequest<PurchaseGoodsByAdmin, PurchaseGoodsByAdminResponse>(purchaseGoodsByAdmin);
 
@@ -92,7 +90,6 @@ public class MainSceneController : SceneController<MainSceneController>
             var purchaseGoods = new PurchaseGoods
             {
                 TemplateId = goodsTemplate.Id,
-                CharacterName = CharacterManager.Instance.SelectedCharacterData.CharacterName,
             };
             var res = await HttpRequestHelper.AuthRequest<PurchaseGoods, PurchaseGoodsResponse>(purchaseGoods);
 

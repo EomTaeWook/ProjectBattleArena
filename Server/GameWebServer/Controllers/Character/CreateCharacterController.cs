@@ -17,49 +17,49 @@ namespace GameWebServer.Controllers.Character
             _skillRepository = skillRepository;
         }
 
-        public override async Task<IGWCResponse> Process(string account, CreateCharacter request)
+        public override async Task<IGWCResponse> Process(TokenData tokenData, CreateCharacter request)
         {
-            if(string.IsNullOrEmpty(request.CharacterName) == true)
+            if(string.IsNullOrEmpty(tokenData.CharacterName) == true)
             {
-                return MakeErrorMessage(account, $"character name is empty");
+                return MakeErrorMessage(tokenData.Account, $"character name is empty");
             }
 
             var template = TemplateContainer<CharacterTemplate>.Find(request.CharacterTemplateId);
             if (template.Invalid())
             {
-                return MakeErrorMessage(account, $"character job is invalid");
+                return MakeErrorMessage(tokenData.Account, $"character job is invalid");
             }
 
-            var loadCharacter = await _characterRepository.LoadCharacter(request.CharacterName);
+            var loadCharacter = await _characterRepository.LoadCharacter(tokenData.CharacterName);
 
             if(loadCharacter == null)
             {
-                return MakeErrorMessage(account, $"failed to load character");
+                return MakeErrorMessage(tokenData.Account, $"failed to load character");
             }
 
             if (string.IsNullOrEmpty(loadCharacter.CharacterName) == false)
             {
-                return MakeErrorMessage(account, $"already character name");
+                return MakeErrorMessage(tokenData.Account, $"already character name");
             }
 
             var characterData = new CharacterData()
             {
-                CharacterName = request.CharacterName,
+                CharacterName = tokenData.CharacterName,
                 CreateTime = DateTime.Now.Ticks,
                 TemplateId = request.CharacterTemplateId,
             };
-            var created = await _characterRepository.CreateCharacter(characterData, account);
+            var created = await _characterRepository.CreateCharacter(characterData, tokenData.Account);
 
             if(created == false)
             {
-                return MakeErrorMessage(account, $"failed to created character");
+                return MakeErrorMessage(tokenData.Account, $"failed to created character");
             }
 
-            created = await _skillRepository.CreateMountingSkill(request.CharacterName,
+            created = await _skillRepository.CreateMountingSkill(tokenData.CharacterName,
                 characterData.CreateTime);
             if (created == false)
             {
-                return MakeErrorMessage(account, $"failed to created mounting skill");
+                return MakeErrorMessage(tokenData.Account, $"failed to created mounting skill");
             }
 
             return new CreateCharacterResponse()

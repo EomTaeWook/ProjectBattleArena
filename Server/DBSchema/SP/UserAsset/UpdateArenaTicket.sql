@@ -12,7 +12,7 @@ CREATE PROCEDURE update_arena_ticket
 BEGIN
 	UPDATE tb_user_asset SET
 		arena_ticket = param_update_ticket,
-		arean_ticket_latest_time = param_latest_update_time 
+		arena_ticket_latest_time = param_latest_update_time 
 	WHERE account = param_account AND arena_ticket = param_current_ticket;
 END $$
 

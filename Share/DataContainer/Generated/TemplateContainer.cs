@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DataContainer.Generated;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 namespace TemplateContainers
@@ -24,19 +25,32 @@ namespace TemplateContainers
             }
             return _nameKeyToMap[name];
         }
+        //public static void Load(string path, string fileName)
+        //{
+        //    string fullPath = Path.Combine(path, fileName);
+        //    using (var stream = new StreamReader(File.OpenRead(fullPath)))
+        //    {
+        //        var content = stream.ReadToEnd();
+        //        var templateDatas = JsonConvert.DeserializeObject<List<T>>(content);
+        //        foreach (var template in templateDatas)
+        //        {
+        //            _dataToMap.Add(template.Id, template);
+        //            _nameKeyToMap.Add(template.Name, template);
+        //        }
+        //    }
+        //}
         public static void Load(string path, string fileName)
         {
-            string fullPath = Path.Combine(path, fileName);
-            using (var stream = new StreamReader(File.OpenRead(fullPath)))
+            var templateDatas = LoadFunction(path, fileName);
+            foreach (var template in templateDatas)
             {
-                var content = stream.ReadToEnd();
-                var templateDatas = JsonConvert.DeserializeObject<List<T>>(content);
-                foreach (var template in templateDatas)
-                {
-                    _dataToMap.Add(template.Id, template);
-                    _nameKeyToMap.Add(template.Name, template);
-                }
+                _dataToMap.Add(template.Id, template);
+                _nameKeyToMap.Add(template.Name, template);
             }
+        }
+        public static List<T> LoadFunction(string path, string fileName)
+        {
+            return new List<T>();
         }
         public static void MakeRefTemplate()
         {

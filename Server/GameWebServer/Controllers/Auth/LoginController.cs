@@ -2,8 +2,6 @@
 using GameWebServer.Manager;
 using Protocol.GameWebServerAndClient;
 using Protocol.GameWebServerAndClient.ShareModels;
-using System.Net.WebSockets;
-using System.Security.Principal;
 
 namespace GameWebServer.Controllers.Auth
 {
@@ -19,40 +17,45 @@ namespace GameWebServer.Controllers.Auth
         }
         public override async Task<IGWCResponse> Process(Login request)
         {
-            var tokenData = ValidateToken(request.Token);
+            if (string.IsNullOrEmpty(request.Account) == true)
+            {
+                return MakeCommonErrorMessage("invalid request account is empty");
+            }
 
+            var tokenData = GetTokenData(request.Token);
             if(tokenData == null)
             {
-                return MakeCommonErrorMessage("invalid request");
+                return MakeErrorMessage(request.Account, "invalid request");
             }
-            var loadModel = await _authRepository.LoadAuth(tokenData.Account);
+
+            var loadModel = await _authRepository.LoadAuth(request.Account);
 
             if (loadModel == null)
             {
-                return MakeErrorMessage(tokenData.Account, "not found account");
+                return MakeErrorMessage(request.Account, "not found account");
             }
 
             if(string.IsNullOrEmpty(loadModel.Account) == true)
             {
-                return MakeErrorMessage(tokenData.Account, $"failed to load account");
+                return MakeErrorMessage(request.Account, $"failed to load account");
             }
 
             if(loadModel.Password.Equals(tokenData.Password) == false)
             {
-                return MakeErrorMessage(tokenData.Account, $"failed to login {tokenData.Account} invalid password");
+                return MakeErrorMessage(tokenData.Account, $"failed to login {request.Account} invalid password");
             }
 
-            var loadCharacters = await CharacterManager.Instance.LoadCharacterByLoginAsync(tokenData.Account);
+            var loadCharacters = await CharacterManager.Instance.LoadCharacterByLoginAsync(request.Account);
 
             if (loadCharacters == null)
             {
-                return MakeErrorMessage(tokenData.Account, $"failed to load characters");
+                return MakeErrorMessage(request.Account, $"failed to load characters");
             }
 
-            var assetData = await LoadUserAssetAsync(tokenData.Account);
+            var assetData = await LoadUserAssetAsync(request.Account);
             if(assetData == null)
             {
-                return MakeErrorMessage(tokenData.Account, $"failed to load user asset");
+                return MakeErrorMessage(request.Account, $"failed to load user asset");
             }
             
             return new LoginResponse()

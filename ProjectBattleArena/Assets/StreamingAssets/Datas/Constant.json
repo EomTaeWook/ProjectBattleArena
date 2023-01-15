@@ -43,5 +43,15 @@
     "Id": 1008,
     "Name": "OpenSlot3",
     "Value": 30
+  },
+  {
+    "Id": 1009,
+    "Name": "ArenaTicketMaxCount",
+    "Value": 10
+  },
+  {
+    "Id": 1010,
+    "Name": "ArenaTicketChargedCoolTime",
+    "Value": 300
   }
 ]

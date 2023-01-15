@@ -12,6 +12,7 @@ CREATE PROCEDURE create_character
 BEGIN
 	INSERT INTO tb_character
 	(
+		unique_id,
 		character_name,
 		account,
 		template_id,
@@ -19,6 +20,7 @@ BEGIN
 	)
 	VALUES
 	(
+		REPLACE(UUID(),'-',''),
 		param_character_name,
 		param_account,
 		param_template_id,

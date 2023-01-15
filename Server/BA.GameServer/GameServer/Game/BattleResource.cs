@@ -1,5 +1,4 @@
-﻿using BA.GameServer.Modules.Game.Models;
-using DataContainer.Generated;
+﻿using DataContainer.Generated;
 using GameContents;
 using Protocol.GameWebServerAndClient.ShareModels;
 using ShareLogic;
@@ -13,12 +12,15 @@ namespace BA.GameServer.Game
     {
         public long Id { get; private set; }
         public int RandomSeed { get; private set; }
-        private readonly BattleEventHandler _battleEventHandler = new BattleEventHandler();
         private readonly Battle _battle;
-        private Player Player { get; set; }
+        public Battle GetBattle()
+        {
+            return _battle;
+        }
         public BattleResource(long id,
             List<CharacterData> allies,
-            List<CharacterData> enemies)
+            List<CharacterData> enemies,
+            Func<IBattleEventHandler> createEventHandlerFunc)
         {
             Id = id;
             RandomSeed = DateTime.Now.Ticks.GetHashCode();
@@ -36,11 +38,22 @@ namespace BA.GameServer.Game
                     Dex = item.Dex,
                     Level = LevelUpHelper.GetLevel(item.Exp),
                 };
-                foreach(var skill in item.EquippedSkillDatas)
-                {
-                    var skillTemplate = TemplateContainer<SkillsTemplate>.Find(skill.SkillTemplate);
 
-                    unitInfo.EquippedSkillDatas.Add(skillTemplate);
+                var tempMap = new Dictionary<long, SkillData>();
+                foreach(var skillData in item.SkillDatas)
+                {
+                    tempMap.Add(skillData.Id, skillData);
+                }
+                foreach(var mountingSkill in item.MountingSkillDatas)
+                {
+                    if(mountingSkill == -1)
+                    {
+                        continue;
+                    }
+                    var templateId = tempMap[mountingSkill].TemplateId;
+
+                    var skillTemplate = TemplateContainer<SkillsTemplate>.Find(templateId);
+                    unitInfo.MountingSkillDatas.Add(skillTemplate);
                 }
 
                 allyUnits.Add(unitInfo);
@@ -59,20 +72,26 @@ namespace BA.GameServer.Game
                     Dex = item.Dex,
                     Level = LevelUpHelper.GetLevel(item.Exp),
                 };
-                foreach (var skill in item.EquippedSkillDatas)
+                var tempMap = new Dictionary<long, SkillData>();
+                foreach (var skillData in item.SkillDatas)
                 {
-                    var skillTemplate = TemplateContainer<SkillsTemplate>.Find(skill.SkillTemplate);
+                    tempMap.Add(skillData.Id, skillData);
+                }
+                foreach (var mountingSkill in item.MountingSkillDatas)
+                {
+                    if (mountingSkill == -1)
+                    {
+                        continue;
+                    }
+                    var templateId = tempMap[mountingSkill].TemplateId;
 
-                    unitInfo.EquippedSkillDatas.Add(skillTemplate);
+                    var skillTemplate = TemplateContainer<SkillsTemplate>.Find(templateId);
+                    unitInfo.MountingSkillDatas.Add(skillTemplate);
                 }
                 enemyUnits.Add(unitInfo);
             }
 
-            _battle = new Battle(_battleEventHandler, RandomSeed, allyUnits, enemyUnits);
-        }
-        public void ProcessBattle()
-        {
-            
+            _battle = new Battle(createEventHandlerFunc(), RandomSeed, allyUnits, enemyUnits);
         }
     }
 }

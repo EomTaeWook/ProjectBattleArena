@@ -70,6 +70,7 @@ namespace BA.Repository.Helper
             LoadSkillByCharacterName,
             LoadMountingSkillByCharacterName,
             LoadSkillByCharacterNameAndId,
+            LoadCharacterByUniqueId,
 
             Max
         }

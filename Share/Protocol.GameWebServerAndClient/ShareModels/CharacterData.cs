@@ -4,6 +4,7 @@ namespace Protocol.GameWebServerAndClient.ShareModels
 {
     public class CharacterData
     {
+        public string UniqueId { get; set; }
         public string CharacterName { get; set; }
 
         public int TemplateId { get; set; }

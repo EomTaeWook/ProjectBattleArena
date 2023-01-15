@@ -10,6 +10,43 @@ namespace GameWebServer.Manager
 {
     public class AssetManager : Singleton<AssetManager>
     {
+        public bool ChargedResource(int currentValue,
+            int diff,
+            int maxValue,
+            int chargedCoolTime,
+            long latestCharagedTime,
+            out int changedValue,
+            out int remainCharagedTime
+            )
+        {
+            var currentTime = DateTime.Now.Ticks;
+            remainCharagedTime = chargedCoolTime;
+            if (latestCharagedTime == 0)
+            {
+                changedValue = maxValue + diff;
+                return true;
+            }
+            if (currentValue + diff >= maxValue)
+            {
+                changedValue = currentValue - diff;
+                return false;
+            }
+            var elapsedSeconds = TimeSpan.FromTicks(currentTime - latestCharagedTime).TotalSeconds;
+            var added = (int)(elapsedSeconds / chargedCoolTime);
+            currentValue += added;
+            
+            if(currentValue >= maxValue)
+            {
+                currentValue = maxValue;
+                remainCharagedTime = chargedCoolTime;
+                changedValue = currentValue + diff;
+                return true;
+            }
+
+            changedValue = currentValue + diff;
+            remainCharagedTime = chargedCoolTime - (int)(elapsedSeconds % chargedCoolTime);
+            return false;
+        }
         public async Task<Tuple<long>> LoadAssetAsync(string account, AssetType assetType)
         {
             var userAssetRepository = DBServiceHelper.GetService<UserAssetRepository>();
@@ -34,7 +71,6 @@ namespace GameWebServer.Manager
                 LogHelper.Fatal($"invalid asset type : {assetType}");
                 return Tuple.Create(0L);
             }
-
         }
         public async Task<bool> ModifyGoldAsync(string account, long currentValue, long updateValue, ChangedAssetReason reason)
         {

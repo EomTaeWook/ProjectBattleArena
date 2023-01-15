@@ -9,52 +9,46 @@ namespace GameWebServer.Controllers.Purchase
 {
     public class PurchaseGoodsController : AuthAPIController<PurchaseGoods>
     {
-        private SkillRepository _skillRepository;
-        private UserAssetRepository _assetRepository;
-        private CharacterRepository _characterRepository;
-        public PurchaseGoodsController(SkillRepository skillRepository,
-            CharacterRepository characterRepository,
-            UserAssetRepository userAssetRepository)
+        private readonly CharacterRepository _characterRepository;
+        public PurchaseGoodsController(CharacterRepository characterRepository)
         {
-            _skillRepository = skillRepository;
             _characterRepository = characterRepository;
-            _assetRepository = userAssetRepository;
         }
 
-        public override async Task<IGWCResponse> Process(string account, PurchaseGoods request)
+        public override async Task<IGWCResponse> Process(TokenData tokenData, PurchaseGoods request)
         {
             var goodsTemplate = TemplateContainer<GoodsTemplate>.Find(request.TemplateId);
 
             if(goodsTemplate.Invalid())
             {
-                return MakeErrorMessage(account, $"invalid request");
+                return MakeErrorMessage(tokenData.Account, $"invalid request");
             }
 
-            var loadCharacter = await _characterRepository.LoadCharacter(request.CharacterName);
+            var loadCharacter = await _characterRepository.LoadCharacter(tokenData.CharacterName);
 
             if(loadCharacter == null)
             {
-                return MakeErrorMessage(account, $"failed to load character");
+                return MakeErrorMessage(tokenData.Account, $"failed to load character");
             }
 
             var characterTemplate = TemplateContainer<CharacterTemplate>.Find(loadCharacter.TemplateId);
-            var rewards = await GoodsManager.Instance.PurchaseGoodsAsync(account,
+            var rewards = await GoodsManager.Instance.PurchaseGoodsAsync(tokenData.Account,
                 characterTemplate,
                 goodsTemplate);
 
             if(rewards == null)
             {
-                return MakeErrorMessage(account, $"failed to purchase goods");
+                return MakeErrorMessage(tokenData.Account, $"failed to purchase goods");
             }
 
-            var gived = await RewardGiverManager.Instance.GiveRewradsAsync(account,
-                request.CharacterName,
+            var gived = await RewardGiverManager.Instance.GiveRewradsAsync(tokenData.Account,
+                tokenData.CharacterName,
                 rewards,
                 GiveRewardReason.PurchasedGoods);
 
             if(gived == false)
             {
-                return MakeErrorMessage(account, $"failed to gived reward");
+                return MakeErrorMessage(tokenData.Account, $"failed to gived reward");
             }
 
             return new PurchaseGoodsResponse()

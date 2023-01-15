@@ -16,6 +16,6 @@ namespace GameContents
 
         public int Dex { get; set; }
 
-        public List<SkillsTemplate> EquippedSkillDatas { get; set; } = new List<SkillsTemplate>();
+        public List<SkillsTemplate> MountingSkillDatas { get; set; } = new List<SkillsTemplate>();
     }
 }

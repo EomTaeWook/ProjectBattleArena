@@ -35,7 +35,7 @@ public class BattleManager : Singleton<BattleManager>
                 if(skillData != null)
                 {
                     var skillTemplate = TemplateContainer<SkillsTemplate>.Find(skillData.TemplateId);
-                    unitInfo.EquippedSkillDatas.Add(skillTemplate);
+                    unitInfo.MountingSkillDatas.Add(skillTemplate);
                 }
             }
             alliesDatas.Add(unitInfo);
@@ -62,7 +62,7 @@ public class BattleManager : Singleton<BattleManager>
                 if (skillData != null)
                 {
                     var skillTemplate = TemplateContainer<SkillsTemplate>.Find(skillData.TemplateId);
-                    unitInfo.EquippedSkillDatas.Add(skillTemplate);
+                    unitInfo.MountingSkillDatas.Add(skillTemplate);
                 }
             }
             enemiesDatas.Add(unitInfo);

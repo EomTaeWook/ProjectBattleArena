@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Internal;
 using Assets.Scripts.Scenes;
 using Assets.Scripts.Scenes.SceneModels;
-using DataContainer;
 using Protocol.GameWebServerAndClient;
 using System.Threading.Tasks;
 
@@ -22,12 +21,14 @@ internal class CreateCharacterController : SceneController<CreateCharacterContro
     }
     public async Task<bool> RequestCreateCharacterAsync(CreateCharacterSceneModel sceneModel)
     {
+        var tokenData = ApplicationManager.Instance.MakeUserToken();
+        tokenData.CharacterName = sceneModel.CharacterName;
         var request = new CreateCharacter()
         {
-            CharacterName = sceneModel.CharacterName,
-            CharacterTemplateId = sceneModel.CurrentTemplateId
+            CharacterTemplateId = sceneModel.CurrentTemplateId,
+            Token = ApplicationManager.Instance.GetUserToken(tokenData),
         };
-        var response = await HttpRequestHelper.AuthRequest<CreateCharacter, CreateCharacterResponse>(request);
+        var response = await HttpRequestHelper.Request<CreateCharacter, CreateCharacterResponse>(request);
 
         if (response.Ok == false)
         {

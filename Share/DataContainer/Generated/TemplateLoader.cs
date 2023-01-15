@@ -6,7 +6,7 @@ using TemplateContainers;
 
 namespace DataContainer.Generated
 {
-    public class TemplateLoader
+    public partial class TemplateLoader
     {
         public static void Load(string path)
         {
@@ -20,6 +20,12 @@ namespace DataContainer.Generated
             TemplateContainer<SkillsTemplate>.Load(path, "Skills.json");
             TemplateContainer<SkillsGroupTemplate>.Load(path, "SkillsGroup.json");
         }
+
+        public static void Load(Action<string, string> action)
+        {
+
+        }
+
         public static void MakeRefTemplate()
         {
             TemplateContainer<CharacterTemplate>.MakeRefTemplate();

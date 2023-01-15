@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Models;
 using Kosher.Framework;
+using Newtonsoft.Json;
 using Protocol.GameWebServerAndClient;
 using Protocol.GameWebServerAndClient.ShareModels;
 using ShareLogic;
@@ -59,6 +60,16 @@ namespace Assets.Scripts.Internal
         
         public string GetUserToken()
         {
+            return GetUserToken(MakeUserToken());
+        }
+        public string GetUserToken(TokenData tokenData)
+        {
+            var json = JsonConvert.SerializeObject(tokenData);
+            var encrypt = Cryptogram.Encrypt(json);
+            return encrypt;
+        }
+        public TokenData MakeUserToken()
+        {
             var userData = PlayerManager.Instance.GetUserData();
             if (userData == null)
             {
@@ -69,13 +80,11 @@ namespace Assets.Scripts.Internal
             {
                 Account = userData.Account,
                 Password = userData.Password,
-                Count = ++reqeustCount
+                Count = reqeustCount++,
+                CharacterName = CharacterManager.Instance.CharacterName,
             };
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(tokenModel);
 
-            var token = Cryptogram.Encrypt(json);
-
-            return token;
+            return tokenModel;
         }
     }
 }

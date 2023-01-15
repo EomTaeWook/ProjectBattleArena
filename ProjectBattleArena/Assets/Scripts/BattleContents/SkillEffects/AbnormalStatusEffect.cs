@@ -1,7 +1,6 @@
 ﻿using DataContainer;
 using DataContainer.Generated;
 using Kosher.Log;
-using UnityEditor;
 
 namespace GameContents
 {

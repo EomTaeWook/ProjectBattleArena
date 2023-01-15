@@ -40,7 +40,7 @@ namespace GameContents
         {
             UnitInfo = unitInfo;
             UnitStats = new UnitStats(unitInfo);
-            MakeSkills(unitInfo.EquippedSkillDatas);
+            MakeSkills(unitInfo.MountingSkillDatas);
             if (CharacterTemplate.JobType == DataContainer.JobType.Tanker)
             {
                 _aggroGauge = ConstHelper.TankAggro;

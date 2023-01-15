@@ -49,4 +49,13 @@ namespace Protocol.GameWebServerAndClient
     {
         public RewardData RewardDiff { get; set; }
     }
+    public class ChallengeArenaResponse : ServerResponse
+    {
+        public string OpponentId { get; set; }
+        public bool BattleWin { get; set; }
+        public int RandomSeed { get; set; }
+        public int ArenaTicketRemainChargeTime { get; set; }
+        public RewardData RewardData { get; set; }
+        public int AreanTicketDiff { get; set; }
+    }
 }

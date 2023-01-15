@@ -63,15 +63,12 @@ namespace GameContents
         {
             return _currentTicks;
         }
-
-        public void ProcessTicks()
+        public void ProcessTicks(double elapsedTime)
         {
-            if(_isBattleEnd == true)
+            if (_isBattleEnd == true)
             {
                 return;
             }
-
-            var elapsedTime = TimeSpan.FromTicks(DateTime.Now.Ticks - this._startedTime).TotalMilliseconds;
 
             int elapsedTickCount = (int)(elapsedTime / ConstHelper.DefaultPerTicks);
 
@@ -84,7 +81,7 @@ namespace GameContents
                 _currentTicks++;
                 DoAction();
 
-                if(_allyParty.GetAliveTargets().Count == 0)
+                if (_allyParty.GetAliveTargets().Count == 0)
                 {
                     EndBattleEvent endBattleEvent = new EndBattleEvent(
                         false,
@@ -94,7 +91,7 @@ namespace GameContents
                     _isBattleEnd = true;
                     break;
                 }
-                else if(_enemyParty.GetAliveTargets().Count == 0)
+                else if (_enemyParty.GetAliveTargets().Count == 0)
                 {
                     EndBattleEvent endBattleEvent = new EndBattleEvent(
                         true,
@@ -105,6 +102,12 @@ namespace GameContents
                     break;
                 }
             }
+        }
+        public void ProcessTicks()
+        {
+            var elapsedTime = TimeSpan.FromTicks(DateTime.Now.Ticks - this._startedTime).TotalMilliseconds;
+
+            ProcessTicks(elapsedTime);
         }
 
         public List<Unit> GetSkillTargets(Unit invoker,

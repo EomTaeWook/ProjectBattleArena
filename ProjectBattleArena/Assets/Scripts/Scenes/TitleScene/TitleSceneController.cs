@@ -8,6 +8,7 @@ using ShareLogic;
 using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class TitleSceneController : SceneController<TitleSceneController>
 {
@@ -22,8 +23,30 @@ public class TitleSceneController : SceneController<TitleSceneController>
         LogBuilder.Configuration(logConfiguration);
         LogBuilder.Build();
 
-        TemplateLoader.Load(Path.Combine(Application.streamingAssetsPath, "Datas"));
+        if(Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            TemplateLoader.Load(Path.Combine(Application.streamingAssetsPath, "Datas"));
+        }
+        else if(Application.platform == RuntimePlatform.Android)
+        {
+            var path = Path.Combine(Application.streamingAssetsPath, "Datas");
+
+
+        }
+
         TemplateLoader.MakeRefTemplate();
+    }
+    private string LoadAndroidAssetFile(string path, string fileName)
+    {
+        var fullPath = Path.Combine(Application.streamingAssetsPath, "Datas", fileName);
+        var requester = UnityWebRequest.Get(fullPath);
+        requester.SendWebRequest();
+        while(requester.isDone == false)
+        {
+        }
+        //var writePath = Path.Combine(Application.persistentDataPath, "Datas", fileName);
+        //File.WriteAllText(path, requester.downloadHandler.text);
+        return requester.downloadHandler.text;
     }
     public override void BindScene(BaseScene baseScene)
     {
@@ -52,6 +75,7 @@ public class TitleSceneController : SceneController<TitleSceneController>
     {
         var response = await HttpRequestHelper.Request<Login, LoginResponse>(new Login()
         {
+            Account = PlayerManager.Instance.GetUserData().Account,
             Token = ApplicationManager.Instance.GetUserToken()
         });
 

@@ -1,6 +1,7 @@
 ﻿using BA.Repository;
 using DataContainer.Generated;
 using Protocol.GameWebServerAndClient;
+using Protocol.GameWebServerAndClient.ShareModels;
 using ShareLogic;
 using TemplateContainers;
 
@@ -17,18 +18,13 @@ namespace GameWebServer.Controllers.Character
             _characterRepository = characterRepository;
         }
 
-        public override async Task<IGWCResponse> Process(string account, MountingSkill request)
+        public override async Task<IGWCResponse> Process(TokenData tokenData, MountingSkill request)
         {
-            if(string.IsNullOrEmpty(request.CharacterName) == true)
-            {
-                return MakeErrorMessage(account, $"character name is empty");
-            }
-
-            var loadCharacter = await _characterRepository.LoadCharacter(request.CharacterName);
+            var loadCharacter = await _characterRepository.LoadCharacter(tokenData.CharacterName);
 
             if(loadCharacter == null)
             {
-                return MakeErrorMessage(account, $"not found character");
+                return MakeErrorMessage(tokenData.Account, $"not found character");
             }
 
             var slotIndexLevel = TemplateContainer<ConstantTemplate>.Find($"OpenSlot{request.SlotIndex}");
@@ -36,26 +32,26 @@ namespace GameWebServer.Controllers.Character
 
             if(slotIndexLevel.Value > characterLevel)
             {
-                return MakeErrorMessage(account, $"character level is low");
+                return MakeErrorMessage(tokenData.Account, $"character level is low");
             }
 
             var skillData = await _skillRepository.LoadSkillByCharacterNameAndId(request.SkillId,
-                request.CharacterName);
+                tokenData.CharacterName);
 
             if(skillData == null)
             {
-                return MakeErrorMessage(account, $"not found skill data");
+                return MakeErrorMessage(tokenData.Account, $"not found skill data");
             }
 
-            var loadMounting = await _skillRepository.LoadMountingSkillByCharacterName(request.CharacterName);
+            var loadMounting = await _skillRepository.LoadMountingSkillByCharacterName(tokenData.CharacterName);
             if(loadMounting == null)
             {
-                return MakeErrorMessage(account, $"failed to load Mounting skill");
+                return MakeErrorMessage(tokenData.Account, $"failed to load Mounting skill");
             }
 
             var currentId = loadMounting.GetSlotId(request.SlotIndex);
 
-            var updated = await _skillRepository.UpdateMountingSkill(request.CharacterName,
+            var updated = await _skillRepository.UpdateMountingSkill(tokenData.CharacterName,
                 currentId,
                 request.SkillId,
                 request.SlotIndex,
@@ -63,7 +59,7 @@ namespace GameWebServer.Controllers.Character
 
             if(updated == false)
             {
-                return MakeErrorMessage(account, $"failed to update equipment skill");
+                return MakeErrorMessage(tokenData.Account, $"failed to update equipment skill");
             }
 
             return new MountingSkillResponse()
