@@ -23,29 +23,25 @@ public class TitleSceneController : SceneController<TitleSceneController>
         LogBuilder.Configuration(logConfiguration);
         LogBuilder.Build();
 
-        if(Application.platform == RuntimePlatform.WindowsEditor)
+        if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             TemplateLoader.Load(Path.Combine(Application.streamingAssetsPath, "Datas"));
         }
         else if(Application.platform == RuntimePlatform.Android)
         {
-            var path = Path.Combine(Application.streamingAssetsPath, "Datas");
-
-
+            TemplateLoader.Load(LoadAndroidAssetFile);
         }
 
         TemplateLoader.MakeRefTemplate();
     }
-    private string LoadAndroidAssetFile(string path, string fileName)
+    private string LoadAndroidAssetFile(string fileName)
     {
-        var fullPath = Path.Combine(Application.streamingAssetsPath, "Datas", fileName);
-        var requester = UnityWebRequest.Get(fullPath);
+        var uri = new System.Uri(Path.Combine(Application.streamingAssetsPath, "Datas", fileName));
+        var requester = UnityWebRequest.Get(uri);
         requester.SendWebRequest();
         while(requester.isDone == false)
         {
         }
-        //var writePath = Path.Combine(Application.persistentDataPath, "Datas", fileName);
-        //File.WriteAllText(path, requester.downloadHandler.text);
         return requester.downloadHandler.text;
     }
     public override void BindScene(BaseScene baseScene)

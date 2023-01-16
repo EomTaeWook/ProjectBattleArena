@@ -1,0 +1,40 @@
+[
+  {
+    "Id": 1000,
+    "Name": "SwordMan",
+    "Stat": {
+      "HP": 1000,
+      "Attack": 100,
+      "Defense": 90,
+      "AttackSpeed": 140,
+      "Critical": 48,
+      "Patience": 0,
+      "Block": 0,
+      "Hit": 260,
+      "Dodge": 40,
+      "Destruction": 100
+    },
+    "BaseAttackSkill": "BasicAttack",
+    "JobType": "Attacker",
+    "AttackType": "Melee"
+  },
+  {
+    "Id": 1001,
+    "Name": "Wizard",
+    "Stat": {
+      "HP": 800,
+      "Attack": 140,
+      "Defense": 70,
+      "AttackSpeed": 180,
+      "Critical": 48,
+      "Patience": 0,
+      "Block": 0,
+      "Hit": 260,
+      "Dodge": 40,
+      "Destruction": 100
+    },
+    "BaseAttackSkill": "BasicRangedAttack",
+    "JobType": "Attacker",
+    "AttackType": "LongRange"
+  }
+]

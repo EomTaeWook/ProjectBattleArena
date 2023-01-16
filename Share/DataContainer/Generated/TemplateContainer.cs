@@ -1,10 +1,10 @@
-﻿using DataContainer.Generated;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 namespace TemplateContainers
 {
-    public class TemplateContainer<T> where T : BaseTemplate, new ()
+    public partial class TemplateContainer<T> where T : BaseTemplate, new ()
     {
         public static IEnumerable<T> Values => _dataToMap.Values;
         private static readonly Dictionary<int, T> _dataToMap = new Dictionary<int, T>();
@@ -25,32 +25,29 @@ namespace TemplateContainers
             }
             return _nameKeyToMap[name];
         }
-        //public static void Load(string path, string fileName)
-        //{
-        //    string fullPath = Path.Combine(path, fileName);
-        //    using (var stream = new StreamReader(File.OpenRead(fullPath)))
-        //    {
-        //        var content = stream.ReadToEnd();
-        //        var templateDatas = JsonConvert.DeserializeObject<List<T>>(content);
-        //        foreach (var template in templateDatas)
-        //        {
-        //            _dataToMap.Add(template.Id, template);
-        //            _nameKeyToMap.Add(template.Name, template);
-        //        }
-        //    }
-        //}
         public static void Load(string path, string fileName)
         {
-            var templateDatas = LoadFunction(path, fileName);
+            string fullPath = Path.Combine(path, fileName);
+            using (var stream = new StreamReader(File.OpenRead(fullPath)))
+            {
+                var content = stream.ReadToEnd();
+                var templateDatas = JsonConvert.DeserializeObject<List<T>>(content);
+                foreach (var template in templateDatas)
+                {
+                    _dataToMap.Add(template.Id, template);
+                    _nameKeyToMap.Add(template.Name, template);
+                }
+            }
+        }
+        public static void Load(string fileName, Func<string, string> funcLoadJson)
+        {
+            var json = funcLoadJson(fileName);
+            var templateDatas = JsonConvert.DeserializeObject<List<T>>(json);
             foreach (var template in templateDatas)
             {
                 _dataToMap.Add(template.Id, template);
                 _nameKeyToMap.Add(template.Name, template);
             }
-        }
-        public static List<T> LoadFunction(string path, string fileName)
-        {
-            return new List<T>();
         }
         public static void MakeRefTemplate()
         {

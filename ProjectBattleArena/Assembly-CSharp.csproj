@@ -968,10 +968,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{CC9C9356-69EF-6924-9ED3-9AC4ACD9BA12}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="TextMeshProEffect.csproj">
       <Project>{5C09CC04-05F8-39A6-9229-0BEA8B93D1BF}</Project>
       <Name>TextMeshProEffect</Name>

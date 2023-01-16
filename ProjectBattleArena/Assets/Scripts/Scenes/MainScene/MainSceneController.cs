@@ -67,7 +67,6 @@ public class MainSceneController : SceneController<MainSceneController>
     {
         if (goodsTemplate.GoodsCategory == DataContainer.GoodsCategory.Cash)
         {
-#if UNITY_EDITOR
             var purchaseGoodsByAdmin = new PurchaseGoodsByAdmin
             {
                 TemplateId = goodsTemplate.Id,
@@ -79,11 +78,7 @@ public class MainSceneController : SceneController<MainSceneController>
                 UIManager.Instance.ShowAlert("알림", "상품 구매에 실패하였습니다.");
                 return;
             }
-
             RewardManager.Instance.Update(res.RewardDiff);
-#else
-        
-#endif
         }
         else
         {

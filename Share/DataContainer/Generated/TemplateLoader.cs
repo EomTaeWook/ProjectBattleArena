@@ -20,12 +20,18 @@ namespace DataContainer.Generated
             TemplateContainer<SkillsTemplate>.Load(path, "Skills.json");
             TemplateContainer<SkillsGroupTemplate>.Load(path, "SkillsGroup.json");
         }
-
-        public static void Load(Action<string, string> action)
+        public static void Load(Func<string, string> funcLoadJson)
         {
-
+            TemplateContainer<CharacterTemplate>.Load("Character.json", funcLoadJson);
+            TemplateContainer<ConstantTemplate>.Load("Constant.json", funcLoadJson);
+            TemplateContainer<GoodsTemplate>.Load("Goods.json", funcLoadJson);
+            TemplateContainer<LevelUpTemplate>.Load("LevelUp.json", funcLoadJson);
+            TemplateContainer<SkillEffectsTemplate>.Load("SkillEffects.json", funcLoadJson);
+            TemplateContainer<SkillEffectsAbnormalStatusTemplate>.Load("SkillEffectsAbnormalStatus.json", funcLoadJson);
+            TemplateContainer<SkillEffectsDamageTemplate>.Load("SkillEffectsDamage.json", funcLoadJson);
+            TemplateContainer<SkillsTemplate>.Load("Skills.json", funcLoadJson);
+            TemplateContainer<SkillsGroupTemplate>.Load("SkillsGroup.json", funcLoadJson);
         }
-
         public static void MakeRefTemplate()
         {
             TemplateContainer<CharacterTemplate>.MakeRefTemplate();

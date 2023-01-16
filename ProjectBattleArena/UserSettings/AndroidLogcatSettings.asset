@@ -3,69 +3,81 @@
     "m_SelectedPackage": {
         "deviceId": "R39M30MCEKR",
         "name": "com.Eom.ProjectBattleArena",
-        "processId": 13166,
+        "processId": 27741,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "R39M30MCEKR",
-            "name": "com.DefaultCompany.ProjectBattleArena",
-            "processId": 2884,
+            "name": "com.sec.android.app.launcher",
+            "processId": 4577,
             "exited": false
         },
         {
             "deviceId": "R39M30MCEKR",
-            "name": "com.DefaultCompany.ProjectBattleArena",
-            "processId": 4937,
-            "exited": false
-        },
-        {
-            "deviceId": "R39M30MCEKR",
-            "name": "com.DefaultCompany.ProjectBattleArena",
-            "processId": 7550,
-            "exited": false
-        },
-        {
-            "deviceId": "R39M30MCEKR",
-            "name": "com.DefaultCompany.ProjectBattleArena",
-            "processId": 8237,
+            "name": "com.tinder",
+            "processId": 7467,
             "exited": false
         },
         {
             "deviceId": "R39M30MCEKR",
             "name": "com.Eom.ProjectBattleArena",
-            "processId": 9298,
+            "processId": 16786,
+            "exited": true
+        },
+        {
+            "deviceId": "R39M30MCEKR",
+            "name": "com.Eom.ProjectBattleArena",
+            "processId": 17154,
+            "exited": true
+        },
+        {
+            "deviceId": "R39M30MCEKR",
+            "name": "com.Eom.ProjectBattleArena",
+            "processId": 18006,
+            "exited": true
+        },
+        {
+            "deviceId": "R39M30MCEKR",
+            "name": "com.Eom.ProjectBattleArena",
+            "processId": 18466,
+            "exited": true
+        },
+        {
+            "deviceId": "R39M30MCEKR",
+            "name": "com.Eom.ProjectBattleArena",
+            "processId": 23273,
             "exited": false
         },
         {
             "deviceId": "R39M30MCEKR",
             "name": "com.Eom.ProjectBattleArena",
-            "processId": 9862,
+            "processId": 23691,
             "exited": false
         },
         {
             "deviceId": "R39M30MCEKR",
             "name": "com.Eom.ProjectBattleArena",
-            "processId": 11541,
+            "processId": 24325,
             "exited": false
         },
         {
             "deviceId": "R39M30MCEKR",
             "name": "com.Eom.ProjectBattleArena",
-            "processId": 12125,
+            "processId": 24913,
             "exited": false
         },
         {
             "deviceId": "R39M30MCEKR",
             "name": "com.Eom.ProjectBattleArena",
-            "processId": 12606,
+            "processId": 25481,
             "exited": false
         },
         {
             "deviceId": "R39M30MCEKR",
             "name": "com.Eom.ProjectBattleArena",
-            "processId": 13166,
+            "processId": 27741,
             "exited": false
         }
     ],
