@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R39M30MCEKR",
         "name": "com.Eom.ProjectBattleArena",
-        "processId": 27741,
+        "processId": 29477,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -78,6 +78,18 @@
             "deviceId": "R39M30MCEKR",
             "name": "com.Eom.ProjectBattleArena",
             "processId": 27741,
+            "exited": false
+        },
+        {
+            "deviceId": "R39M30MCEKR",
+            "name": "com.Eom.ProjectBattleArena",
+            "processId": 28486,
+            "exited": false
+        },
+        {
+            "deviceId": "R39M30MCEKR",
+            "name": "com.Eom.ProjectBattleArena",
+            "processId": 29477,
             "exited": false
         }
     ],

@@ -1,6 +1,8 @@
-﻿using BA.InterServer.Manager;
+﻿using BA.InterServer.CLICommand;
+using BA.InterServer.Manager;
 using BA.InterServer.ServerModule;
 using BA.Repository.Helper;
+using CLISystem;
 using Kosher.Extensions.Log;
 using Kosher.Log;
 
@@ -23,7 +25,14 @@ namespace InterServer
             SchedulerSecurityManager.Instance.Init();
 
             var task = SchedulerSecurityManager.Instance.Start();
-            CommandManager.Instance.Run();
+
+            CLIModule module = new CLIModule();
+            module.AddCmdProcessor<GwsOnOff>();
+            module.AddCmdProcessor<Close>();
+            module.AddCmdProcessor<ResetKey>();
+            module.Build();
+            module.Run();
+
             InterServerModule.Instance.Start();
         }
 

@@ -1,6 +1,5 @@
 using Assets.Scripts.Internal;
 using GameContents;
-using Kosher.Coroutine;
 using Protocol.GameWebServerAndClient.ShareModels;
 using System;
 using System.Collections;
@@ -10,9 +9,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private Battle _currentBattle;
-
-    private CoroutineWorker _coroutineWorker = new CoroutineWorker();
     private BattleEventHandler _eventHandler;
+
+    private List<GameObject> _allyUnits = new List<GameObject>();
+    private List<GameObject> _enemyUnits = new List<GameObject>();
+
     public void MakeBattle(
         int seed,
         CharacterData ally,
@@ -20,25 +21,38 @@ public class GameManager : MonoBehaviour
     {
         _currentBattle = BattleManager.Instance.MakeBattle(seed, ally, enemy);
         _eventHandler = _currentBattle.GetBattleEventHandler() as BattleEventHandler;
+        MakeCharacter();
     }
 
     private void MakeCharacter()
     {
-        foreach(var item in _currentBattle.GetAllyParty().GetUnits())
+        var maxY = _currentBattle.GetMapMaxY() / 2;
+        foreach (var item in _currentBattle.GetAllyParty().GetUnits())
         {
             var go = ResourceManager.Instance.LoadCharcterAsset(item.CharacterTemplate);
-
-
+            go.transform.SetParent(this.transform, false);
+            go.transform.position = new Vector3(item.Position.X, maxY - (item.Position.Y / 2.0F), 0);
+            go.gameObject.SetActive(true);
+            _allyUnits.Add(go);
         }
         foreach(var item in _currentBattle.GetEnemyParty().GetUnits())
         {
             var go = ResourceManager.Instance.LoadCharcterAsset(item.CharacterTemplate);
-
-
+            go.transform.SetParent(this.transform, false);
+            go.transform.SetPositionAndRotation(new Vector3(item.Position.X, maxY - (item.Position.Y / 2.0F), 1),
+                new Quaternion(0, 180, 0, 0));
+            go.gameObject.SetActive(true);
+            _enemyUnits.Add(go);
         }
     }
-
-
+    public bool IsWin()
+    {
+        return _currentBattle.IsWin();
+    }
+    public IEnumerator BattleStart()
+    {
+        return ProcessBattle();
+    }
     private IEnumerator ProcessBattle()
     {
         while(_currentBattle.IsBattleEnd () == false)
@@ -46,7 +60,12 @@ public class GameManager : MonoBehaviour
             _currentBattle.ProcessTicks();
 
             var events = _eventHandler.GetInvokedEvents();
+
             ProcessEvents(events);
+
+            events.Clear();
+
+            yield return null;
         }
 
         yield return null;
@@ -58,15 +77,27 @@ public class GameManager : MonoBehaviour
 
         }
     }
-
+    public bool IsEnd()
+    {
+        if(_currentBattle == null)
+        {
+            return true;
+        }
+        return _currentBattle.IsBattleEnd();
+    }
     public void ReleaseBattle()
     {
-        _coroutineWorker.StopAll();
-        _currentBattle = null;
-    }
+        foreach(var item in _allyUnits)
+        {
+            item.Recycle();
+        }
+        _allyUnits.Clear();
 
-    private void FixedUpdate()
-    {
-        _coroutineWorker.WorksUpdate(Time.deltaTime);
+        foreach (var item in _enemyUnits)
+        {
+            item.Recycle();
+        }
+        _enemyUnits.Clear();
+        _currentBattle = null;
     }
 }

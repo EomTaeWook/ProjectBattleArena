@@ -25,7 +25,19 @@ public class SkillSettingUI : UIComponent
             item.Click += Item_Click;
         }
     }
+    public void Refresh()
+    {
+        var mountingSkill = CharacterManager.Instance.SelectedCharacterData.MountingSkillDatas;
 
+        for (int i = 0; i < mountingSkill.Count; ++i)
+        {
+            var skillData = CharacterManager.Instance.GetSkillData(mountingSkill[i]);
+            if (skillData != null)
+            {
+                skills[i].Refresh(skillData);
+            }
+        }
+    }
     private void Item_Click(SkillUIItem skillUIItem)
     {
         for(int i=0; i< skills.Length; ++i)

@@ -47,8 +47,8 @@ public class MainSceneUI : UIComponent
         lobbyHomeUI.gameObject.SetActive(false);
         characterUI.gameObject.SetActive(false);
     }
-    public void RefreshUI()
+    public void Refresh()
     {
-
+        characterUI.Refresh();
     }
 }

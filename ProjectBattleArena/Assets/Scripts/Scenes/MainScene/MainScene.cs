@@ -6,10 +6,11 @@ public class MainScene : BaseScene<MainSceneModel>
     private Transform characterLayer;
     [SerializeField]
     private GameManager gameManager;
+
     public override void OnAwakeScene()
     {
         MainSceneController.Instance.BindScene(this);
-        this.SceneModel.LobbySceneUI = MainSceneUI.Instantiate();
+        this.SceneModel.MainSceneUI = MainSceneUI.Instantiate();
     }
 
     public void CharacterUI(bool isShow)
@@ -27,7 +28,7 @@ public class MainScene : BaseScene<MainSceneModel>
     }
     public override void OnDestroyScene()
     {
-        this.SceneModel.LobbySceneUI.DisposeUI();
+        this.SceneModel.MainSceneUI.DisposeUI();
     }
 
 }

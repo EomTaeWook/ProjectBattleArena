@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Scenes\CreateCharacterScene\CreateCharacterController.cs" />
     <Compile Include="Assets\Scripts\BattleContents\SkillEffects\AbnormalStatusEffect.cs" />
     <Compile Include="Assets\Scripts\Scenes\StageScene\StageSceneController.cs" />
+    <Compile Include="Assets\Scripts\Scenes\ArenaScene\ArenaReadyUI.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\SkillSettingUI.cs" />
     <Compile Include="Assets\Scripts\Scenes\ISceneModel.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainSceneModel.cs" />

@@ -20,6 +20,16 @@ public class MainSceneController : SceneController<MainSceneController>
     public override void BindScene(BaseScene baseScene)
     {
         scene = baseScene as MainScene;
+
+        if (scene.SceneModel.Character.IsNull() == false)
+        {
+            scene.SceneModel.Character.Recycle();
+            scene.SceneModel.Character = null;
+        }
+    }
+    public void ChangeHomeUI()
+    {
+
     }
     public void ChangedUI(UIType current)
     {
@@ -45,7 +55,6 @@ public class MainSceneController : SceneController<MainSceneController>
     public async Task<bool> RequestMountingSkill(int slotIndex,
         long skillId)
     {
-        var characterData = CharacterManager.Instance.SelectedCharacterData;
         var request = new MountingSkill()
         {
             SlotIndex = slotIndex,
@@ -59,7 +68,7 @@ public class MainSceneController : SceneController<MainSceneController>
             return false;
         }
         CharacterManager.Instance.SelectedCharacterData.MountingSkillDatas[res.SlotIndex] = res.ChangedSkillId;
-
+        scene.SceneModel.MainSceneUI.Refresh();
         return true;
     }
 

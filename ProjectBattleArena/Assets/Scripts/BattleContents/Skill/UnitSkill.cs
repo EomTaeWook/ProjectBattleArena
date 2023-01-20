@@ -1,5 +1,6 @@
 ﻿using DataContainer.Generated;
 using ShareLogic;
+using System.Collections.Generic;
 using TemplateContainers;
 
 namespace GameContents

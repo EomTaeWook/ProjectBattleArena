@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Scenes;
+﻿using Assets.Scripts.Internal;
+using Assets.Scripts.Scenes;
+using System;
 using UnityEngine;
 
 
@@ -30,6 +32,15 @@ public abstract class BaseScene : MonoBehaviour
     }
     public virtual void OnShow()
     {
+    }
+    public void ShowAlert(string title, string body)
+    {
+        UIManager.Instance.ShowAlert(title, body);
+    }
+
+    public void ShowConfirmAlert(string title, string body, Action onConfirmCallback = null)
+    {
+        UIManager.Instance.ShowConfirmAlert(title, body, onConfirmCallback);
     }
 }
 

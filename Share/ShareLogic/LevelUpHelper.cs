@@ -10,12 +10,14 @@ namespace ShareLogic
         }
         public static int GetLevel(int exp)
         {
+            var currentLevel = 0;
             foreach (var item in TemplateContainer<LevelUpTemplate>.Values)
             {
                 if(exp < item.NeedExp)
                 {
-                    return item.Level;
+                    return currentLevel;
                 }
+                currentLevel++;
             }
             return 1;
         }

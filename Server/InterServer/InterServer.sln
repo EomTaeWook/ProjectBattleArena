@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BA.Models", "..\BA.Models\B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BA.Repository", "..\BA.Repository\BA.Repository.csproj", "{8B385000-6584-4306-84D7-DA2D07837AEF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLISystem", "..\BA.ServerShare\CLIConsoleSystem\CLISystem.csproj", "{20B784B4-1B59-49D8-9DA9-5CD3814AF779}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8B385000-6584-4306-84D7-DA2D07837AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B385000-6584-4306-84D7-DA2D07837AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B385000-6584-4306-84D7-DA2D07837AEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20B784B4-1B59-49D8-9DA9-5CD3814AF779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20B784B4-1B59-49D8-9DA9-5CD3814AF779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20B784B4-1B59-49D8-9DA9-5CD3814AF779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20B784B4-1B59-49D8-9DA9-5CD3814AF779}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -51,7 +51,7 @@ namespace Protocol.GameWebServerAndClient
     }
     public class ChallengeArenaResponse : ServerResponse
     {
-        public string OpponentId { get; set; }
+        public CharacterData OpponentCharacterData { get; set; }
         public bool BattleWin { get; set; }
         public int RandomSeed { get; set; }
         public int ArenaTicketRemainChargeTime { get; set; }

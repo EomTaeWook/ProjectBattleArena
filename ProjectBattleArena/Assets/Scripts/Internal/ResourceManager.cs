@@ -29,9 +29,18 @@ namespace Assets.Scripts.Internal
 
         public GameObject LoadCharcterAsset(CharacterTemplate characterTemplate)
         {
+            return LoadCharcterAsset(characterTemplate, null);
+        }
+        public GameObject LoadCharcterAsset(CharacterTemplate characterTemplate, Transform parent)
+        {
             var prefab = KosherUnityResourceManager.Instance.LoadResource<GameObject>($"Prefabs/Character/{characterTemplate.Name}");
 
             var go = KosherUnityObjectPool.Instance.Pop(prefab);
+
+            if(parent != null)
+            {
+                go.transform.SetParent(parent, false);
+            }
 
             return go;
         }

@@ -18,11 +18,13 @@ namespace ShareLogic
                 {
                     _skillToParentMap.Add(item.RareRef.Id, item);
                 }
-                else if(item.EpicRef.Invalid() == false)
+
+                if(item.EpicRef.Invalid() == false)
                 {
                     _skillToParentMap.Add(item.EpicRef.Id, item);
                 }
-                else if (item.LegendaryRef.Invalid() == false)
+
+                if (item.LegendaryRef.Invalid() == false)
                 {
                     _skillToParentMap.Add(item.LegendaryRef.Id, item);
                 }

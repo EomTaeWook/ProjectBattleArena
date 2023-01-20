@@ -8,6 +8,10 @@ public class MainCharacterUI : UIComponent
     {
         skillSettingUI.gameObject.SetActive(false);
     }
+    public void Refresh()
+    {
+        skillSettingUI.Refresh();
+    }
     public void OnSkillButtonClick()
     {
         skillSettingUI.gameObject.SetActive(true);

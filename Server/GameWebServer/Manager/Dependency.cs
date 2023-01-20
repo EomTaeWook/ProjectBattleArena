@@ -12,7 +12,7 @@ namespace GameWebServer.Manager
         {
             var configPath = $"{AppContext.BaseDirectory}config.json";
 #if DEBUG
-            configPath = $"{builder.Environment.ContentRootPath}../Config/config.json";
+            configPath = $"{builder.Environment.ContentRootPath}/../Config/config.json";
 #endif
             var json = File.ReadAllText(configPath);
 
