@@ -8,7 +8,7 @@ namespace GameWebServer.Modules.Serializer
 {
     internal class PacketDeserializer : IPacketDeserializer
     {
-        private static int ProtocolSize = sizeof(ushort);
+        private const int ProtocolSize = sizeof(ushort);
 
         private InterServerFuncHandler _interServerFuncHandler;
         public PacketDeserializer(InterServerFuncHandler interServerFuncHandler)

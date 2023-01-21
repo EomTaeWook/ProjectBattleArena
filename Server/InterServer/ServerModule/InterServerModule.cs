@@ -36,14 +36,11 @@ namespace BA.InterServer.ServerModule
     }
     internal class InterServerModule : Singleton<InterServerModule>
     {
-        private SessionCreator creator;
-        private InterServer _server;
-        private bool isActive = false;
+        private readonly InterServer _server;
+        private bool _isActive = false;
         public InterServerModule()
         {
-            creator = new SessionCreator(MakeSerializersFunc);
-
-            _server = new InterServer(creator);
+            _server = new InterServer(new SessionCreator(MakeSerializersFunc));
         }
         public void Start()
         {
@@ -51,8 +48,8 @@ namespace BA.InterServer.ServerModule
             {
                 _server.Start(ConstHelper.InterServerPort);
                 LogHelper.Debug($"inter server start... port : {ConstHelper.InterServerPort}");
-                isActive = true;
-                while (isActive)
+                _isActive = true;
+                while (_isActive)
                 {
                     await Task.Delay(33);
                 }

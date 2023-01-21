@@ -6,7 +6,6 @@ namespace GameWebServer.Modules
 {
     internal class Packet : IPacket
     {
-
         public ushort Protocol { get; private set; }
         public byte[] Body { get; private set; }
         public Packet(ushort protocol, string body)

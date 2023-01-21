@@ -17,7 +17,7 @@ namespace InterServer
             logConfigPath = $"{AppContext.BaseDirectory}../../../../Config/KosherLog.config";
 #endif
             LogBuilder.Configuration(LogConfigXmlReader.Load(logConfigPath));
-            var configuration = LogBuilder.Build();
+            LogBuilder.Build();
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
@@ -26,12 +26,12 @@ namespace InterServer
 
             var task = SchedulerSecurityManager.Instance.Start();
 
-            CLIModule module = new CLIModule();
-            module.AddCmdProcessor<GwsOnOff>();
-            module.AddCmdProcessor<Close>();
-            module.AddCmdProcessor<ResetKey>();
-            module.Build();
-            module.Run();
+            CLIModule cli = new CLIModule();
+            cli.AddCmdProcessor<GwsOnOff>();
+            cli.AddCmdProcessor<Close>();
+            cli.AddCmdProcessor<ResetKey>();
+            cli.Build();
+            cli.Run();
 
             InterServerModule.Instance.Start();
         }

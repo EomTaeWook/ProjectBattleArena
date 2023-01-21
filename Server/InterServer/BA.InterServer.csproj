@@ -10,10 +10,12 @@
   <ItemGroup>
     <ProjectReference Include="..\BA.Models\BA.Models.csproj" />
     <ProjectReference Include="..\BA.Repository\BA.Repository.csproj" />
-    <ProjectReference Include="..\BA.ServerShare\CLIConsoleSystem\CLISystem.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="CLISystem">
+      <HintPath>..\ServerDll\CLISystem.dll</HintPath>
+    </Reference>
     <Reference Include="Kosher">
       <HintPath>..\ServerDll\Kosher.dll</HintPath>
     </Reference>
