@@ -15,7 +15,7 @@ namespace GameWebServer.Modules.IGWModule.Handler
             _handlers[0] = (t, body) => t.ProcessGameWebServerInspection(body);
             _handlers[1] = (t, body) => t.ProcessChangedSecurityKey(body);
         }
-        public static bool CheckProtocol(int protocol)
+        public bool CheckProtocol(int protocol)
         {
             if(protocol < 0 && protocol >= _handlers.Length)
             {
