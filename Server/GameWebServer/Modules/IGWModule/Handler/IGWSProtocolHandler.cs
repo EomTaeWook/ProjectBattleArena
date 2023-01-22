@@ -10,7 +10,7 @@ using System.Text.Json;
 
 namespace GameWebServer.Modules.IGWModule.Handler
 {
-    public class InterServerFuncHandler : EnumCallbackBinder<InterServerFuncHandler, IGWSProtocol, string>, ISessionComponent
+    public partial class IGWSProtocolHandler : EnumCallbackBinder<IGWSProtocolHandler, IGWSProtocol, string>, ISessionComponent
     {
         private Session _session;
 
@@ -23,19 +23,20 @@ namespace GameWebServer.Modules.IGWModule.Handler
             }
             Execute(protocol, body);
         }
-        public void GameWebServerInspection(string body)
+        public void Process(GameWebServerInspection packet)
         {
-            var packetData = JsonSerializer.Deserialize<GameWebServerInspection>(body);
-            if(ServiceManager.Instance.IsServerOn() != packetData.ServerOn)
+            if (ServiceManager.Instance.IsServerOn() != packet.ServerOn)
             {
-                ServiceManager.Instance.SetServerState(packetData.ServerOn);
+                ServiceManager.Instance.SetServerState(packet.ServerOn);
             }
         }
-        public void ChangedSecurityKey(string body)
+        public void Process(ChangedSecurityKey packet)
         {
-            var packetData = JsonSerializer.Deserialize<ChangedSecurityKey>(body);
-
-            Cryptogram.SetPrivateKey(packetData.PrivateKey);
+            Cryptogram.SetPrivateKey(packet.PrivateKey);
+        }
+        public T DeserializeBody<T>(string body)
+        {
+            return JsonSerializer.Deserialize<T>(body);
         }
         public override void Dispose()
         {

@@ -41,7 +41,7 @@ namespace GameWebServer.Modules.IGWModule
         }
         public void Init()
         {
-            InterServerFuncHandler.Initialization();
+            IGWSProtocolHandler.Initialization();
         }
         public void Connect()
         {
@@ -94,7 +94,7 @@ namespace GameWebServer.Modules.IGWModule
         }
         private Tuple<IPacketSerializer, IPacketDeserializer, ICollection<ISessionComponent>> MakeSerializersFunc()
         {
-            InterServerFuncHandler handler = new InterServerFuncHandler();
+            IGWSProtocolHandler handler = new IGWSProtocolHandler();
 
             return Tuple.Create<IPacketSerializer, IPacketDeserializer, ICollection<ISessionComponent>>(
                 new PacketSerializer(),

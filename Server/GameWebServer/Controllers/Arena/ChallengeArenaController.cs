@@ -107,7 +107,7 @@ namespace GameWebServer.Controllers.Arena
             return new ChallengeArenaResponse()
             {
                 Ok = true,
-                OpponentId = request.OpponentId,
+                OpponentCharacterData = loadOpponentCharacter,
                 ArenaTicketRemainChargeTime = remainChargedTime,
                 RandomSeed = randomSeed,
                 AreanTicketDiff = -1,
