@@ -45,5 +45,8 @@
       <HintPath>..\..\ShareDll\ShareLogic.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\IGWModule\Handler\Generated\" />
+  </ItemGroup>
 
 </Project>

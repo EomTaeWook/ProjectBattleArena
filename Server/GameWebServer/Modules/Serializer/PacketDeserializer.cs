@@ -10,8 +10,8 @@ namespace GameWebServer.Modules.Serializer
     {
         private const int ProtocolSize = sizeof(ushort);
 
-        private InterServerFuncHandler _interServerFuncHandler;
-        public PacketDeserializer(InterServerFuncHandler interServerFuncHandler)
+        private IGWSProtocolHandler _interServerFuncHandler;
+        public PacketDeserializer(IGWSProtocolHandler interServerFuncHandler)
         {
             _interServerFuncHandler = interServerFuncHandler;
         }
