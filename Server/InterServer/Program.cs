@@ -26,12 +26,12 @@ namespace InterServer
 
             var task = SchedulerSecurityManager.Instance.Start();
 
-            CLIModule cli = new CLIModule();
+            var cli = new NetCLIModule();
             cli.AddCmdProcessor<GwsOnOff>();
             cli.AddCmdProcessor<Close>();
             cli.AddCmdProcessor<ResetKey>();
             cli.Build();
-            cli.Run();
+            cli.Run(31100);
 
             InterServerModule.Instance.Start();
         }

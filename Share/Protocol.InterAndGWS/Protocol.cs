@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Protocol.InterAndGWS
+﻿namespace Protocol.InterAndGWS
 {
     public enum IGWSProtocol : ushort
     {
@@ -13,4 +7,12 @@ namespace Protocol.InterAndGWS
 
         Max
     }
+
+    public enum GWSIProtocol
+    {
+        RequestSecurity,
+
+        Max,
+    }
+
 }

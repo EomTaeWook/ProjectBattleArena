@@ -7,7 +7,7 @@ using ShareLogic.Network;
 
 namespace BA.InterServer.CLICommand
 {
-    [CmdAttribude("gws")]
+    [Cmd("gws")]
     internal class GwsOnOff : ICmdProcessor
     {
         public void Invoke(string[] args)

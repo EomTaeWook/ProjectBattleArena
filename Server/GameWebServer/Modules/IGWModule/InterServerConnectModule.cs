@@ -4,9 +4,8 @@ using Kosher.Framework;
 using Kosher.Log;
 using Kosher.Sockets;
 using Kosher.Sockets.Interface;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Protocol.InterAndGWS;
-using System.Reflection;
+using Protocol.InterAndGWS.ShareModels;
 
 namespace GameWebServer.Modules.IGWModule
 {
@@ -21,6 +20,12 @@ namespace GameWebServer.Modules.IGWModule
             protected override void OnConnected(Session session)
             {
                 LogHelper.Info($"[GWS] connected inter server session : {session.Id}");
+
+                session.Send(Packet.MakePacket((ushort)GWSIProtocol.RequestSecurity,
+                    new RequestSecurity()
+                    {
+                        ServerName = "GWS",
+                    }));
             }
 
             protected override void OnDisconnected(Session session)
@@ -41,7 +46,7 @@ namespace GameWebServer.Modules.IGWModule
         }
         public void Init()
         {
-            IGWSProtocolHandler.Initialization();
+            IGWSProtocolHandler.Init();
         }
         public void Connect()
         {

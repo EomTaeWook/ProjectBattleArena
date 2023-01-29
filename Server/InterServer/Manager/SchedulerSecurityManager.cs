@@ -15,6 +15,7 @@ namespace BA.InterServer.Manager
 {
     internal class SchedulerSecurityManager : Singleton<SchedulerSecurityManager>
     {
+        
         public string LatestPrivateKey { get; private set; }
         private List<string> _gameWebServerEndPoint = new List<string>();
         private HttpRequester _httpRequester = new HttpRequester();
@@ -51,7 +52,10 @@ namespace BA.InterServer.Manager
 
             return false;
         }
-
+        public List<string> GetGWSEndPoint()
+        {
+            return _gameWebServerEndPoint;
+        }
         public async Task<bool> CreateKey()
         {
             SecurityRepository securityRepository = DBServiceHelper.GetService<SecurityRepository>();

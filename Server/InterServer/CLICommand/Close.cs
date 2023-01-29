@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace BA.InterServer.CLICommand
 {
-    [CmdAttribude("close")]
+    [Cmd("close")]
     internal class Close : ICmdProcessor
     {
         public void Invoke(string[] args)

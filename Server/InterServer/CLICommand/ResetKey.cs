@@ -4,7 +4,7 @@ using CLISystem.Interface;
 
 namespace BA.InterServer.CLICommand
 {
-    [CmdAttribude("resetkey")]
+    [Cmd("resetkey")]
     internal class ResetKey : ICmdProcessor
     {
         public async void Invoke(string[] args)

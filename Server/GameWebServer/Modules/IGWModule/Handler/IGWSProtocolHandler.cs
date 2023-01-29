@@ -2,27 +2,16 @@
 using Kosher.Log;
 using Kosher.Sockets;
 using Kosher.Sockets.Interface;
-using Protocol.InterAndGWS;
 using Protocol.InterAndGWS.ShareModels;
 using ShareLogic;
-using ShareLogic.Network;
 using System.Text.Json;
 
 namespace GameWebServer.Modules.IGWModule.Handler
 {
-    public partial class IGWSProtocolHandler : EnumCallbackBinder<IGWSProtocolHandler, IGWSProtocol, string>, ISessionComponent
+    public partial class IGWSProtocolHandler : ISessionComponent
     {
         private Session _session;
-
-        public void Process(IGWSProtocol protocol, string body)
-        {
-            if(CheckProtocol(protocol) == false)
-            {
-                LogHelper.Error($"not found callback - {protocol}");
-                return;
-            }
-            Execute(protocol, body);
-        }
+       
         public void Process(GameWebServerInspection packet)
         {
             if (ServiceManager.Instance.IsServerOn() != packet.ServerOn)
@@ -38,14 +27,15 @@ namespace GameWebServer.Modules.IGWModule.Handler
         {
             return JsonSerializer.Deserialize<T>(body);
         }
-        public override void Dispose()
-        {
-            base.Dispose();
-        }
 
         public void SetSession(Session session)
         {
             _session = session;
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

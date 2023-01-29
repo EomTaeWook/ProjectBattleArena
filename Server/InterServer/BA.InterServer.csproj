@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Share\Protocol.InterAndGWS\Protocol.InterAndGWS.csproj" />
     <ProjectReference Include="..\BA.Models\BA.Models.csproj" />
     <ProjectReference Include="..\BA.Repository\BA.Repository.csproj" />
   </ItemGroup>
@@ -37,6 +38,10 @@
     <None Update="KosherLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\Net\Handler\Generated\" />
   </ItemGroup>
 
 </Project>

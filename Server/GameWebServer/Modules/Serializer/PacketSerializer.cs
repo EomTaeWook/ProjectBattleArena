@@ -5,7 +5,7 @@ namespace GameWebServer.Modules.Serializer
 {
     internal class PacketSerializer : IPacketSerializer
     {
-        public Vector<byte> MakeSendBuffer(IPacket packet)
+        ArraySegment<byte> IPacketSerializer.MakeSendBuffer(IPacket packet)
         {
             var sendPacket = packet as Packet;
 
@@ -18,7 +18,7 @@ namespace GameWebServer.Modules.Serializer
             buffer.AddRange(BitConverter.GetBytes((ushort)sendPacket.Protocol));
 
             buffer.AddRange(sendPacket.Body);
-            return buffer;
+            return buffer.ToArray();
         }
     }
 }

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BA.Repository", "..\BA.Repo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BA.Models", "..\BA.Models\BA.Models.csproj", "{11179113-547E-45D4-AFDC-937A115DB667}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Protocol.InterAndGWS", "..\..\Share\Protocol.InterAndGWS\Protocol.InterAndGWS.csproj", "{C6040455-310E-422A-9760-C1E95D043290}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{11179113-547E-45D4-AFDC-937A115DB667}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11179113-547E-45D4-AFDC-937A115DB667}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11179113-547E-45D4-AFDC-937A115DB667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6040455-310E-422A-9760-C1E95D043290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6040455-310E-422A-9760-C1E95D043290}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6040455-310E-422A-9760-C1E95D043290}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6040455-310E-422A-9760-C1E95D043290}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
