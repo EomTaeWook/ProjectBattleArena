@@ -2,11 +2,7 @@
 
 namespace GameWebServer.Modules.IGWModule.Handler
 {
-    public interface IIGWSProtocolHandler
-    {
-        public T DeserializeBody<T>(string body);
-    }
-    public partial class IGWSProtocolHandler : IIGWSProtocolHandler
+    public partial class IGWSProtocolHandler
     {
         private static Action<IGWSProtocolHandler, string>[] _handlers;
         public static void Init()
@@ -46,6 +42,10 @@ namespace GameWebServer.Modules.IGWModule.Handler
             }
             var packet = DeserializeBody<Protocol.InterAndGWS.ShareModels.ChangedSecurityKey>(body);
             Process(packet);
+        }
+        protected T DeserializeBody<T>(string body)
+        {
+            return System.Text.Json.JsonSerializer.Deserialize<T>(body);
         }
     }
 }

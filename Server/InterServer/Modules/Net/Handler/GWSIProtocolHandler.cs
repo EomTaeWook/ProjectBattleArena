@@ -21,10 +21,6 @@ namespace BA.InterServer.Modules.Net.Handler
         {
             Session = session;
         }
-        public T DeserializeBody<T>(string body)
-        {
-            return JsonSerializer.Deserialize<T>(body);
-        }
         public void Process(RequestSecurity body)
         {
             if(body.ServerName == "GWS")

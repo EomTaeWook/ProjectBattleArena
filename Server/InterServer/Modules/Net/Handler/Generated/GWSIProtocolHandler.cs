@@ -2,11 +2,7 @@
 
 namespace BA.InterServer.Modules.Net.Handler
 {
-    public interface IGWSIProtocolHandler
-    {
-        public T DeserializeBody<T>(string body);
-    }
-    public partial class GWSIProtocolHandler : IGWSIProtocolHandler
+    public partial class GWSIProtocolHandler
     {
         private static Action<GWSIProtocolHandler, string>[] _handlers;
         public static void Init()
@@ -35,6 +31,10 @@ namespace BA.InterServer.Modules.Net.Handler
             }
             var packet = DeserializeBody<Protocol.InterAndGWS.ShareModels.RequestSecurity>(body);
             Process(packet);
+        }
+        protected T DeserializeBody<T>(string body)
+        {
+            return System.Text.Json.JsonSerializer.Deserialize<T>(body);
         }
     }
 }
