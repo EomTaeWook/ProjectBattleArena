@@ -1,10 +1,8 @@
 ﻿using GameWebServer.Manager;
-using Kosher.Log;
 using Kosher.Sockets;
 using Kosher.Sockets.Interface;
 using Protocol.InterAndGWS.ShareModels;
 using ShareLogic;
-using System.Text.Json;
 
 namespace GameWebServer.Modules.IGWModule.Handler
 {
@@ -23,11 +21,6 @@ namespace GameWebServer.Modules.IGWModule.Handler
         {
             Cryptogram.SetPrivateKey(packet.PrivateKey);
         }
-        public T DeserializeBody<T>(string body)
-        {
-            return JsonSerializer.Deserialize<T>(body);
-        }
-
         public void SetSession(Session session)
         {
             _session = session;
