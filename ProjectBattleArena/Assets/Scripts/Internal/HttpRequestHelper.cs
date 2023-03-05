@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Internal
 {
-    public class HttpRequestHelper
+    public class HttpHelper
     {
-        static readonly HttpRequester _requester = new HttpRequester();
+        static readonly HttpRequestHelper _requester = new HttpRequestHelper();
         public static async Task<TRes> Request<TReq, TRes>(TReq request) where TReq : ICGWRequest where TRes : IGWCResponse
         {
             var typeName = request.GetType().Name;

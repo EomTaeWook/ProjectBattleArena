@@ -32,12 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kosher, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ShareDll\Kosher.dll</HintPath>
+    <Reference Include="Kosher">
+      <HintPath>..\..\ProjectBattleArena\Assets\Plugins\Release\Kosher.dll</HintPath>
+    </Reference>
+    <Reference Include="Kosher.Extensions">
+      <HintPath>..\..\ProjectBattleArena\Assets\Plugins\Release\Kosher.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Kosher.Sockets">
-      <HintPath>..\..\ShareDll\Kosher.Sockets.dll</HintPath>
+      <HintPath>..\..\ProjectBattleArena\Assets\Plugins\Release\Kosher.Sockets.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

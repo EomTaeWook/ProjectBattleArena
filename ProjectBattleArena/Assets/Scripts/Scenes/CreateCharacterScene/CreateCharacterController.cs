@@ -28,7 +28,7 @@ internal class CreateCharacterController : SceneController<CreateCharacterContro
             CharacterTemplateId = sceneModel.CurrentTemplateId,
             Token = ApplicationManager.Instance.GetUserToken(tokenData),
         };
-        var response = await HttpRequestHelper.Request<CreateCharacter, CreateCharacterResponse>(request);
+        var response = await HttpHelper.Request<CreateCharacter, CreateCharacterResponse>(request);
 
         if (response.Ok == false)
         {

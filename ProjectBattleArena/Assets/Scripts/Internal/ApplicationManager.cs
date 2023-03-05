@@ -47,7 +47,7 @@ namespace Assets.Scripts.Internal
 
         public async Task<bool> GetSecurityKeyAsync()
         {
-            var response = await HttpRequestHelper.Request<GetSecurityKey, GetSecurityKeyResponse>(new GetSecurityKey());
+            var response = await HttpHelper.Request<GetSecurityKey, GetSecurityKeyResponse>(new GetSecurityKey());
             if (response.Ok == false)
             {
                 UIManager.Instance.ShowAlert("알림", "초기화에 실패하였습니다.");

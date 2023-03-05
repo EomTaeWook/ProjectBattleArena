@@ -14,27 +14,22 @@ namespace Assets.Scripts.Internal
             _renderer = new LogFormRenderer();
             _renderer.SetLogFormText("${date} | ${level} | ${message} | ${callerFileName} : ${callerLineNumber}");
         }
-        public Task Complete()
-        {
-            return Task.CompletedTask;
-        }
-
         public void Dispose()
         {
         }
-        
-        public Task WriteAsync(LogMessageModel logMessage)
+
+        public void Write(LogMessageModel logMessage)
         {
 #if UNITY_EDITOR
-            if(logMessage.LogLevel == Kosher.Log.LogLevel.Debug)
+            if (logMessage.LogLevel == Kosher.Log.LogLevel.Debug)
             {
                 Debug.Log(_renderer.GetRenderString(logMessage));
             }
-            else if(logMessage.LogLevel == Kosher.Log.LogLevel.Info)
+            else if (logMessage.LogLevel == Kosher.Log.LogLevel.Info)
             {
                 Debug.LogWarning(_renderer.GetRenderString(logMessage));
             }
-            else if(logMessage.LogLevel == Kosher.Log.LogLevel.Error)
+            else if (logMessage.LogLevel == Kosher.Log.LogLevel.Error)
             {
                 Debug.LogError(_renderer.GetRenderString(logMessage));
             }
@@ -44,8 +39,6 @@ namespace Assets.Scripts.Internal
                 Debug.LogError(_renderer.GetRenderString(logMessage));
             }
 #endif
-
-            return Task.CompletedTask;
         }
     }
 }

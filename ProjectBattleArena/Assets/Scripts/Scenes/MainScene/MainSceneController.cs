@@ -61,7 +61,7 @@ public class MainSceneController : SceneController<MainSceneController>
             SkillId  = skillId
         };
 
-        var res = await HttpRequestHelper.AuthRequest<MountingSkill, MountingSkillResponse>(request);
+        var res = await HttpHelper.AuthRequest<MountingSkill, MountingSkillResponse>(request);
 
         if(res.Ok == false)
         {
@@ -80,7 +80,7 @@ public class MainSceneController : SceneController<MainSceneController>
             {
                 TemplateId = goodsTemplate.Id,
             };
-            var res = await HttpRequestHelper.AuthRequest<PurchaseGoodsByAdmin, PurchaseGoodsByAdminResponse>(purchaseGoodsByAdmin);
+            var res = await HttpHelper.AuthRequest<PurchaseGoodsByAdmin, PurchaseGoodsByAdminResponse>(purchaseGoodsByAdmin);
 
             if (res.Ok == false)
             {
@@ -95,7 +95,7 @@ public class MainSceneController : SceneController<MainSceneController>
             {
                 TemplateId = goodsTemplate.Id,
             };
-            var res = await HttpRequestHelper.AuthRequest<PurchaseGoods, PurchaseGoodsResponse>(purchaseGoods);
+            var res = await HttpHelper.AuthRequest<PurchaseGoods, PurchaseGoodsResponse>(purchaseGoods);
 
             if (res.Ok == false)
             {

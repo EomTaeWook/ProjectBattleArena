@@ -42,7 +42,7 @@ namespace Assets.Scripts.Internal
         {
             var account = $"{SystemInfo.deviceUniqueIdentifier}{DateTime.Now.Ticks.GetHashCode()}";
 
-            var response = await HttpRequestHelper.Request<CreateAccount, CreateAccountResponse>(new CreateAccount()
+            var response = await HttpHelper.Request<CreateAccount, CreateAccountResponse>(new CreateAccount()
             {
                 Account = account
             });

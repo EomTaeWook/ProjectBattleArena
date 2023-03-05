@@ -3,6 +3,7 @@ using Assets.Scripts.Models;
 using Assets.Scripts.Scenes;
 using DataContainer.Generated;
 using Kosher.Log;
+using Kosher.Log.Model.Rule;
 using Protocol.GameWebServerAndClient;
 using ShareLogic;
 using System.IO;
@@ -18,8 +19,8 @@ public class TitleSceneController : SceneController<TitleSceneController>
     {
         var logConfiguration = new LogConfiguration();
         var logger = new UnityLogTarget();
-        var rule = new Kosher.Log.Model.Rule.LogRule("unity logger", LogLevel.Debug, logger);
-        logConfiguration.AddRule("unity console", rule);
+        var rule = new LoggerRule("unity logger", LogLevel.Debug, logger);
+        logConfiguration.AddLogger("unity console", rule);
         LogBuilder.Configuration(logConfiguration);
         LogBuilder.Build();
 
@@ -56,7 +57,7 @@ public class TitleSceneController : SceneController<TitleSceneController>
 
     public async Task<bool> ReqeustSecurityKeyAsync()
     {
-        var response = await HttpRequestHelper.Request<GetSecurityKey, GetSecurityKeyResponse>(new GetSecurityKey());
+        var response = await HttpHelper.Request<GetSecurityKey, GetSecurityKeyResponse>(new GetSecurityKey());
         if (response.Ok == false)
         {
             return false;
@@ -69,7 +70,7 @@ public class TitleSceneController : SceneController<TitleSceneController>
 
     public async Task<bool> RequestLoginAsync()
     {
-        var response = await HttpRequestHelper.Request<Login, LoginResponse>(new Login()
+        var response = await HttpHelper.Request<Login, LoginResponse>(new Login()
         {
             Account = PlayerManager.Instance.GetUserData().Account,
             Token = ApplicationManager.Instance.GetUserToken()
