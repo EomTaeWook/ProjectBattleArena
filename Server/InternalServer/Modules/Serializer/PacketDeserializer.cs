@@ -1,18 +1,17 @@
-﻿using GameWebServer.Modules.IGWModule;
+﻿using BA.InternalServer.Modules.Net;
 using Kosher.Sockets.Extensions;
 using Kosher.Sockets.Interface;
 using System.Text;
 
-namespace GameWebServer.Modules.Serializer
+namespace BA.InterServer.ServerModule.Serializer
 {
     internal class PacketDeserializer : IPacketDeserializer
     {
         private const int ProtocolSize = sizeof(ushort);
-
-        private IGWSProtocolHandler _interServerFuncHandler;
-        public PacketDeserializer(IGWSProtocolHandler interServerFuncHandler)
+        readonly GWSIProtocolHandler _handler;
+        public PacketDeserializer(GWSIProtocolHandler handler)
         {
-            _interServerFuncHandler = interServerFuncHandler;
+            _handler = handler;
         }
         public const int LegnthSize = sizeof(int);
         public bool IsTakedCompletePacket(BinaryReader stream)
@@ -36,7 +35,7 @@ namespace GameWebServer.Modules.Serializer
 
             var body = Encoding.UTF8.GetString(bytes, ProtocolSize, bytes.Length - ProtocolSize);
 
-            _interServerFuncHandler.Process(protocol, body);
+            _handler.Process(protocol, body);
         }
     }
 }

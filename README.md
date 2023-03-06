@@ -3,9 +3,9 @@ b.a
 
 #구동 순서
 
-interserver -> gamewebserver -> client
+internal server -> game web server -> client
 
-# inter server
+# internal server
 
 - 웹 서버 관리 및 암호화에 필요한 키 생성
 
@@ -17,7 +17,7 @@ interserver -> gamewebserver -> client
   
   ba close - inter server 종료
 
-# interserverconfig.json
+# internalserverconfig.json
 
 {
   "GameDB": {

@@ -1,27 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\BA.Models\BA.Models.csproj" />
     <ProjectReference Include="..\BA.Repository\BA.Repository.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="..\..\ProjectBattleArena\Assets\Scripts\BattleContents\**\*.cs">
-      <Link>GameContents\%(RecursiveDir)/%(FileName)%(Extension)</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\BA.GameServer\GameServer\Game\**\*.cs">
-      <Link>GameServerContents\%(RecursiveDir)/%(FileName)%(Extension)</Link>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="DataContainer">
-      <HintPath>..\..\ShareDll\DataContainer.dll</HintPath>
+    <Reference Include="CLISystem">
+      <HintPath>..\ServerDll\CLISystem.dll</HintPath>
     </Reference>
     <Reference Include="Kosher">
       <HintPath>..\ServerDll\Kosher.dll</HintPath>
@@ -32,18 +25,18 @@
     <Reference Include="Kosher.Sockets">
       <HintPath>..\ServerDll\Kosher.Sockets.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\ShareDll\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Protocol.GameWebServerAndClient">
-      <HintPath>..\..\ShareDll\Protocol.GameWebServerAndClient.dll</HintPath>
-    </Reference>
     <Reference Include="Protocol.InterAndGWS">
       <HintPath>..\..\ShareDll\Protocol.InterAndGWS.dll</HintPath>
     </Reference>
     <Reference Include="ShareLogic">
       <HintPath>..\..\ShareDll\ShareLogic.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="KosherLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

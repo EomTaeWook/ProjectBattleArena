@@ -10,6 +10,6 @@
 
         public const int GameServerPort = 31200;
         public const int StunServerPort = 31100;
-        public const int InterServerPort = 31000;
+        public const int InternalServerPort = 31000;
     }
 }

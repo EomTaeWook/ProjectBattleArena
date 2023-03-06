@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ShareLogic
 {
-    public class HttpRequester
+    public class HttpRequestHelper
     {
         private static readonly HttpClient _webClient = new HttpClient();
 

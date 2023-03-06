@@ -78,9 +78,9 @@
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\$(ConfigurationName)\$(TargetFileName)"
 IF $(ConfigurationName) == Release (
-copy "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\Release\$(TargetFileName)"
-copy "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\Debug\$(TargetFileName)"
-copy "$(TargetPath)" "$(SolutionDir)..\ShareDll\$(TargetFileName)"
+xcopy /S/Y "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\Release\$(TargetFileName)"
+xcopy /S/Y "$(TargetPath)" "$(SolutionDir)..\ProjectBattleArena\Assets\Plugins\Debug\$(TargetFileName)"
+xcopy /S/Y "$(TargetPath)" "$(SolutionDir)..\ShareDll\$(TargetFileName)"
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

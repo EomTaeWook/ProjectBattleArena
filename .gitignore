@@ -13,3 +13,4 @@ ProjectBattleArena/Logs/*
 **/config.json
 **/InterServerConfig.json
 **/UserData.json
+Server/config/InternalServerConfig.json

@@ -1,5 +1,4 @@
-﻿using GameWebServer.Modules.IGWModule.Handler;
-using GameWebServer.Modules.Serializer;
+﻿using GameWebServer.Modules.Serializer;
 using Kosher.Framework;
 using Kosher.Log;
 using Kosher.Sockets;
@@ -46,7 +45,7 @@ namespace GameWebServer.Modules.IGWModule
         }
         public void Init()
         {
-            IGWSProtocolHandler.Init();
+            HandlerBinder<IGWSProtocolHandler>.Bind<IGWSProtocol, string>();
         }
         public void Connect()
         {
@@ -61,6 +60,7 @@ namespace GameWebServer.Modules.IGWModule
                 {
                     _client = new InnerClient(new SessionCreator(MakeSerializersFunc));
 #if DEBUG
+                    //_client.Connect("127.0.0.1", 31000);
                     _client.Connect("13.125.232.85", 31000);
 #else
                     _client.Connect("127.0.0.1", 31000);
