@@ -36,7 +36,10 @@ namespace GameWebServer.Modules.Serializer
 
             var body = Encoding.UTF8.GetString(bytes, ProtocolSize, bytes.Length - ProtocolSize);
 
-            _interServerFuncHandler.Process(protocol, body);
+            if(_interServerFuncHandler.CheckProtocol(protocol) == true)
+            {
+                _interServerFuncHandler.Process(protocol, body);
+            }
         }
     }
 }

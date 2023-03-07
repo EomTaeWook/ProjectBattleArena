@@ -35,7 +35,11 @@ namespace BA.InterServer.ServerModule.Serializer
 
             var body = Encoding.UTF8.GetString(bytes, ProtocolSize, bytes.Length - ProtocolSize);
 
-            _handler.Process(protocol, body);
+            if(_handler.CheckProtocol(protocol) == true)
+            {
+                _handler.Process(protocol, body);
+            }
+            
         }
     }
 }

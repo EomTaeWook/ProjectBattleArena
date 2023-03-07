@@ -32,7 +32,7 @@ namespace InterServer
 #endif
             SchedulerSecurityManager.Instance.Init(configPath);
 
-            HandlerBinder<GWSIProtocolHandler>.Bind<GWSIProtocol, string>();
+            HandlerBinder<GWSIProtocolHandler, string>.Bind<GWSIProtocol>();
 
             var task = SchedulerSecurityManager.Instance.Start();
 
