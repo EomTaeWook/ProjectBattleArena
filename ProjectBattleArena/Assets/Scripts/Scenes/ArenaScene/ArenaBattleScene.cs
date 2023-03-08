@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Internal;
 using Kosher.Coroutine;
-using Kosher.Unity.Coroutine;
+using Kosher.Unity;
 using UnityEngine;
 
 public class ArenaBattleScene : BaseScene<ArenaBattleSceneModel>
@@ -16,7 +16,10 @@ public class ArenaBattleScene : BaseScene<ArenaBattleSceneModel>
         ArenaBattleSceneController.Instance.BindScene(this);
         ShowReadyUI();
     }
-
+    public void OnBtnBackClick()
+    {
+        SceneManager.Instance.LoadScene(Assets.Scripts.Models.SceneType.MainScene);
+    }
     public override void OnDestroyScene()
     {
     }
@@ -43,14 +46,20 @@ public class ArenaBattleScene : BaseScene<ArenaBattleSceneModel>
     {
         if(gameManager.IsWin() == true)
         {
-            this.ShowAlert("알림", "승리했습니다.");
+            this.ShowAlert("알림", "승리했습니다.", () =>
+            {
+                ShowReadyUI();
+            });
         }
         else 
         {
-            this.ShowAlert("알림", "패배했습니다.");
+            this.ShowAlert("알림", "패배했습니다.", () => 
+            {
+                ShowReadyUI();
+            });
         }
         gameManager.ReleaseBattle();
-        HideReadyUI();
+        
     }
 
     public void FixedUpdate()

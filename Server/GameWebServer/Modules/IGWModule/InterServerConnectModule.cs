@@ -60,8 +60,8 @@ namespace GameWebServer.Modules.IGWModule
                 {
                     _client = new InnerClient(new SessionCreator(MakeSerializersFunc));
 #if DEBUG
-                    _client.Connect("127.0.0.1", 31000);
-                    //_client.Connect("13.125.232.85", 31000);
+                    //_client.Connect("127.0.0.1", 31000);
+                    _client.Connect("13.125.232.85", 31000);
 #else
                     _client.Connect("127.0.0.1", 31000);
 #endif

@@ -42,10 +42,10 @@ namespace Assets.Scripts.Internal
             uiPopupCanvas.AddComponent<GraphicRaycaster>();
         }
 
-        public void ShowAlert(string title, string body)
+        public void ShowAlert(string title, string body, Action onConfirmCallback = null)
         {
             var item = AlertPopup.Instantiate();
-            item.SetContent(Models.AlertPopupType.Alert, title, body);
+            item.SetContent(Models.AlertPopupType.Alert, title, body, onConfirmCallback);
             item.gameObject.SetActive(true);
         }
         public void ShowConfirmAlert(string title, string body, Action onConfirmCallback)

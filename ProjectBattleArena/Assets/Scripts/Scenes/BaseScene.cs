@@ -33,9 +33,9 @@ public abstract class BaseScene : MonoBehaviour
     public virtual void OnShow()
     {
     }
-    public void ShowAlert(string title, string body)
+    public void ShowAlert(string title, string body, Action onConfirmCallback = null)
     {
-        UIManager.Instance.ShowAlert(title, body);
+        UIManager.Instance.ShowAlert(title, body, onConfirmCallback);
     }
 
     public void ShowConfirmAlert(string title, string body, Action onConfirmCallback = null)
