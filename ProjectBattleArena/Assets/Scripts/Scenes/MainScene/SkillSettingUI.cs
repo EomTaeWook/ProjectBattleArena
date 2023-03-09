@@ -4,7 +4,7 @@ using Kosher.Log;
 using TemplateContainers;
 using UnityEngine;
 
-public class SkillSettingUI : UIComponent
+public class SkillSettingUI : UIItem
 {
     [SerializeField]
     SkillUIItem[] skills;

@@ -33,7 +33,7 @@ public class TitleSceneController : SceneController<TitleSceneController>
             TemplateLoader.Load(LoadAndroidAssetFile);
         }
 
-        TemplateLoader.MakeRefTemplate();        
+        TemplateLoader.MakeRefTemplate();
     }
     private string LoadAndroidAssetFile(string fileName)
     {

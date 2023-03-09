@@ -8,7 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillUIItem : UIComponent
+public class SkillUIItem : UIItem
 {
     [SerializeField]
     TextMeshProUGUI txtSkillName;

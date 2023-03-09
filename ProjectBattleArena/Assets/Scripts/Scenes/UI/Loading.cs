@@ -1,7 +1,7 @@
 using Assets.Scripts.Internal;
 using Kosher.Log;
 
-public class Loading : UIComponent
+public class Loading : UIItem
 {
     public static Loading Instantiate()
     {

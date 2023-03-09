@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class ArenaReadyUI : UIComponent
+public class ArenaReadyUI : UIItem
 {
     public async void OnOpponentClickAsync(int index)
     {

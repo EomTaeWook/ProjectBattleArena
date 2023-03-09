@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Internal\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\SkillSettingUI.cs" />
     <Compile Include="Assets\Scripts\Internal\Test.cs" />
+    <Compile Include="Assets\Scripts\Models\UIItem.cs" />
     <Compile Include="Assets\Scripts\Scenes\SelectCharacterScene\CharacterSlot.cs" />
     <Compile Include="Assets\Scripts\Internal\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\BattleContents\Battle.cs" />
@@ -96,7 +97,6 @@
     <Compile Include="Assets\Scripts\Internal\UserAssetManager.cs" />
     <Compile Include="Assets\Scripts\Internal\UIManager.cs" />
     <Compile Include="Assets\Scripts\BattleContents\Stats\HpStats.cs" />
-    <Compile Include="Assets\Scripts\Models\UIElement.cs" />
     <Compile Include="Assets\Scripts\Scenes\UI\Loading.cs" />
     <Compile Include="Assets\Scripts\Models\UserData.cs" />
     <Compile Include="Assets\Scripts\Scenes\MainScene\MainCharacterUI.cs" />

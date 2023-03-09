@@ -4,7 +4,7 @@ using Kosher.Log;
 using TemplateContainers;
 using UnityEngine;
 
-public class MainHomeUI : UIComponent
+public class MainHomeUI : UIItem
 {
     public static MainHomeUI Instantiate(Transform parent)
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MainCharacterUI : UIComponent
+public class MainCharacterUI : UIItem
 {
     [SerializeField]
     SkillSettingUI skillSettingUI;

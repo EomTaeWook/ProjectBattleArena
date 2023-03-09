@@ -9,7 +9,7 @@ using TemplateContainers;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillSettingPopup : UIComponent
+public class SkillSettingPopup : UIItem
 {
     [SerializeField]
     GridLayoutGroup gridLayout;

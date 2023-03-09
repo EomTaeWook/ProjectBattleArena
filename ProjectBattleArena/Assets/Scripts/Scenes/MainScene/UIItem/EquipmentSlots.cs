@@ -1,4 +1,4 @@
-﻿public class EquipmentSlots : UIComponent
+﻿public class EquipmentSlots : UIItem
 {
 
 }

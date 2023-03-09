@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Internal;
 using UnityEngine;
 
-public class UIComponent : MonoBehaviour
+public class UIItem : MonoBehaviour
 {
     public virtual void DisposeUI()
     {

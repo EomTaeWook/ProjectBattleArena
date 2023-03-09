@@ -8,7 +8,7 @@ using TemplateContainers;
 using TMPro;
 using UnityEngine;
 
-public class CharacterSlot : UIComponent
+public class CharacterSlot : UIItem
 {
     [SerializeField]
     private TextMeshProUGUI txtCharcterName;

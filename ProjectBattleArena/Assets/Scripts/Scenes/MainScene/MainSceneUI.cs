@@ -2,7 +2,7 @@
 using Kosher.Log;
 using UnityEngine;
 
-public class MainSceneUI : UIComponent
+public class MainSceneUI : UIItem
 {
     [SerializeField]
     MainHomeUI lobbyHomeUI;
